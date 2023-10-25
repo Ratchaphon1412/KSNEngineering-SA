@@ -1,7 +1,6 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('contact') }}
-        </h2>
-    </x-slot>
+    <section class="container mx-auto h-[50vh] flex flex-col justify-center items-center">
+        <p class="text-3xl font-semibold mb-5">ติดต่อเรา</p>
+        <p class="text-xl">สอบถามสินค้าและบริการ</p>
+    </section>
 </x-app-layout>
