@@ -14,8 +14,16 @@ class UserSeeder extends Seeder
     {
         //
         //admin
-        \App\Models\User::factory()->count(5)->create()->each(function ($user) {
+        \App\Models\User::factory()->count(1)->create(
+            [
+                'name' => 'admin'
+            ]
+        )->each(function ($user) {
             $user->assignRole('admin');
+        });
+        //user
+        \App\Models\User::factory()->count(5)->create()->each(function ($user) {
+            $user->assignRole('user');
         });
     }
 }

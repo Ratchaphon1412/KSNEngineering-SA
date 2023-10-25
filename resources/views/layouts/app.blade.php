@@ -37,6 +37,12 @@
                 {{ $slot }}
             </main>
             <x-footer/>
+            
+            @role(['admin','user'])
+            <x-basement::chat-box />
+          @endrole
+         
+          
         </div>
 
         @stack('modals')
