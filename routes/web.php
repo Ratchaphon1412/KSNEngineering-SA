@@ -55,3 +55,8 @@ Route::middleware([
     })->name('contact');
 
 });
+
+
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+});
