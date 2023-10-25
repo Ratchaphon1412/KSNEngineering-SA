@@ -12,14 +12,18 @@ use Laravel\Sanctum\HasApiTokens;
 
 use Spatie\Permission\Traits\HasRoles; // use Role
 
-class User extends Authenticatable
+use BasementChat\Basement\Contracts\User as BasementUserContract; // chat
+use BasementChat\Basement\Traits\HasPrivateMessages;
+
+class User extends Authenticatable implements BasementUserContract
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    use HasRoles;
+    use HasRoles; // role
+    use HasPrivateMessages; // chat
 
     /**
      * The attributes that are mass assignable.

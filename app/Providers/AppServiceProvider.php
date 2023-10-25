@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Actions\Chats\AllContacts;
+use App\Actions\Chats\SendPrivateMessage;
+use BasementChat\Basement\Basement;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+        // Override the default action with your customized AllContacts action.
+
     }
 
     /**
@@ -20,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        Basement::allContactsUsing(AllContacts::class);
+        Basement::sendPrivateMessagesUsing(SendPrivateMessage::class);
     }
 }
