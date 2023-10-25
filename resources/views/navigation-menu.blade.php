@@ -6,7 +6,8 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
+                        <!-- <x-application-mark class="block h-9 w-auto" /> -->
+                        <img src="assets/images/logo.png" alt="" class="block h-9 w-auto">
                     </a>
                 </div>
 
@@ -14,6 +15,34 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('profile') }}" :active="request()->routeIs('profile')">
+                        {{ __('profile') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
+                        {{ __('about') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('service') }}" :active="request()->routeIs('service')">
+                        {{ __('service') }}
+                    </x-nav-link>
+                    
+                    <x-nav-link href="{{ route('product') }}" :active="request()->routeIs('product')">
+                        {{ __('product') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('crane') }}" :active="request()->routeIs('crane')">
+                        {{ __('crane') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('reward') }}" :active="request()->routeIs('reward')">
+                        {{ __('reward') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">
+                        {{ __('contact') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -141,6 +170,34 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('profile') }}" :active="request()->routeIs('profile')">
+                {{ __('profile') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
+                {{ __('about') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('service') }}" :active="request()->routeIs('service')">
+                {{ __('service') }}
+            </x-responsive-nav-link>
+            
+            <x-responsive-nav-link href="{{ route('product') }}" :active="request()->routeIs('product')">
+                {{ __('product') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('crane') }}" :active="request()->routeIs('crane')">
+                {{ __('crane') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('reward') }}" :active="request()->routeIs('reward')">
+                {{ __('reward') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">
+                {{ __('contact') }}
             </x-responsive-nav-link>
         </div>
 
