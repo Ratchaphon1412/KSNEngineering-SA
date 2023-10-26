@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignIdFor(Crane::class);
             $table->string('name');
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->nullable();
 
             $table->timestamps();
         });
