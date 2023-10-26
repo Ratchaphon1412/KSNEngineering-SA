@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cranes', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\Company::class);
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->longText('description')->nullable();
             $table->string('image')->nullable();
             $table->date('waranty');
