@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Repair extends Model
 {
@@ -21,6 +22,11 @@ class Repair extends Model
     public function crane(): BelongsTo
     {
         return $this->belongsTo(Crane::class);
+    }
+
+    public function task(): HasOne
+    {
+        return $this->hasOne(Task::class);
     }
 
 

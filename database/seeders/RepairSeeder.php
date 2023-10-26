@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Repair;
+use App\Models\Task;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +14,6 @@ class RepairSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Repair::factory(10)->create();
+       Repair::factory(10)->has(Task::factory(1))->create();
     }
 }

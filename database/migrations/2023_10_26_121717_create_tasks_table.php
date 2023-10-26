@@ -15,7 +15,8 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Repair::class);
-            
+            $table->string('stage');
+            $table->date('todo_date');
             $table->timestamps();
         });
     }

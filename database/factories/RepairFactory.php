@@ -19,7 +19,7 @@ class RepairFactory extends Factory
         return [
             'company_id' => \App\Models\Company::factory(),
             'user_id' => \App\Models\User::factory(),
-            'crane_id' => \App\Models\Crane::factory()->unique(),
+            'crane_id' => \App\Models\Crane::factory(),
             'name' => $this->faker->name(),
             'description' => $this->faker->name(),
         ];
