@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,11 +18,11 @@ class RepairFactory extends Factory
     public function definition(): array
     {
         return [
-            'company_id' => \App\Models\Company::factory(),
+            'company_id' => fake()->numberBetween(1,Company::count()),
             'user_id' => \App\Models\User::factory(),
             'crane_id' => \App\Models\Crane::factory(),
             'name' => $this->faker->name(),
-            'description' => $this->faker->name(),
+            'description' => fake()->text(100),
         ];
     }
 }

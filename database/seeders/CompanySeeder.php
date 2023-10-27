@@ -14,6 +14,6 @@ class CompanySeeder extends Seeder
     {
         //
 
-        \App\Models\Company::factory(10)->create();
+        \App\Models\Company::factory(2)->create();
     }
 }

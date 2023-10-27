@@ -33,9 +33,9 @@
                     <a href="{{ route('detail.repair.view',['repair'=>$repair]) }}">
                         <h5 class="text-gray-900 font-semibold text-2xl tracking-tight mb-2">{{ $repair->name }}</h5>
                     </a>
-                    <p class="font-normal text-white bg-blue-500 rounded-lg px-6 py-2 text-gray-700 mb-3 ">Company: {{ $repair->company()->get()[0]->name; }}</p>
+                    <p class="font-normal text-white bg-blue-500 rounded-lg px-6 py-2 text-gray-700 mb-3 ">Company: {{ $repair->company()->get()[0]->name }}</p>
                     <div class="flex bg-amber-300 p-1 rounded-lg">
-                        <p class="font-normal text-gray-700 my-3 ml-4">ddddd</p>
+                        <p class="font-normal text-gray-700 my-3 ml-4">Todo date: {{$repair->task()->get()[0]->todo_date}}</p>
                     </div>
                     </a>
 
