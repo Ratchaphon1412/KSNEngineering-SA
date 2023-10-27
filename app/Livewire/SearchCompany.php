@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Company;
 use App\Models\Repair;
+use App\Models\Task;
 
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
@@ -64,6 +65,7 @@ class SearchCompany extends Component
 
     public function save()
     {
+
 
         $this->validate([
             'title' => 'required',

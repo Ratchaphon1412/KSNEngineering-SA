@@ -1,5 +1,5 @@
-<div class="h-sreen w-screen">
-   <div class="flex flex-row justify-center items-center mx-auto h-full w-screen p-12">
+<div class="h-sreen w-full">
+   <div class="flex flex-row justify-center items-center mx-auto h-full w-full p-12">
       <div class="flex  items-start w-full gap-2">
           <div class="w-full  "> 
             <div class="w-full h-full flex flex-col items-center justify-center">
