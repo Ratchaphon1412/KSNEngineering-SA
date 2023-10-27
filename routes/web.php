@@ -37,5 +37,4 @@ Route::controller(SellController::class)->group(function () {
     Route::get('/repair', 'repairView')->name('seller.repair.view');
     Route::get('/list-repair', 'indexRepair')->name('show.repair.view');
     Route::get('/detail-repair/{repair}', 'detailRepair')->name('detail.repair.view');
-
 });

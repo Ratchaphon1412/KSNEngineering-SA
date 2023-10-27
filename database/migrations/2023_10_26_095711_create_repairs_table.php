@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Company::class);
             $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Crane::class);
+            $table->foreignIdFor(Crane::class)->nullable();
             $table->string('name');
             $table->text('description');
             $table->string('image')->nullable();

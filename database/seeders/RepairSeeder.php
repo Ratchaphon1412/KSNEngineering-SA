@@ -14,6 +14,11 @@ class RepairSeeder extends Seeder
      */
     public function run(): void
     {
-       Repair::factory(10)->has(Task::factory(1))->create();
+        //
+        if (Repair::count() > 0) {
+            return;
+        }
+
+        Repair::factory(10)->has(Task::factory(1))->create();
     }
 }

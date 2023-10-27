@@ -40,7 +40,7 @@
                      
                      @endif
 
-          
+
                   
                   
                   </section>
@@ -50,14 +50,18 @@
           </div>
           <div class="w-full">
            
-              <form class="w-full max-w-lg">
+              <form class="w-full max-w-lg" wire:submit.prevent="save" >
+               
                   <div class="flex flex-wrap -mx-3 mb-6">
                   <div class="w-full md:w-5/6 px-3 mb-6 md:mb-0">
                       <label for="title" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
                       Title
                       </label>
-                      <input id="title" name="title" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"  type="text" placeholder="Repair Title">
-                      <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                      <input id="title" wire:model="title" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"  type="text" placeholder="Repair Title">
+                      @error('title')
+                        <p class="text-red-500 text-xs italic">{{$message}}</p>
+                      @enderror
+                      
                   </div>
    
                   </div>
@@ -67,10 +71,12 @@
                         Details
                       </label>
 
-                      <textarea id="details" name="details" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your thoughts here..."></textarea>
+                      <textarea id="details"  wire:model="details" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your thoughts here..."></textarea>
 
                       
-                      <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
+                      @error('details')
+                        <p class="text-red-500 text-xs italic">{{$message}}</p>
+                      @enderror
                   </div>
                   </div>
                   <div class="flex flex-wrap -mx-3 mb-6">
@@ -86,12 +92,16 @@
                               <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                               <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                            </div>
-                           <input id="dropzone-file" type="file" class="hidden" />
+                           <input id="dropzone-file"   wire:model="image" type="file" class="hidden" />
                         </label>
                      </div> 
-                     <img id="preview-image" class="w-full h-full mb-4 hidden" src="" alt="">
+                     @if($image)
+                        <img id="preview-image" class="w-full h-full mb-4 " src="{{$image->temporaryUrl()}}" alt="">
+                     @endif
 
-
+                     @error('image')
+                        <p class="text-red-500 text-xs italic">{{$message}}</p>
+                      @enderror
                   </div>
              
                   <div class="w-full  px-3 mb-6 md:mb-0">
@@ -99,15 +109,20 @@
                       Company
                      </label>
                      @if($selectedCompany)
+                    
                         
                         <livewire:card-company :company="$selectedCompany"  wire:key="{{$selectedCompany}}"/>
-                        <input type="hidden" name="company_id" value="{{$selectedCompany}}">
+                        <input type="text" class="hidden" wire:model="company_id"  wire:key="{{$selectedCompany->id}}"  >
                      @else
                      <div class="card card-side  shadow-xl">
                         
                         <div class="card-body">
                            <p class="text-black text-md ">Please select company</p>
                         </div>
+                        @error('company_id')
+                           <p class="text-red-500 text-xs italic">{{$message}}</p>
+                        @enderror
+                        
                     </div>
                      @endif
                   </div>
@@ -116,7 +131,7 @@
                                     
                      <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a Crane</label>
                      @isset($selectedCompany->cranes)
-                        <select id="countries" name="crane_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="countries"  wire:model="crane_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                            <option selected>Not Select Crane</option>
                            {{-- {{$selectedCompany->cranes}} --}}
                            @foreach ($selectedCompany->cranes as $crane)
@@ -127,13 +142,16 @@
                         </select>
                      @else
                      <p class="text-gray-700 text-md text-xs tracking-wide">No Crane</p>
+                     @error('crane_id')
+                        <p class="text-red-500 text-xs italic">{{$message}}</p>
+                     @enderror
 
                      @endisset
 
                   </div>
 
 
-                  
+                  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center m-4">Submit</button>
                  
 
               </form>
@@ -146,38 +164,3 @@
 
 
 </div>
-
-
-<script>
-   // Get the input element
-   const inputElement = document.getElementById("dropzone-file");
-
-   // Add an event listener to the input element
-   inputElement.addEventListener("change", handleFiles, false);
-
-   // Define the handleFiles function
-   function handleFiles() {
-      // Get the selected file
-      const file = this.files[0];
-
-      // Create a new FileReader object
-      const reader = new FileReader();
-
-      // Define the onload function for the FileReader object
-      reader.onload = function(event) {
-         // Get the image element
-         const imgElement = document.getElementById("preview-image");
-
-         // Set the source of the image element to the data URL of the selected file
-         imgElement.src = event.target.result;
-
-         // Display the uploaded image in the image container
-         imgElement.classList.remove("hidden");
-
-
-      };
-      
-      // Read the selected file as a data URL
-      reader.readAsDataURL(file);
-   }
-</script>

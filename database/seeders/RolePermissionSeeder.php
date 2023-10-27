@@ -17,6 +17,10 @@ class RolePermissionSeeder extends Seeder
     public function run(): void
     {
         //
+        if (Role::count() > 0) {
+            return;
+        }
+
         $role = Role::create(['name' => 'admin']);
         $permission1 = Permission::create(['name' => 'can create users']);
         $permission2 = Permission::create(['name' => 'can view users']);

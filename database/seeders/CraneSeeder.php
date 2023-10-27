@@ -13,6 +13,10 @@ class CraneSeeder extends Seeder
     public function run(): void
     {
         //
+        if (\App\Models\Crane::count() > 0) {
+            return;
+        }
+
         \App\Models\Crane::factory(10)->create();
     }
 }
