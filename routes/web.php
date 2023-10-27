@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\productController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('/product', [productController::class, 'view'])->name('product.index');
+Route::post('/product', [productController::class, 'upload'])->name('product.upload');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -34,10 +38,6 @@ Route::middleware([
     Route::get('/service', function (){
         return view('service');
     })->name('service');
-    
-    Route::get('/product', function (){
-        return view('product');
-    })->name('product');
 
     Route::get('/crane', function(){
         return view('crane');
