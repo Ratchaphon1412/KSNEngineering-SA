@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\productController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SellController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,4 +65,10 @@ Route::middleware([
 
 Route::get('/admin', function () {
     return view('admin.dashboard');
+});
+
+Route::controller(SellController::class)->group(function () {
+    Route::get('/repair', 'repairView')->name('seller.repair.view');
+    Route::get('/list-repair', 'indexRepair')->name('show.repair.view');
+    Route::get('/detail-repair/{repair}', 'detailRepair')->name('detail.repair.view');
 });

@@ -21,4 +21,8 @@ class Crane extends Model
     {
         return $this->belongsTo(Company::class);
     }
+    
+    public function repairs(): HasMany {
+        return $this->hasMany(Repair::class);
+    }
 }

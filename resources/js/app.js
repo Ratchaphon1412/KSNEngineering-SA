@@ -7,6 +7,7 @@ import Alpine from 'alpinejs'
 import intersect from '@alpinejs/intersect'
 import echoOptions from '../../vendor/basement-chat/basement-chat/dist/basement.echo-options.esm'
 import basement from '../../vendor/basement-chat/basement-chat/dist/basement.plugin.esm'
+import 'flowbite';
 
 window.axios = axios
 

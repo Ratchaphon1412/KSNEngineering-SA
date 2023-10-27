@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Repair;
+use App\Models\Task;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CompanySeeder extends Seeder
+class RepairSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,10 +15,10 @@ class CompanySeeder extends Seeder
     public function run(): void
     {
         //
-        if (\App\Models\Company::count() > 0) {
+        if (Repair::count() > 0) {
             return;
         }
 
-        \App\Models\Company::factory(10)->create();
+        Repair::factory(10)->has(Task::factory(1))->create();
     }
 }
