@@ -13,6 +13,9 @@ class CompanySeeder extends Seeder
     public function run(): void
     {
         //
+        if (\App\Models\Company::count() > 0) {
+            return;
+        }
 
         \App\Models\Company::factory(2)->create();
     }

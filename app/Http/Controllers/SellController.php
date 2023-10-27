@@ -9,6 +9,8 @@ class SellController extends Controller
 {
     //
 
+
+
     public function repairView(Request $request)
     {
         return view('seller.repair');
@@ -18,13 +20,13 @@ class SellController extends Controller
     {
         $repairs = Repair::get();
         return view('seller.index', [
-            'repairs' =>$repairs,
+            'repairs' => $repairs,
         ]);
     }
 
     public function detailRepair(Repair $repair)
     {
-        return view('seller.detail',[
+        return view('seller.detail', [
             'repair' => $repair,
         ]);
     }

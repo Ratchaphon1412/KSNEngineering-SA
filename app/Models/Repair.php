@@ -11,6 +11,15 @@ class Repair extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'company_id',
+        'user_id',
+        'crane_id',
+        'image',
+    ];
+
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
@@ -28,7 +37,4 @@ class Repair extends Model
     {
         return $this->hasOne(Task::class);
     }
-
-
-
 }
