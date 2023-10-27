@@ -4,7 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
-
+use App\Models\product;
+use App\Models\productImage;
 
 class FormProduct extends Component
 {
@@ -24,13 +25,28 @@ class FormProduct extends Component
     public function save()
     {
         $this->validate([
-            
+            'name' => 'required',
+            'price' => 'required',
+            'amount' => 'required',
+            'description' => 'required|string',
             'images.*' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
+        $product = new product();
+        $product->name = $this->name;
+        $product->price = $this->price;
+        $product->amount = $this->amount;
+        $product->description = $this->description;
+        $product->save();
+
         foreach($this->images as $image){
-            // $image->hashName()
             $image->store('product');
+            $productImage = new productImage();
+            $productImage->product_id = $product->id;
+            $productImage->type = 'product';
+            $productImage->imageUrl = $image->hashName();
+            $productImage->save();
         }
+
     }
 }

@@ -61,6 +61,7 @@
                                 @endif
                             </div>
                         </div>
+                        @error('images.*') <span class="text-red-400">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
