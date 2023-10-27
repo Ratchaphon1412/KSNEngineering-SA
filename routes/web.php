@@ -61,6 +61,10 @@ Route::middleware([
     Route::get('/create', function(){
         return view('Create');
     })->name('create');
+    Route::get('/createCrane', function(){
+        return view('createCrane');
+    })->name('createCrane');
+
 
 
 Route::get('/admin', function () {
