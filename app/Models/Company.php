@@ -21,4 +21,9 @@ class Company extends Model
     {
         return 'companies_index';
     }
+
+    public function repairs(): HasMany {
+        return $this->hasMany(Repair::class);
+    }
+
 }
