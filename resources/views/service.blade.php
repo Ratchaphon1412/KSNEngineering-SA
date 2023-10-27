@@ -1,18 +1,27 @@
 <x-app-layout>
-    <div class="grid grid-cols-1 md:grid-cols-2 w-full md:h-[90vh] container mx-auto snap-start">
-        <div class="flex flex-col md:justify-center md:items-center md:order-none order-last">
-            <div class="font-extrabold text-9xl my-10 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-500" id="type">
-                KSN.
-            </div>
-            <div class="text-left text-red-500 indent-8 text-4xl mb-3" id="intro">
-                K.S.N. Engineering Company Limited was established in 1994 to carry out the business of promoting industry in Thailand. 
+    <div class="w-full md:h-[50vh] bg-cover bg-fixed bg-bottom bg-no-repeat shadow-xl" 
+        style="background-image: url('assets/images/crane-hero.jpg')">
+        <div class="bg-black bg-opacity-20 w-full h-full py-[25%] md:py-0">
+            <div class="container mx-auto flex flex-col md:justify-center md:items-center text-center h-full space-y-4">
+                <div class="uppercase font-extrabold text-4xl text-transparent bg-clip-text bg-[#03045E]">
+                    services & MAINTENANCE
+                </div>
+                <div class="text-white text-xl md:px-64" id="intro">
+                    การตรวจเช็คเครนและอุปกรณ์ช่วยยกอย่างสม่ำเสมอจะทำให้การปฏิบัติงานเป็นไปอย่างราบรื่น และ สร้างความปลอดภัยในการทำงาน
+                </div>
             </div>
         </div>
-        <img src="assets/images/crane-hero.jpg" alt="" class="hidden place-self-center rounded-xl md:block md:ml-10">
     </div>
 
+    <div class="text-center text-4xl font-extrabold my-20">
+        <span>“พวกเรา</span>
+        <span class="text-amber-400">เต็มใจ</span>
+        <p class="text-amber-400">เต็มที่</p>
+        <span class="text-amber-400">เต็มคุณภาพ</span>
+        <span>“</span>
+    </div>
     
-    <div class="bg-white snap-start">
+    <div class="bg-white">
         <div class="container mx-auto">
             <div class="flex justify-between py-12">
                 <p class="text-3xl font-extrabold indent-10">Prepare</p>
@@ -36,7 +45,7 @@
     </div>
 
     <!-- content -->
-    <div class="container mx-auto snap-start">
+    <div class="container mx-auto">
         <div class="flex justify-between my-12">
             <p class="text-3xl font-extrabold indent-10">Working</p>
         </div>
@@ -53,8 +62,8 @@
     <style scoped>
 
     #type{
-        width: 4ch;
-        animation: typing 1s steps(4), blink .5s step-end infinite alternate;
+        width: 22ch;
+        animation: typing 2s steps(8), blink .5s step-end infinite alternate;
         white-space: nowrap;
         overflow: hidden;
         border-right: 3px solid;

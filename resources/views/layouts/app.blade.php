@@ -20,7 +20,7 @@
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100 pl-16">
+        <div class="min-h-screen bg-gray-100">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
@@ -34,7 +34,6 @@
 
             <!-- Page Content -->
             <main class="relative">
-                <x-sidebar />
                 {{ $slot }}
             </main>
             <x-footer/>

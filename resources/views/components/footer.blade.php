@@ -1,4 +1,4 @@
-<footer class="bg-[#03045E] mt-24">
+<footer class="bg-[#03045E]">
     <div class="mx-auto w-full max-w-screen-xl text-white p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
         <div class="mb-6 md:mb-0 text-center">
