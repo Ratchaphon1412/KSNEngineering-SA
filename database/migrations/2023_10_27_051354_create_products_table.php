@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->enum('type',['product','service']);
+            $table->enum('type', ['product', 'service']);
             $table->double('price');
             $table->integer('amount');
+            $table->string('post_image');
             $table->timestamps();
             $table->softDeletes();
         });
