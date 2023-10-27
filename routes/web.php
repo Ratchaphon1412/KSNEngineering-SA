@@ -51,7 +51,15 @@ Route::middleware([
         return view('contact');
     })->name('contact');
 
+   
+
 });
+    Route::get('/kanban', function(){
+        return view('kanban');
+    })->name('kanban');
+    Route::get('/create', function(){
+        return view('Create');
+    })->name('create');
 
 
 Route::get('/admin', function () {

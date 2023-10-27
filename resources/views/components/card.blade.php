@@ -1,7 +1,7 @@
 <!-- component -->
 <div class="snap-start mx-4 my-6">
     <div class="container">
-        <div class="max-w-md w-full bg-gray-900 shadow-lg rounded-xl p-6">
+        <div class="max-w-md w-full bg-neutral-300 shadow-lg rounded-xl p-6">
             <div class="flex flex-col ">
             <div class="">
                 <div class="relative h-62 w-full mb-3">
@@ -23,7 +23,7 @@
                 <span class="text-gray-400 whitespace-nowrap mr-3">4.60</span><span class="mr-2 text-gray-400">India</span>
                 </div> -->
                 <div class="flex items-center w-full justify-between min-w-0 ">
-                <h2 class="text-lg mr-auto cursor-pointer text-gray-200 hover:text-purple-500 truncate ">
+                <h2 class="text-lg mr-auto cursor-pointer text-black-200 hover:text-purple-500 truncate ">
                     {{ $name }}
                 </h2>
                 <div class="flex items-center bg-green-400 text-white text-xs px-2 py-1 ml-3 rounded-lg">
@@ -31,7 +31,7 @@
                 </div>
                 </div>
             </div>
-            <div class="text-xl text-white font-semibold my-2">฿ {{ $price }}</div>
+            <div class="text-xl text-black font-semibold my-2">฿ {{ $price }}</div>
             <!-- <div class="lg:flex  py-4  text-sm text-gray-600">
                 <div class="flex-1 inline-flex items-center  mb-3">
                 <div class="w-full flex-none text-sm flex items-center text-gray-600">
@@ -74,12 +74,13 @@
                 <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-purple-500 px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-purple-600 ">
                 <span>Add Cart</span>
                 </button>
-                <button class="transition ease-in duration-300 bg-gray-700 hover:bg-gray-800 border hover:border-gray-500 border-gray-700 hover:text-white  hover:shadow-lg text-gray-400 rounded-full w-9 h-9 text-center p-2">
+                <a href="{{ route('kanban') }}" class="transition ease-in duration-300 bg-gray-700 hover:bg-gray-800 border hover:border-gray-500 border-gray-700 hover:text-white  hover:shadow-lg text-gray-400 rounded-full w-9 h-9 text-center p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
-                </button>
+                
+                </a>
             </div>
             </div>
         </div>
