@@ -20,7 +20,7 @@
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-100 pl-16">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
@@ -33,9 +33,11 @@
             @endif
 
             <!-- Page Content -->
-            <main>
+            <main class="relative">
+                <x-sidebar />
                 {{ $slot }}
             </main>
+            <x-footer/>
             
             @role(['admin','user'])
             <x-basement::chat-box />

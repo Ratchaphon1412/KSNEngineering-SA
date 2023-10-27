@@ -1,0 +1,89 @@
+<x-app-layout>
+    <div class="grid grid-cols-1 md:grid-cols-2 w-full md:h-[90vh] container mx-auto snap-start">
+        <div class="flex flex-col md:justify-center md:items-center md:order-none order-last">
+            <div class="font-extrabold text-9xl my-10 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-500" id="type">
+                KSN.
+            </div>
+            <div class="text-left text-red-500 indent-8 text-4xl mb-3" id="intro">
+                K.S.N. Engineering Company Limited was established in 1994 to carry out the business of promoting industry in Thailand. 
+            </div>
+        </div>
+        <img src="assets/images/crane-hero.jpg" alt="" class="hidden place-self-center rounded-xl md:block md:ml-10">
+    </div>
+
+    
+    <div class="bg-white snap-start">
+        <div class="container mx-auto">
+            <div class="flex justify-between py-12">
+                <p class="text-3xl font-extrabold indent-10">Prepare</p>
+            </div>
+            <hr class="border border-2 border-black rounded-full">
+            <!-- content -->
+            <div class="flex flex-col md:flex-row justify-between py-12">
+                <img src="assets/slide/crane.jpg" alt="" class="object-cover rounded-lg md:w-96">
+                <div class="p-10">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi iure illo cumque eius, odit aliquid unde eum esse. Quidem incidunt, illo itaque et cupiditate nesciunt. Deserunt, ab. Iure enim repellendus, perspiciatis velit facilis nulla eum, officia delectus tempora quia voluptas.
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between py-10">
+                <div class="p-10 order-last md:order-none">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi iure illo cumque eius, odit aliquid unde eum esse. Quidem incidunt, illo itaque et cupiditate nesciunt. Deserunt, ab. Iure enim repellendus, perspiciatis velit facilis nulla eum, officia delectus tempora quia voluptas.
+                </div>
+                <img src="assets/slide/keeping.jpg" alt="" class="object-cover rounded-lg md:w-96">
+            </div>
+        </div>
+    </div>
+
+    <!-- content -->
+    <div class="container mx-auto snap-start">
+        <div class="flex justify-between my-12">
+            <p class="text-3xl font-extrabold indent-10">Working</p>
+        </div>
+        <hr class="border border-2 border-black rounded-full">
+        <p class="text-center my-12">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quam labore fugit soluta beatae harum, nostrum laborum quis animi necessitatibus.</p>
+        <div class="flex flex-col md:flex-row justify-center md:space-x-3 space-y-5">
+            <img src="assets/slide/prepare.jpg" alt="" class="rounded-lg md:w-96">
+            <img src="assets/slide/sendingProduct.jpg" alt="" class="rounded-lg md:w-96">
+            <img src="assets/slide/product.jpg" alt="" class="rounded-lg md:w-96">
+        </div>
+    </div>
+    
+
+    <style scoped>
+
+    #type{
+        width: 4ch;
+        animation: typing 1s steps(4), blink .5s step-end infinite alternate;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid;
+    }
+
+    @keyframes typing{
+        from {
+            width: 0
+        }
+    }
+
+    @keyframes blink {
+        50%{
+            border-color: transparent
+        }
+    }
+
+    #intro{
+        animation: intro 1.5s;
+    }
+
+    @keyframes intro{
+        0% {
+        transform: translateY(25%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+    }
+
+    </style>
+</x-app-layout>

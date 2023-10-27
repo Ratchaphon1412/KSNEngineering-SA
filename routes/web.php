@@ -17,21 +17,49 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    
+    Route::get('/about', function (){
+        return view('about');
+    })->name('about');
+    
+    Route::get('/service', function (){
+        return view('service');
+    })->name('service');
+    
+    Route::get('/product', function (){
+        return view('product');
+    })->name('product');
 
+    Route::get('/crane', function(){
+        return view('crane');
+    })->name('crane');
 
-    Route::get('/kanban', function() {
-        return view('kanban');
-    })->name('kanban');
+    Route::get('/reward', function(){
+        return view('reward');
+    })->name('reward');
+
+    Route::get('/contact', function(){
+        return view('contact');
+    })->name('contact');
+
+   
 
 });
+    Route::get('/kanban', function(){
+        return view('kanban');
+    })->name('kanban');
+    Route::get('/create', function(){
+        return view('create');
+    })->name('create');
 
 
 Route::get('/admin', function () {
