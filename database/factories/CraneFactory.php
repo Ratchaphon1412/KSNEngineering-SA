@@ -18,7 +18,7 @@ class CraneFactory extends Factory
     {
         return [
             //
-            'company_id' => \App\Models\Company::factory(), // 'company_id' => 'factory:App\Models\Company
+            'company_id' => \App\Models\Company::all()->random()->id, // 'company_id' => 'factory:App\Models\Company
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
             'image' => $this->faker->imageUrl(),

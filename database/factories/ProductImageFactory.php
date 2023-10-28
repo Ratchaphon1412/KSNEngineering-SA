@@ -20,7 +20,7 @@ class ProductImageFactory extends Factory
             //
             'type' => $this->faker->randomElement(['image', 'video']),
             'imageUrl' => $this->faker->imageUrl(),
-            'product_id' =>  \App\Models\Product::factory(),
+            'product_id' =>  \App\Models\Product::all()->random()->id,
 
         ];
     }

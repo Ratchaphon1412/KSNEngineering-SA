@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cranes', function (Blueprint $table) {
+        Schema::create('crane_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Company::class);
-            $table->string('name')->nullable();
-            $table->longText('description')->nullable();
+            $table->foreignIdFor(\App\Models\Crane::class);
             $table->string('image')->nullable();
-            $table->date('waranty')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cranes');
+        Schema::dropIfExists('crane_images');
     }
 };
