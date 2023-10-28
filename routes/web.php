@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SellController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,14 +54,16 @@ Route::middleware([
     Route::get('/porduct/{product}', [ProductController::class, 'detail'])->name('kanban');
 
 });
-    Route::get('/create', function(){
-        return view('Create');
-    })->name('create');
+
+Route::get('/create', function(){
+    return view('Create');
+})->name('create');
 
 
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-});
+Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
+Route::get('/register', function (){
+    return view('auth.register');
+})->name('register');
 
 Route::controller(SellController::class)->group(function () {
     Route::get('/repair', 'repairView')->name('seller.repair.view');
