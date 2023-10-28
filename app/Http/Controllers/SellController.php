@@ -19,8 +19,15 @@ class SellController extends Controller
     public function indexRepair()
     {
         $repairs = Repair::get();
+        $showRepairs = [];
+        foreach ($repairs as $repair) {
+            if($repair->task->user_id === null){
+                $showRepairs[] = $repair;
+            }
+        }
+
         return view('seller.index', [
-            'repairs' => $repairs,
+            'repairs' => $showRepairs,
         ]);
     }
 
@@ -30,4 +37,12 @@ class SellController extends Controller
             'repair' => $repair,
         ]);
     }
+
+    public function updateRepair(Repair $repair)
+    {
+        return view('technician.index',[
+            'repair' => $repair,
+        ]);
+    }
+
 }

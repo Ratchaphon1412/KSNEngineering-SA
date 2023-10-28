@@ -4,25 +4,12 @@
         <div class="flex justify-between w-9/12">
             <div class="w-full mb-16">
                 <div class="grid grid-cols-2 md:grid-cols-2 gap-4 place-items-center">
-                
+                @foreach ($repair->task()->get()[0]->images as $image)
                     <div>
-                        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt="">
+                        <img class="h-auto max-w-full rounded-lg" src="{{asset('storage/uploads/' . $image->path)}}" alt="">
                     </div>
-                    <div>
-                        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt="">
-                    </div>
-                    <div>
-                        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" alt="">
-                    </div>
-                    <div>
-                        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt="">
-                    </div>
-                    <div>
-                        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt="">
-                    </div>
-                    <div>
-                        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" alt="">
-                    </div>
+                    
+                @endforeach
                 
                     
                     
@@ -40,7 +27,14 @@
                         
                     </div>
                 </div>
-                <a href="{{ route('task.edit.view',['repair'=>$repair]) }}" class="font-bold w-full outline outline outline-1 py-3 px-4 flex items-center justify-center mt-5 mb-2 rounded-full text-white" style="background: #227f">technician</a>
+                <div class="mt-5 flex flex-col w-full p-4 rounded-lg bg-white outline outline-blue-400">
+                    <div class="text-xl font-semibold my-2">Task</div>
+                    <div class="text-lg font-medium my-2">Stage: <div class="font-normal bg-blue-200 rounded-lg px-4">{{ $repair->task->stage }}</div></div>
+                    <div class="text-lg font-medium my-2">description: <div class="font-normal bg-blue-200 rounded-lg px-4">{{ $repair->task->description }}</div></div>
+                    
+                </div>
+                <a href="{{ route('repair.edit.view',['repair'=>$repair]) }}" class="font-bold w-full outline outline outline-1 py-3 px-4 flex items-center justify-center mt-5 mb-2 rounded-full text-white" style="background: #227f">edit repair</a>
+                <a href="{{ route('task.edit.view',['repair'=>$repair]) }}" class="font-bold w-full outline outline outline-1 py-3 px-4 flex items-center justify-center mt-5 mb-2 rounded-full text-white" style="background: #227f">edit task</a>
                 <a href="" class="font-bold w-full outline outline outline-1 py-3 px-4 flex items-center justify-center my-2 rounded-full text-white bg-orange-500" >Quataion</a>
 
                 <form action="#" method="POST" class="w-full">

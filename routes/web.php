@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\TechnicianController;
+use Laravel\Jetstream\Rules\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +39,11 @@ Route::controller(SellController::class)->group(function () {
     Route::get('/repair', 'repairView')->name('seller.repair.view');
     Route::get('/list-repair', 'indexRepair')->name('show.repair.view')->middleware(['auth', 'verified']);
     Route::get('/detail-repair/{repair}', 'detailRepair')->name('detail.repair.view')->middleware(['auth', 'verified']);
+    Route::get('/update-repair/{repair}','updateRepair')->name('repair.edit.view')->middleware(['auth', 'verified']);
 });
 
 Route::controller(TechnicianController::class)->group(function () {
     Route::get('/task/{repair}','show')->name('task.edit.view')->middleware(['auth', 'verified']);
-    Route::post('/update-task/{repair}','update')->name('task.update');
+    Route::post('/update-task/{task}','update')->name('task.update')->middleware(['auth', 'verified']);
+    Route::get('/my-work','myWork')->name('repair.tech.work')->middleware(['auth', 'verified']);
 });
