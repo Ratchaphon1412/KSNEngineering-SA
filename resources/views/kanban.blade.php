@@ -10,11 +10,11 @@
                         <div class="product-div-left">
                             <div class="img-container">
                                 @if(Str::contains($images->first()->imageUrl, 'https:') != 1)
-                                <figure id="magnifying_area">
+                                <figure id="magnifying_area" class="mx-auto">
                                     <img src="{{ asset('storage/product/' . $images->first()->imageUrl) }}" alt="watch" id="magnifying_img">
                                 </figure>
                                 @else
-                                <figure id="magnifying_area">
+                                <figure id="magnifying_area" class="mx-auto">
                                     <img src="{{ $images->first()->imageUrl }}" alt="watch" id="magnifying_img">
                                 </figure>
                                 @endif
@@ -209,27 +209,35 @@
     var magnifying_area = document.getElementById("magnifying_area");
     var magnifying_img = document.getElementById("magnifying_img");
 
-    magnifying_area.addEventListener("mousemove", function(e){
+    magnifying_area.addEventListener("mousemove", (e) => {
         
-        clientX = e.clientX - magnifying_area.offsetLeft
-        clientY = e.clientY - magnifying_area.offsetTop
+        const x = e.clientX - e.target.offsetLeft;
+        const y = e.clientY - e.target.offsetTop;
 
-        mWidth = magnifying_area.offsetWidth
-        mHeight = magnifying_area.offsetHeight
-
-        clientX = clientX / mWidth * 100
-        clientY = clientY / mHeight * 100
-
-        magnifying_img.style.transform = 'translate(-' + clientX + '%, -' + clientY + '%) scale(2)'
+        magnifying_img.style.transformOrigin = `${x}px ${y}px`;
+        magnifying_img.style.transform = "scale(2)"
     });
 
     magnifying_area.addEventListener("mouseleave", function(){
-        magnifying_img.style.transform = 'scale(1)'
+        magnifying_img.style.transformOrigin = "center";
+        magnifying_img.style.transform = "scale(1)";
     });
 </script>
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+    #magnifying_area{
+        display: flex;
+        height: fit-content;
+        width: fit-content;
+        overflow:hidden;
+    }
+    #manifying_img{
+        transform-origin: center;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
     * {
         padding: 0;
         margin: 0;
