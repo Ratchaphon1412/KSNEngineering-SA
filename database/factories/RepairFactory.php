@@ -17,9 +17,9 @@ class RepairFactory extends Factory
     public function definition(): array
     {
         return [
-            'company_id' => \App\Models\Company::factory(),
-            'user_id' => \App\Models\User::factory(),
-            'crane_id' => \App\Models\Crane::factory(),
+            'company_id' => \App\Models\Company::all()->random()->id,
+            'user_id' => \App\Models\User::all()->random()->id,
+            'crane_id' => \App\Models\Crane::all()->random()->id,
             'name' => $this->faker->name(),
             'description' => $this->faker->name(),
         ];

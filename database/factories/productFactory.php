@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Crane>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
-class CraneFactory extends Factory
+class productFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,11 +18,13 @@ class CraneFactory extends Factory
     {
         return [
             //
-            'company_id' => \App\Models\Company::all()->random()->id, // 'company_id' => 'factory:App\Models\Company
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
-            'image' => $this->faker->imageUrl(),
-            'waranty' => $this->faker->date(),
+            'type' => $this->faker->randomElement(['product', 'service']),
+            'price' => $this->faker->randomFloat(2, 0, 1000),
+            'amount' => $this->faker->randomDigit(),
+            'post_image' => $this->faker->imageUrl(),
+
         ];
     }
 }

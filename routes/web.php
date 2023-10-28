@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,36 +29,37 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    
-    Route::get('/about', function (){
+
+    Route::get('/about', function () {
         return view('about');
     })->name('about');
-    
-    Route::get('/service', function (){
+
+    Route::get('/service', function () {
         return view('service');
     })->name('service');
 
-    Route::get('/crane', function(){
+    Route::get('/crane', function () {
         return view('crane');
     })->name('crane');
 
-    Route::get('/reward', function(){
+    Route::get('/reward', function () {
         return view('reward');
     })->name('reward');
 
-    Route::get('/contact', function(){
+    Route::get('/contact', function () {
         return view('contact');
     })->name('contact');
 
-    Route::get('/product', [ProductController::class, 'index'])->name('product');
-    Route::get('/porduct/{product}', [ProductController::class, 'detail'])->name('kanban');
-
+    
 });
 
 Route::get('/create', function(){
     return view('Create');
 })->name('create');
 
+Route::get('/kanban', function () {
+    return view('kanban');
+})->name('kanban');
 
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
 Route::get('/register', function (){
@@ -69,4 +70,11 @@ Route::controller(SellController::class)->group(function () {
     Route::get('/repair', 'repairView')->name('seller.repair.view');
     Route::get('/list-repair', 'indexRepair')->name('show.repair.view');
     Route::get('/detail-repair/{repair}', 'detailRepair')->name('detail.repair.view');
+});
+
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/product', 'view')->name('product.index');
+    Route::get('/porduct/{product}', 'detail')->name('kanban');
+    Route::get('/product/create/crane', 'createCrane')->name('product.crane.create');
+    Route::get('/product/create/product', 'createProduct')->name('product.product.create');
 });

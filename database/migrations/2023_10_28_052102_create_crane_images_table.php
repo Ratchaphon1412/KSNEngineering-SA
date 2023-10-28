@@ -11,16 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('crane_images', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->enum('type', ['product', 'service']);
-            $table->double('price');
-            $table->integer('amount');
-            $table->string('post_image');
+            $table->foreignIdFor(\App\Models\Crane::class);
+            $table->string('image')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('crane_images');
     }
 };

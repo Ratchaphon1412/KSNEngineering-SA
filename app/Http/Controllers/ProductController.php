@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\product;
 
-
 class ProductController extends Controller
 {
-    public function index(){
+    public function view(){
         $products = product::get();
 
-        return view('product', [
+        return view('product.index', [
             'products' => $products
         ]);
     }
@@ -22,5 +21,14 @@ class ProductController extends Controller
             'product' => $product,
             'images' => $images
         ]);
+    }
+    
+    public function createCrane()
+    {
+        return view('product.create-crane');
+    }
+    public function createProduct()
+    {
+        return view('product.create-product');
     }
 }

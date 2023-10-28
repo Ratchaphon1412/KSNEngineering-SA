@@ -9,14 +9,27 @@
                     <div class="product-div">
                         <div class="product-div-left">
                             <div class="img-container">
-                                <img src="{{ asset('storage/product/' . $images->first()->imageUrl) }}" alt="watch">
+                                @if(Str::contains($images->first()->imageUrl, 'https:') != 1)
+                                <figure id="magnifying_area">
+                                    <img src="{{ asset('storage/product/' . $images->first()->imageUrl) }}" alt="watch" id="magnifying_img">
+                                </figure>
+                                @else
+                                <figure id="magnifying_area">
+                                    <img src="{{ $images->first()->imageUrl }}" alt="watch" id="magnifying_img">
+                                </figure>
+                                @endif
                             </div>
                             <div class="hover-container">
                                 @foreach($images as $image)
+                                    @if(Str::contains($image->imageUrl, 'https:') != 1)
                                     <div>
                                         <img src="{{ asset('storage/product/' . $image->imageUrl) }}" alt="">
                                     </div>
-                                    
+                                    @else
+                                    <div>
+                                        <img src="{{ $image->imageUrl }}" alt="">
+                                    </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
@@ -192,11 +205,31 @@
             img.parentElement.classList.remove('active');
         });
     }
+
+    var magnifying_area = document.getElementById("magnifying_area");
+    var magnifying_img = document.getElementById("magnifying_img");
+
+    magnifying_area.addEventListener("mousemove", function(e){
+        
+        clientX = e.clientX - magnifying_area.offsetLeft
+        clientY = e.clientY - magnifying_area.offsetTop
+
+        mWidth = magnifying_area.offsetWidth
+        mHeight = magnifying_area.offsetHeight
+
+        clientX = clientX / mWidth * 100
+        clientY = clientY / mHeight * 100
+
+        magnifying_img.style.transform = 'translate(-' + clientX + '%, -' + clientY + '%) scale(2)'
+    });
+
+    magnifying_area.addEventListener("mouseleave", function(){
+        magnifying_img.style.transform = 'scale(1)'
+    });
 </script>
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
-
     * {
         padding: 0;
         margin: 0;

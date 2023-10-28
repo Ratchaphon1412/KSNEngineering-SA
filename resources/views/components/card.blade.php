@@ -12,7 +12,7 @@
                             </svg>
                         </button>
                     </div> -->
-                <img src="https://images.unsplash.com/photo-1577982787983-e07c6730f2d3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2059&q=80" alt="Just a flower" class="w-full object-fit rounded-2xl">
+                <img src="{{ $product->post_image }}" alt="Just a flower" class="w-full object-fit rounded-2xl">
             </div>
             <div class="flex-auto justify-evenly">
             <div class="flex flex-wrap ">

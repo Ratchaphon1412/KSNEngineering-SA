@@ -26,7 +26,7 @@
                         {{ __('Service') }}
                     </x-nav-link>
                     
-                    <x-nav-link href="{{ route('product') }}" :active="request()->routeIs('product')">
+                    <x-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product')">
                         {{ __('Product') }}
                     </x-nav-link>
 
@@ -45,15 +45,15 @@
 
                     @if(Auth::user()->name == 'admin')
                     
-                        <x-nav-link href="{{ route('admin') }}" :active="request()->routeIs('contact')">
-                            {{ __('summary') }}
+                        <x-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
+                            {{ __('Dashboard') }}
                         </x-nav-link>
 
-                        <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('contact')">
+                        <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
                             {{ __('Create new user') }}
                         </x-nav-link>
 
-                        <x-nav-link href="{{ route('create') }}" :active="request()->routeIs('contact')">
+                        <x-nav-link href="{{ route('create') }}" :active="request()->routeIs('create')">
                             {{ __('Create product') }}
                         </x-nav-link>
                     @endif
@@ -194,7 +194,7 @@
                     {{ __('Service') }}
                 </x-responsive-nav-link>
                 
-                <x-responsive-nav-link href="{{ route('product') }}" :active="request()->routeIs('product')">
+                <x-responsive-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product')">
                     {{ __('Product') }}
                 </x-responsive-nav-link>
 
@@ -212,15 +212,15 @@
             @endif
 
             @if(Auth::user()->name == 'admin')
-                <x-responsive-nav-link href="{{ route('admin') }}" :active="request()->routeIs('contact')">
-                    {{ __('summary') }}
+                <x-responsive-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
+                    {{ __('Dashboard') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('contact')">
+                <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
                     {{ __('Create new user') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link href="{{ route('create') }}" :active="request()->routeIs('contact')">
+                <x-responsive-nav-link href="{{ route('create') }}" :active="request()->routeIs('create')">
                     {{ __('Create product') }}
                 </x-responsive-nav-link>
             @endif

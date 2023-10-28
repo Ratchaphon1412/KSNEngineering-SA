@@ -21,8 +21,14 @@ class Crane extends Model
     {
         return $this->belongsTo(Company::class);
     }
-    
-    public function repairs(): HasMany {
+
+    public function repairs(): HasMany
+    {
         return $this->hasMany(Repair::class);
+    }
+
+    public function craneImages(): HasMany
+    {
+        return $this->hasMany(CraneImage::class);
     }
 }

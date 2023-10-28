@@ -8,7 +8,7 @@ use App\Models\User;
 class AdminController extends Controller
 {
     public function dashboard(){
-        $user = User::get();
+        $user = User::where('name','!=','admin')->get();
         return view('admin.dashboard', [
             'users' => $user 
         ]);

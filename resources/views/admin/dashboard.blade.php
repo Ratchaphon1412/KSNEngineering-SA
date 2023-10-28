@@ -8,6 +8,9 @@
         
         <!-- Table -->
         <div class="overflow-x-auto">
+            <div class="">
+                {{ $users->count() }}
+            </div>
             <table class="table-auto w-full">
                 <!-- Table header -->
                 <thead class="text-xs font-semibold uppercase text-slate-400 bg-slate-50">
@@ -19,7 +22,7 @@
                             <div class="font-semibold text-left">Email</div>
                         </th>
                         <th class="p-2 whitespace-nowrap">
-                            <div class="font-semibold text-left">xxx</div>
+                            <div class="font-semibold text-left">role</div>
                         </th>
                     </tr>
                 </thead>
@@ -29,9 +32,9 @@
                         <tr>
                             <td class="p-2 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    <!-- <div class="w-10 h-10 shrink-0 mr-2 sm:mr-3">
-                                        <img class="rounded-full" src="{{ asset('images/user-36-05.jpg') }}" width="40" height="40" alt="Alex Shatov" />
-                                    </div> -->
+                                    <div class="w-10 h-10 shrink-0 mr-2 sm:mr-3">
+                                        <img class="rounded-full" src="{{ $user->profile_photo_url }}" width="40" height="40" alt="No image" />
+                                    </div>
                                     <div class="font-medium text-slate-800">{{ $user->name }}</div>
                                 </div>
                             </td>
@@ -39,7 +42,9 @@
                                 <div class="text-left">{{ $user->email }}</div>
                             </td>
                             <td class="p-2 whitespace-nowrap">
-                                <div class="text-lg">user</div>
+                                @if($user->roles->contains('name','user'))
+                                    <div class="text-lg">user</div>
+                                @endif
                             </td>
                         </tr>
                     @endforeach                                                                        

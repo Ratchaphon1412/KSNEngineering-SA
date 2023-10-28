@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('product_images', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(product::class);
-            $table->enum('type',['product','service']);
+            $table->enum('type', ['image', 'video']);
             $table->string('imageUrl');
             $table->timestamps();
             $table->softDeletes();
