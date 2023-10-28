@@ -40,7 +40,7 @@ class SellController extends Controller
 
     public function updateRepair(Repair $repair)
     {
-        return view('technician.index',[
+        return view('seller.update',[
             'repair' => $repair,
         ]);
     }
