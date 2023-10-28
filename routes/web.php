@@ -69,7 +69,8 @@ Route::controller(SellController::class)->group(function () {
     Route::get('/repair', 'repairView')->name('seller.repair.view');
     Route::get('/list-repair', 'indexRepair')->name('show.repair.view')->middleware(['auth', 'verified']);
     Route::get('/detail-repair/{repair}', 'detailRepair')->name('detail.repair.view')->middleware(['auth', 'verified']);
-    Route::get('/update-repair/{repair}','updateRepair')->name('repair.edit.view')->middleware(['auth', 'verified']);
+    Route::get('/update-repair/{repair}','updateRepairShow')->name('repair.edit.view')->middleware(['auth', 'verified']);
+    Route::post('/updated-repair/{repair}','updateRepair')->name('repair.edit.update')->middleware(['auth', 'verified']);
 });
 
 Route::controller(TechnicianController::class)->group(function () {

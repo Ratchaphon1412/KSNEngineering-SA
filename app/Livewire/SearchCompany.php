@@ -78,10 +78,10 @@ class SearchCompany extends Component
 
         // $imageName = time() . '.' . $this->image->extension();
 
-        $this->image->store('repairs');
+        $this->image->store('/public/repairs');
 
 
-        Repair::create([
+        $repair = Repair::create([
             'name' => $this->title,
             'description' => $this->details,
             'company_id' => $this->company_id,
@@ -89,6 +89,9 @@ class SearchCompany extends Component
             'crane_id' => $this->crane_id,
             'image' => $this->image->hashName(),
         ]);
+
+        $repair->task()->save(new Task);
+
 
         return redirect()->route('show.repair.view');
     }

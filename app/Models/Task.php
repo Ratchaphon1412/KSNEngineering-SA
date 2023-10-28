@@ -11,6 +11,14 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'repair_id',
+        'user_id',
+        'stage',
+        'todo_date',
+        'description',
+    ];
+
     public function repair(): BelongsTo
     {
         return $this->belongsTo(Repair::class);

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignIdFor(Repair::class);
             $table->foreignIdFor(User::class)->nullable();
             $table->string('stage')->default('Pending');
-            $table->date('todo_date');
-            $table->text('description');
+            $table->date('todo_date')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

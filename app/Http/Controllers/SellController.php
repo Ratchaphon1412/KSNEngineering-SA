@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Repair;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SellController extends Controller
 {
@@ -38,11 +39,46 @@ class SellController extends Controller
         ]);
     }
 
-    public function updateRepair(Repair $repair)
+    public function updateRepair(Repair $repair, Request $request)
     {
-        return view('seller.update',[
+        $request->validate([
+            'name' => ['required', 'string', 'min:4'],
+            'description' => ['required', 'string', 'min:4'],
+        ]);
+
+        $repair = Repair::find($repair->id);
+        $repair->name = $request->get('name');
+        $repair->description = $request->get('description');
+        
+        if ($request->hasFile('images')){
+            $imagePath = 'uploads/' . $repair->image;
+            Storage::disk('public')->delete($imagePath);
+            
+                $imageName = $request->images->getClientOriginalName();
+                $imageName = now()->format('YmdHis') . '-' . $imageName;
+                $imagePath = 'uploads/' . $imageName;
+
+                $path = Storage::disk('public')->put($imagePath, file_get_contents($request->images));
+                // $path = Storage::disk('public')->url($path);
+
+                $repair->image = $imageName; 
+                
+        }
+        $repair->save();
+
+
+
+        return redirect()->route('detail.repair.view',[
             'repair' => $repair,
         ]);
     }
+
+    public function updateRepairShow(Repair $repair){
+        return view('seller.update',[
+            'repair' => $repair,
+            'selectedCompany' => $repair->company
+        ]);
+    }
+
 
 }
