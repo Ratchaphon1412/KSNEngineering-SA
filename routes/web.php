@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\productController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SellController;
 
@@ -22,9 +22,6 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
-Route::get('/product', [productController::class, 'view'])->name('product.index');
-Route::post('/product', [productController::class, 'upload'])->name('product.upload');
 
 Route::middleware([
     'auth:sanctum',
@@ -52,12 +49,10 @@ Route::middleware([
         return view('contact');
     })->name('contact');
 
-   
+    Route::get('/product', [ProductController::class, 'index'])->name('product');
+    Route::get('/porduct/{product}', [ProductController::class, 'detail'])->name('kanban');
 
 });
-    Route::get('/kanban', function(){
-        return view('kanban');
-    })->name('kanban');
     Route::get('/create', function(){
         return view('Create');
     })->name('create');

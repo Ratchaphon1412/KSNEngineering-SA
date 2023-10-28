@@ -12,5 +12,9 @@
 
     </x-slot>
 
-    <x-card name="hello" status="loading" price="500" />
+    <div class="grid grid-cols-3 container mx-auto">
+        @foreach($products as $product)
+            <x-card :product="$product" />
+        @endforeach
+    </div>
 </x-app-layout>
