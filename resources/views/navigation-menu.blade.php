@@ -49,13 +49,13 @@
                             {{ __('Dashboard') }}
                         </x-nav-link>
 
-                        <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                        <!-- <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
                             {{ __('Create new user') }}
                         </x-nav-link>
 
                         <x-nav-link href="{{ route('create') }}" :active="request()->routeIs('create')">
                             {{ __('Create product') }}
-                        </x-nav-link>
+                        </x-nav-link> -->
                     @endif
                 </div>
             </div>
@@ -216,13 +216,13 @@
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                <!-- <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
                     {{ __('Create new user') }}
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link href="{{ route('create') }}" :active="request()->routeIs('create')">
                     {{ __('Create product') }}
-                </x-responsive-nav-link>
+                </x-responsive-nav-link> -->
             @endif
         </div>
 

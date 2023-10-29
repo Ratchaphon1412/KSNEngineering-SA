@@ -43,8 +43,11 @@
             <main class="relative">
                 {{ $slot }}
             </main>
-            <x-footer/>
             
+            @if(Auth::user()->roles->contains('name','user'))
+                <x-footer/>
+            @endif
+
             @role(['admin','user'])
             <x-basement::chat-box />
           @endrole

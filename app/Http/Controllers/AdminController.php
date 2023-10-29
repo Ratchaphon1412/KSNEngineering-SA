@@ -4,13 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\product;
 
 class AdminController extends Controller
 {
     public function dashboard(){
-        $user = User::where('name','!=','admin')->get();
+        // $users = collect();
+        $users = User::where('name' , '!=', 'admin')->paginate(5);
+        $products = product::paginate(10);
+        // foreach($tmpusers as $user){
+        //     if($user->roles->contains('name','user')){
+        //         $users->push($user);
+        //     }
+        // }
+
         return view('admin.dashboard', [
-            'users' => $user 
+            'users' => $users,
+            'products' => $products
         ]);
     }
 }

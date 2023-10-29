@@ -1,7 +1,7 @@
 
 {{-- Because she competes with no one, no one can compete with her. --}}
 
-<div class="flex items-center justify-center pt-10">
+<div class="flex items-center justify-center py-12">
     <!-- Author: FormBold Team -->
     <div class="mx-auto w-full max-w-[550px] bg-white">
         <form class="py-4 px-9" wire:submit.prevent="save">

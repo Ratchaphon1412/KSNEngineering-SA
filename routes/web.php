@@ -53,8 +53,8 @@ Route::middleware([
     
 });
 
-Route::get('/create', function(){
-    return view('Create');
+Route::get('/create-product', function(){
+    return view('product.create-product');
 })->name('create');
 
 Route::get('/kanban', function () {

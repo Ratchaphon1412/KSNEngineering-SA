@@ -28,6 +28,17 @@
         </p>
     </div>
 
+    <div class="container w-[50vw] mx-auto text-center py-16 tracking-wide">
+        <p class="mb-5 text-3xl font-bold text-black">
+            มุ่งมั่นผลิตอุปกรณ์เคลื่อนย้ายคุณภาพสูง
+        </p>
+        <p class="text-md font-semibold mb-16">
+            รอกโซ่ไฟฟ้า รอกสลิง รอกโยก รอกมือสาว อุปกรณ์ช่วยยก และเครนรูปแบบต่างๆ ภายใต้แบรนด์ “KITO” ประเทศญี่ปุ่น พัฒนาและผลิตด้วยเทคโนโลยีที่ทันสมัย สินค้าที่เปี่ยมคุณภาพและบริการจากใจ
+        </p>
+
+        <iframe class="w-[50vw] h-[50vh]" src="https://www.youtube.com/embed/XPDC7YkhwNM?si=0ToqnwkLevFzBT9i" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+
     <div class="my-16">
         <p class="text-center font-extrabold text-3xl tracking-wide">ภารกิจของบริษัท</p>
         <hr class="border border-2 border-amber-400 rounded-full w-32 mx-auto my-5">

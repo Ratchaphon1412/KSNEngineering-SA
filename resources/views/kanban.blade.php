@@ -1,8 +1,8 @@
 <x-app-layout>
 
-    <main class="flex-col justify-center items-center ">
+    <main class="flex-col justify-center items-center">
 
-        <section id="coverImage" class="justify-center items-center overflow-x-hidden bg-fixed w-full  rounded-lg  bg-cover bg-no-repeat ">
+        <section id="coverImage" class="justify-center items-center h-[88vh] overflow-x-hidden bg-fixed w-full  rounded-lg  bg-cover bg-no-repeat ">
 
             <div class="main-wrapper">
                 <div class="container">
@@ -14,6 +14,7 @@
                                     <img src="{{ asset('storage/product/' . $images->first()->imageUrl) }}" alt="watch" id="magnifying_img">
                                 </figure>
                                 @else
+                                {{-- link https --}}
                                 <figure id="magnifying_area" class="mx-auto">
                                     <img src="{{ $images->first()->imageUrl }}" alt="watch" id="magnifying_img">
                                 </figure>
@@ -26,6 +27,7 @@
                                         <img src="{{ asset('storage/product/' . $image->imageUrl) }}" alt="">
                                     </div>
                                     @else
+                                    {{-- link https --}}
                                     <div>
                                         <img src="{{ $image->imageUrl }}" alt="">
                                     </div>
@@ -205,6 +207,7 @@
             img.parentElement.classList.remove('active');
         });
     }
+    // zoom image
 
     var magnifying_area = document.getElementById("magnifying_area");
     var magnifying_img = document.getElementById("magnifying_img");
