@@ -30,13 +30,13 @@
                         {{ __('Product') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('crane') }}" :active="request()->routeIs('crane')">
+                    <!-- <x-nav-link href="{{ route('crane') }}" :active="request()->routeIs('crane')">
                         {{ __('Our Crane') }}
-                    </x-nav-link>
+                    </x-nav-link> -->
 
-                    <x-nav-link href="{{ route('reward') }}" :active="request()->routeIs('reward')">
+                    <!-- <x-nav-link href="{{ route('reward') }}" :active="request()->routeIs('reward')">
                         {{ __('Reward') }}
-                    </x-nav-link>
+                    </x-nav-link> -->
 
                     <x-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">
                         {{ __('Contact') }}
@@ -198,13 +198,13 @@
                     {{ __('Product') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link href="{{ route('crane') }}" :active="request()->routeIs('crane')">
+                <!-- <x-responsive-nav-link href="{{ route('crane') }}" :active="request()->routeIs('crane')">
                     {{ __('Our Crane') }}
-                </x-responsive-nav-link>
+                </x-responsive-nav-link> -->
 
-                <x-responsive-nav-link href="{{ route('reward') }}" :active="request()->routeIs('reward')">
+                <!-- <x-responsive-nav-link href="{{ route('reward') }}" :active="request()->routeIs('reward')">
                     {{ __('Reward') }}
-                </x-responsive-nav-link>
+                </x-responsive-nav-link> -->
 
                 <x-responsive-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">
                     {{ __('Contact') }}
