@@ -21,4 +21,9 @@ class productController extends Controller
     {
         return view('product.create-product');
     }
+
+    public function createQuotation()
+    {
+        return view('product.create-quotation');
+    }
 }
