@@ -74,4 +74,5 @@ Route::controller(productController::class)->group(function () {
     Route::get('/product',  'view')->name('product.index');
     Route::get('/product/create/crane', 'createCrane')->name('product.crane.create');
     Route::get('/product/create/product', 'createProduct')->name('product.product.create');
+    Route::get('/product/create/quotation', 'createQuotation')->name('product.quotation.create');
 });
