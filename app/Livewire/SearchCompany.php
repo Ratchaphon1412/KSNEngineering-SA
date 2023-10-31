@@ -16,7 +16,9 @@ class SearchCompany extends Component
 
     public $search;
     public $seleted;
+    public $toggle;
     protected $queryString = ['search'];
+
 
 
 
@@ -33,7 +35,9 @@ class SearchCompany extends Component
 
 
 
+
         if ($this->search) {
+            $this->resetPage();
             $items = Company::search($this->search)->paginate(5);
         }
 
@@ -46,7 +50,9 @@ class SearchCompany extends Component
 
 
 
-        return view('livewire.search-company', ['items' => $items, 'selectedCompany' => $selectedCompany]);
+
+
+        return view('livewire.search-company', ['items' => $items, 'selectedCompany' => $selectedCompany, 'toggle' => $this->toggle]);
     }
 
 
