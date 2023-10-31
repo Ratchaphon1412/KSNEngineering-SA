@@ -58,23 +58,12 @@
            <label  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
             Company
            </label>
-           @if($selectedCompany)
+           
           
+          
+            <livewire:card-company :company="$selectedCompany"  wire:key="{{$selectedCompany}}"/>
               
-              <livewire:card-company :company="$selectedCompany"  wire:key="{{$selectedCompany}}"/>
-              <input type="text" class="hidden" wire:model="company_id"  wire:key="{{$selectedCompany->id}}"  >
-           @else
-           <div class="card card-side  shadow-xl">
-              
-              <div class="card-body">
-                 <p class="text-black text-md ">Please select company</p>
-              </div>
-              @error('company_id')
-                 <p class="text-red-500 text-xs italic">{{$message}}</p>
-              @enderror
-              
-          </div>
-           @endif
+          
         </div>
         <div class="w-full  px-3 mb-6 md:mb-0 mt-4">
     
