@@ -14,6 +14,8 @@ class CardCompany extends Component
     //     $this->company = $company;
     // }
 
+    protected $listeners = ['companySelected'];
+
 
     public function render()
     {
@@ -30,6 +32,12 @@ class CardCompany extends Component
 
     public function updatedCompany(Company $company)
     {
+        $this->company = $company;
+    }
+
+    public function companySelected(Company $company)
+    {
+
         $this->company = $company;
     }
 }
