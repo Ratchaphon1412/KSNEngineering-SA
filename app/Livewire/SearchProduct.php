@@ -9,9 +9,10 @@ use Livewire\WithPagination;
 class SearchProduct extends Component
 {
     use WithPagination;
-    public $search = '';
+    public $searchproduct = '';
+    public $selectedProduct;
 
-    protected $queryString = ['search'];
+    protected $queryString = ['searchproduct'];
 
     public function render()
     {
@@ -19,11 +20,19 @@ class SearchProduct extends Component
         $products = Product::paginate(5);
 
 
-        if ($this->search) {
-            $products = Product::search($this->search)->paginate(5);
+        if ($this->searchproduct) {
+            $this->resetPage();
+            $products = Product::search($this->searchproduct)->paginate(5);
         }
 
 
         return view('livewire.search-product', compact('products'));
+    }
+
+    public function selectProduct(Product $product)
+    {
+        $this->selectedProduct = $product;
+        $this->dispatch('selectedProduct', $product);
+        $this->searchproduct = '';
     }
 }
