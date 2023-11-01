@@ -40,7 +40,7 @@ class FormProduct extends Component
         $product->save();
 
         foreach($this->images as $image){
-            $image->store('product');
+            $image->store('public/product');
             $productImage = new productImage();
             $productImage->product_id = $product->id;
             $productImage->type = 'product';

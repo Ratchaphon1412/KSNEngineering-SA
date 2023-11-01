@@ -28,13 +28,26 @@
         </p>
     </div>
 
+    <div class="container w-[50vw] mx-auto text-center py-16 tracking-wide">
+        <p class="mb-5 text-3xl font-bold text-black">
+            มุ่งมั่นผลิตอุปกรณ์เคลื่อนย้ายคุณภาพสูง
+        </p>
+        <p class="text-md font-semibold mb-16">
+            รอกโซ่ไฟฟ้า รอกสลิง รอกโยก รอกมือสาว อุปกรณ์ช่วยยก และเครนรูปแบบต่างๆ ภายใต้แบรนด์ “KITO” ประเทศญี่ปุ่น พัฒนาและผลิตด้วยเทคโนโลยีที่ทันสมัย สินค้าที่เปี่ยมคุณภาพและบริการจากใจ
+        </p>
+
+        <iframe class="w-[50vw] h-[60vh]" src="https://www.youtube.com/embed/XPDC7YkhwNM?si=0ToqnwkLevFzBT9i" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    </div>
+    <hr class="border border-4 border-amber-400 mx-auto my-5">
+
     <div class="my-16">
-        <p class="text-center font-extrabold text-3xl tracking-wide">ภารกิจของบริษัท</p>
+        <p class="text-center font-extrabold text-3xl tracking-wide text-black">ภารกิจของบริษัท</p>
         <hr class="border border-2 border-amber-400 rounded-full w-32 mx-auto my-5">
 
-        <div class="grid md:grid-cols-2 container mx-auto gap-16 md:gap-32">
+        <div class="grid md:grid-cols-2 container mx-auto gap-10">
             <div>
-                <p class="font-bold text-2xl mb-5">คุณภาพของ KITO : การขับเคลื่อนของเรา “จิตวิญญาณ” คือ “คุณภาพ”</p>
+                <p class="font-bold text-2xl mb-5 text-black">คุณภาพของ KITO : การขับเคลื่อนของเรา “จิตวิญญาณ” คือ “คุณภาพ”</p>
                 <p class="text-gray-700">
                     KITO เชื่อว่าความเชื่อมั่นในผลิตภัณฑ์และบริการของเราคือสิ่งที่สำคัญที่สุดของบริษัท 
                     KITO มุ่งเน้นคุณภาพสูงสุดในด้านความปลอดภัย ความสะดวกในการใช้งาน 
@@ -44,7 +57,7 @@
                 </p>
             </div>
             <div>
-                <p class="font-bold text-2xl mb-5">คุณภาพของ KITO : การขับเคลื่อนของเรา “จิตวิญญาณ” คือ “คุณภาพ”</p>
+                <p class="font-bold text-2xl mb-5 text-black">คุณภาพของ KITO : การขับเคลื่อนของเรา “จิตวิญญาณ” คือ “คุณภาพ”</p>
                 <p class="text-gray-700">
                     KITO เชื่อว่าความเชื่อมั่นในผลิตภัณฑ์และบริการของเราคือสิ่งที่สำคัญที่สุดของบริษัท 
                     KITO มุ่งเน้นคุณภาพสูงสุดในด้านความปลอดภัย ความสะดวกในการใช้งาน 
@@ -53,6 +66,21 @@
                     KITO “ทุกอย่างเพื่อความพึงพอใจของลูกค้า”
                 </p>
             </div>
+        </div>
+    </div>
+
+    <div class="bg-[#474747]">
+        <div class="container mx-auto grid md:grid-cols-2 gap-4 py-16">
+                <img src="assets/images/goKSN.jpg" alt="">
+                <ol class="text-white font-semibold tracking-wide place-self-center">
+                    <p class="text-2xl text-amber-400 font-bold tracking-wide mb-4">เป้าหมายในอนาคต</p>
+                    <li> 1. มุ่งมั่นก้าวไปสู่ส่วนแบ่งทางการตลาดของรอกโซ่ไฟฟ้าเป็นอันดับ 1 ในประเทศไทย</li>
+                    <li> 2. ตอบสนองทุกความต้องการของลูกค้า </li>
+                    <li> 3. เพิ่มคุณภาพของผลิตภัณฑ์ให้ได้มาตรฐานและคุณภาพที่สูงขึ้น </li>
+                    <li> 4. ซื่อสัตย์และสร้างความไว้วางใจให้กับลูกค้าอย่างดีที่สุด </li>
+                    <li> 5. เอาใจใส่งานบริการเพื่อความเชื่อมั่นของลูกค้า</li>
+                    <li> 6. ก้าวไปสู่เวทีระดับโลกตามเป้าหมายในอนาคตของบริษัทแม่ที่ญี่ปุ่น </li>
+                </ol>
         </div>
     </div>
     

@@ -1,28 +1,54 @@
 <x-app-layout>
 
-    <main class="flex-col justify-center items-center ">
+    <main class="flex-col justify-center items-center">
 
-        <section id="coverImage" class="justify-center items-center overflow-x-hidden bg-fixed w-full  rounded-lg  bg-cover bg-no-repeat ">
+        <section id="coverImage" class="justify-center items-center h-[88vh] overflow-x-hidden bg-fixed w-full  rounded-lg  bg-cover bg-no-repeat ">
 
             <div class="main-wrapper">
                 <div class="container">
                     <div class="product-div">
                         <div class="product-div-left">
                             <div class="img-container">
-                                <img src="https://down-th.img.susercontent.com/file/73d26812833887e19dd147ee8c0f34ac" alt="watch">
+                                @if(Str::contains($images->first()->imageUrl, 'https:') != 1)
+                                    <figure id="magnifying_area" class="mx-auto">
+                                        <img src="{{ asset('storage/product/' . $images->first()->imageUrl) }}" alt="watch" id="magnifying_img">
+                                    </figure>
+                                @else
+                                {{-- link https --}}
+                                    <figure id="magnifying_area" class="mx-auto">
+                                        <img src="{{ $images->first()->imageUrl }}" alt="watch" id="magnifying_img">
+                                    </figure>
+                                @endif
                             </div>
                             <div class="hover-container">
-                                <div><img src="https://down-th.img.susercontent.com/file/9d6122f071e4a758678bc6579a658146"></div>
-                                <div><img src="https://down-th.img.susercontent.com/file/420cc3bd0ff60f1723f89c637dee46aa"></div>
-                                <div><img src="https://down-th.img.susercontent.com/file/9d6122f071e4a758678bc6579a658146"></div>
-                                <div><img src="https://down-th.img.susercontent.com/file/9d6122f071e4a758678bc6579a658146"></div>
-                                <div><img src="https://down-th.img.susercontent.com/file/9d6122f071e4a758678bc6579a658146"></div>
+                                @foreach($images as $image)
+                                    @if(Str::contains($image->imageUrl, 'https:') != 1)
+                                        <div>
+                                            <img src="{{ asset('storage/product/' . $image->imageUrl) }}" alt="">
+                                        </div>
+                                    @else
+                                        {{-- link https --}}
+                                        <div>
+                                            <img src="{{ $image->imageUrl }}" alt="">
+                                        </div>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                         <div class="product-div-right">
-                            <span class="product-name">(New) Analog Watch - For Men</span>
-                            <span class="product-price">$ 50.25</span>
-                            <p class="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.</p>
+                            <div class="flex justify-between">
+                                <span class="product-name underline underline-offset-8">{{ $product->name }}</span>
+                                @if(Auth::user()->name == 'admin')
+                                    <a href="{{ route('product.update', ['product' => $product]) }}" 
+                                       class="mb-5 tracking-wide rounded-xl bg-amber-500 p-2 text-lg text-white">แก้ไข</a>
+                                @endif
+                            </div>
+
+                            
+                            <span class="product-price">จำนวนสินค้าที่มีอยู่ {{ $product->amount }} ชิ้น</span>
+                            <span class="product-price">ชิ้นละ {{ $product->price }} บาท</span><br>
+                            <p class="product-price">คำอธิบาย :</p>
+                            <p class="mt-3 px-4 product-price">{{ $product->description }}</p>
                             <div class="btn-groups">
                                 <button type="button" class="add-cart-btn"><i class="fas fa-shopping-cart"></i>add to cart</button>
                                 <button type="button" class="buy-now-btn"><i class="fas fa-wallet"></i>buy now</button>
@@ -77,7 +103,7 @@
                 </div>
             </div> -->
         </section>
-        <div class="container mx-auto">
+        <!-- <div class="container mx-auto">
             <div id="myTabContent">
                 <div class="hidden" id="detail" role="tabpanel" aria-labelledby="detail-tab">
 
@@ -159,7 +185,7 @@
             </section>
 
 
-        </div>
+        </div> -->
     </main>
 
 
@@ -188,11 +214,40 @@
             img.parentElement.classList.remove('active');
         });
     }
+    // zoom image
+
+    var magnifying_area = document.getElementById("magnifying_area");
+    var magnifying_img = document.getElementById("magnifying_img");
+
+    magnifying_area.addEventListener("mousemove", (e) => {
+        
+        const x = e.clientX - e.target.offsetLeft;
+        const y = e.clientY - e.target.offsetTop;
+
+        magnifying_img.style.transformOrigin = `${x}px ${y}px`;
+        magnifying_img.style.transform = "scale(2)"
+    });
+
+    magnifying_area.addEventListener("mouseleave", function(){
+        magnifying_img.style.transformOrigin = "center";
+        magnifying_img.style.transform = "scale(1)";
+    });
 </script>
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
-
+    #magnifying_area{
+        display: flex;
+        height: fit-content;
+        width: fit-content;
+        overflow:hidden;
+    }
+    #manifying_img{
+        transform-origin: center;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
     * {
         padding: 0;
         margin: 0;

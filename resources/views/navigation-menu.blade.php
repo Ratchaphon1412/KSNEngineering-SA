@@ -13,6 +13,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @if(Auth::user()->name != 'admin')
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Home page') }}
                     </x-nav-link>
@@ -29,17 +30,33 @@
                         {{ __('Product') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('crane') }}" :active="request()->routeIs('crane')">
+                    <!-- <x-nav-link href="{{ route('crane') }}" :active="request()->routeIs('crane')">
                         {{ __('Our Crane') }}
-                    </x-nav-link>
+                    </x-nav-link> -->
 
-                    <x-nav-link href="{{ route('reward') }}" :active="request()->routeIs('reward')">
+                    <!-- <x-nav-link href="{{ route('reward') }}" :active="request()->routeIs('reward')">
                         {{ __('Reward') }}
-                    </x-nav-link>
+                    </x-nav-link> -->
 
                     <x-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">
                         {{ __('Contact') }}
                     </x-nav-link>
+                    @endif
+
+                    @if(Auth::user()->name == 'admin')
+                    
+                        <x-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+
+                        <!-- <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                            {{ __('Create new user') }}
+                        </x-nav-link>
+
+                        <x-nav-link href="{{ route('create') }}" :active="request()->routeIs('create')">
+                            {{ __('Create product') }}
+                        </x-nav-link> -->
+                    @endif
                 </div>
             </div>
 
@@ -164,33 +181,49 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Home Page') }}
-            </x-responsive-nav-link>
+            @if(Auth::user()->name != 'admin')
+                <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    {{ __('Home Page') }}
+                </x-responsive-nav-link>
 
-            <x-responsive-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
-                {{ __('About Us') }}
-            </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
+                    {{ __('About Us') }}
+                </x-responsive-nav-link>
 
-            <x-responsive-nav-link href="{{ route('service') }}" :active="request()->routeIs('service')">
-                {{ __('Service') }}
-            </x-responsive-nav-link>
-            
-            <x-responsive-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product')">
-                {{ __('Product') }}
-            </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('service') }}" :active="request()->routeIs('service')">
+                    {{ __('Service') }}
+                </x-responsive-nav-link>
+                
+                <x-responsive-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product')">
+                    {{ __('Product') }}
+                </x-responsive-nav-link>
 
-            <x-responsive-nav-link href="{{ route('crane') }}" :active="request()->routeIs('crane')">
-                {{ __('Our Crane') }}
-            </x-responsive-nav-link>
+                <!-- <x-responsive-nav-link href="{{ route('crane') }}" :active="request()->routeIs('crane')">
+                    {{ __('Our Crane') }}
+                </x-responsive-nav-link> -->
 
-            <x-responsive-nav-link href="{{ route('reward') }}" :active="request()->routeIs('reward')">
-                {{ __('Reward') }}
-            </x-responsive-nav-link>
+                <!-- <x-responsive-nav-link href="{{ route('reward') }}" :active="request()->routeIs('reward')">
+                    {{ __('Reward') }}
+                </x-responsive-nav-link> -->
 
-            <x-responsive-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">
-                {{ __('Contact') }}
-            </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">
+                    {{ __('Contact') }}
+                </x-responsive-nav-link>
+            @endif
+
+            @if(Auth::user()->name == 'admin')
+                <x-responsive-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+
+                <!-- <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                    {{ __('Create new user') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link href="{{ route('create') }}" :active="request()->routeIs('create')">
+                    {{ __('Create product') }}
+                </x-responsive-nav-link> -->
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

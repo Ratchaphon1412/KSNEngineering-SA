@@ -3,10 +3,10 @@
         style="background-image: url('assets/images/crane-hero.jpg')">
         <div class="bg-black bg-opacity-20 w-full h-full py-[25%] md:py-0">
             <div class="container mx-auto flex flex-col md:justify-center md:items-center text-center h-full space-y-4">
-                <div class="uppercase font-extrabold text-4xl text-transparent bg-clip-text bg-[#03045E]">
+                <div class="uppercase font-extrabold text-4xl text-transparent bg-clip-text bg-[#03045E]" id="type">
                     services & MAINTENANCE
                 </div>
-                <div class="text-white text-xl md:px-64" id="intro">
+                <div class="text-white text-xl w-[50%] mx-auto" id="intro">
                     การตรวจเช็คเครนและอุปกรณ์ช่วยยกอย่างสม่ำเสมอจะทำให้การปฏิบัติงานเป็นไปอย่างราบรื่น และ สร้างความปลอดภัยในการทำงาน
                 </div>
             </div>
@@ -62,8 +62,8 @@
     <style scoped>
 
     #type{
-        width: 22ch;
-        animation: typing 2s steps(8), blink .5s step-end infinite alternate;
+        width: 23ch;
+        animation: typing 2s steps(22), blink .5s step-end infinite alternate;
         white-space: nowrap;
         overflow: hidden;
         border-right: 3px solid;

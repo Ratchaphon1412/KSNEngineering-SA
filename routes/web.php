@@ -1,12 +1,11 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\TechnicianController;
-use App\Http\Controllers\productController;
-
-
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
+use App\Livewire\UpdateProduct;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,8 +24,6 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
-
 
 Route::middleware([
     'auth:sanctum',
@@ -53,17 +50,28 @@ Route::middleware([
     Route::get('/contact', function () {
         return view('contact');
     })->name('contact');
+
+    
 });
+
+Route::get('/create-product', function(){
+    return view('product.create-product');
+})->name('create');
+
 Route::get('/kanban', function () {
     return view('kanban');
 })->name('kanban');
 
-
-
-
-Route::get('/admin', function () {
-    return view('admin.dashboard');
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin', 'dashboard')->name('admin');
+    Route::post('/admin/deleteProduct/{product}', 'deleteProduct')->name('deleteProduct');
 });
+
+Route::get('/admin/updateProduct/{product}', UpdateProduct::class)->name('product.update');
+
+Route::get('/register', function (){
+    return view('auth.register');
+})->name('register');
 
 Route::controller(SellController::class)->group(function () {
     Route::get('/repair', 'repairView')->name('seller.repair.view');
@@ -79,9 +87,9 @@ Route::controller(TechnicianController::class)->group(function () {
     Route::get('/my-work','myWork')->name('repair.tech.work')->middleware(['auth', 'verified']);
 });
 
-Route::controller(productController::class)->group(function () {
-
-    Route::get('/product',  'view')->name('product.index');
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/product', 'view')->name('product.index');
+    Route::get('/product/{product}', 'detail')->name('kanban');
     Route::get('/product/create/crane', 'createCrane')->name('product.crane.create');
     Route::get('/product/create/product', 'createProduct')->name('product.product.create');
 });
