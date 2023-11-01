@@ -34,9 +34,16 @@
                         <h5 class="text-gray-900 font-semibold text-2xl tracking-tight mb-2">{{ $repair->name }}</h5>
                     </a>
                     <p class="font-normal text-white bg-blue-500 rounded-lg px-6 py-2 text-gray-700 mb-3 ">Company: {{ $repair->company()->get()[0]->name }}</p>
+                    @if($repair->task()->get()[0]->todo_date)
                     <div class="flex bg-amber-300 p-1 rounded-lg">
                         <p class="font-normal text-gray-700 my-3 ml-4">Todo date: {{$repair->task()->get()[0]->todo_date}}</p>
                     </div>
+                    @endif
+                    @if($repair->task()->get()[0]->stage)
+                    <div class="flex bg-amber-300 p-1 rounded-lg">
+                        <p class="font-normal text-gray-700 my-3 ml-4">Stage: {{$repair->task()->get()[0]->stage}}</p>
+                    </div>
+                    @endif
                     </a>
 
 

@@ -23,14 +23,25 @@
                             <span class="text-red-600">{{$message}}</span>
                         @enderror
                     </div>
+                    
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="todo_date" class="@error('todo_date') border-red-600 @enderror text-sm font-medium text-gray-900 block mb-2">Todo Date</label>
+                        <input type="date" name="todo_date" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" value="{{$task->todo_date}}">
+                        @error('todo_date')
+                            <span class="text-red-600">{{$message}}</span>
+                        @enderror
+                    </div>
+
+
                 </div>
 
                 <div class="mt-5 col-span-6 sm:col-span-3">
                     <div class="font-xl">
                         Image
                         <div class="mt-2 grid grid-cols-5 gap-1">
-                            @foreach($task->images() as $image)
-                                <img src="{{ Storage::url('uploads/' . $image->name) }}" alt="Event Image" class="w-60 h-60 object-cover rounded-lg mr-2 mb-2 font-base" id="image">
+                            @foreach($task->images()->get() as $image)
+                                <img src="{{ Storage::url('uploads/' . $image->path) }}" alt="Event Image" class="w-60 h-60 object-cover rounded-lg mr-2 mb-2 font-base" id="image">
+                                
                             @endforeach
                         </div>
                     </div>

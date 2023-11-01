@@ -71,12 +71,15 @@ Route::controller(SellController::class)->group(function () {
     Route::get('/detail-repair/{repair}', 'detailRepair')->name('detail.repair.view')->middleware(['auth', 'verified']);
     Route::get('/update-repair/{repair}','updateRepairShow')->name('repair.edit.view')->middleware(['auth', 'verified']);
     Route::post('/updated-repair/{repair}','updateRepair')->name('repair.edit.update')->middleware(['auth', 'verified']);
+    Route::post('/add-purchase-order/{repair}','purchaseOrder')->name('purchase.add')->middleware(['auth','verified']);
 });
 
 Route::controller(TechnicianController::class)->group(function () {
     Route::get('/task/{repair}','show')->name('task.edit.view')->middleware(['auth', 'verified']);
     Route::post('/update-task/{task}','update')->name('task.update')->middleware(['auth', 'verified']);
     Route::get('/my-work','myWork')->name('repair.tech.work')->middleware(['auth', 'verified']);
+    Route::post('/done-repair/{repair}','doneRepair')->name('done.repair')->middleware(['auth', 'verified']);
+    Route::post('/delete-repair/{repair}','deleteRepair')->name('delete.repair')->middleware(['auth', 'verified']);
 });
 
 Route::controller(productController::class)->group(function () {
