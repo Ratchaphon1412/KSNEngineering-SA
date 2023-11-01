@@ -92,6 +92,9 @@
                                         <th class="p-2 whitespace-nowrap">
                                             <div class="font-semibold text-left">Amount</div>
                                         </th>
+                                        <th class="p-2 whitespace-nowrap">
+                                            <div class="font-semibold text-left">detele</div>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <!-- Table body -->
@@ -114,6 +117,12 @@
                                             </td>
                                             <td class="p-2 whitespace-nowrap">
                                                 <div class="text-lg">{{ $product->amount }}</div>
+                                            </td>
+                                            <td class="p-2 whitespac-nowrap">
+                                                <form action="{{route('deleteProduct', ['product' => $product])}}" method="POST">
+                                                    @csrf
+                                                    <button class="bg-red-600 p-2 text-black rounded-xl">detele</button>
+                                                </form>
                                             </td>    
                                     </tr>
                                     @endforeach                                                                        

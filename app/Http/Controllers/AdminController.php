@@ -23,4 +23,9 @@ class AdminController extends Controller
             'products' => $products
         ]);
     }
+
+    public function deleteProduct(product $product){
+        $product->delete();
+        return $this->dashboard();
+    }
 }

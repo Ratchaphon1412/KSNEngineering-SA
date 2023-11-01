@@ -36,7 +36,13 @@
                             </div>
                         </div>
                         <div class="product-div-right">
-                            <span class="product-name underline underline-offset-8">{{ $product->name }}</span>
+                            <div class="flex justify-between">
+                                <span class="product-name underline underline-offset-8">{{ $product->name }}</span>
+                                @if(Auth::user()->name == 'admin')
+                                    <a href="{{ route('product.update', ['product' => $product]) }}">แก้ใข</a>
+                                @endif
+                            </div>
+
                             
                             <span class="product-price">{{ $product->amount }} ชิ้น</span>
                             <span class="product-price">ชิ้นละ {{ $product->price }} บาท</span><br>

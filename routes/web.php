@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
-
+use App\Livewire\UpdateProduct;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,7 +61,13 @@ Route::get('/kanban', function () {
     return view('kanban');
 })->name('kanban');
 
-Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin', 'dashboard')->name('admin');
+    Route::post('/admin/deleteProduct/{product}', 'deleteProduct')->name('deleteProduct');
+});
+
+Route::get('/admin/updateProduct/{product}', UpdateProduct::class)->name('product.update');
+
 Route::get('/register', function (){
     return view('auth.register');
 })->name('register');
@@ -74,7 +80,7 @@ Route::controller(SellController::class)->group(function () {
 
 Route::controller(ProductController::class)->group(function () {
     Route::get('/product', 'view')->name('product.index');
-    Route::get('/porduct/{product}', 'detail')->name('kanban');
+    Route::get('/product/{product}', 'detail')->name('kanban');
     Route::get('/product/create/crane', 'createCrane')->name('product.crane.create');
     Route::get('/product/create/product', 'createProduct')->name('product.product.create');
 });
