@@ -37,13 +37,14 @@ class FormProduct extends Component
         $product->price = $this->price;
         $product->amount = $this->amount;
         $product->description = $this->description;
+        $product->post_image = $this->images[0]->hashName();
         $product->save();
 
         foreach($this->images as $image){
             $image->store('public/product');
             $productImage = new productImage();
             $productImage->product_id = $product->id;
-            $productImage->type = 'product';
+            $productImage->type = 'image';
             $productImage->imageUrl = $image->hashName();
             $productImage->save();
         }

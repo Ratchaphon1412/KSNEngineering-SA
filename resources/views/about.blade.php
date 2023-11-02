@@ -6,9 +6,9 @@
                 <div class="uppercase tracking-wide font-extrabold text-4xl text-transparent bg-clip-text bg-[#03045E]">
                     about us
                 </div>
-                <div class="text-white text-xl md:px-64">
+                <p class="text-white text-xl">
                     บริษัท เค.เอส.เอ็น.เอ็นจิเนียร์ริ่ง จำกัด “ผู้นำด้าน รอก เครนโรงงาน และอุปกรณ์ช่วยยกครบวงจร”
-                </div>
+                </p>
             </div>
         </div>
     </div>

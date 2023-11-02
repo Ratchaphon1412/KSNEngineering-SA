@@ -26,6 +26,6 @@ class AdminController extends Controller
 
     public function deleteProduct(product $product){
         $product->delete();
-        return $this->dashboard();
+        return redirect()->back();
     }
 }
