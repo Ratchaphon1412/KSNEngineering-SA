@@ -62,7 +62,6 @@ class SellController extends Controller
                 // $path = Storage::disk('public')->url($path);
 
                 $repair->image = $imageName; 
-                
         }
         $repair->save();
 
@@ -72,7 +71,6 @@ class SellController extends Controller
             'repair' => $repair,
         ]);
     }
-
     public function updateRepairShow(Repair $repair){
         return view('seller.update',[
             'repair' => $repair,
@@ -80,5 +78,37 @@ class SellController extends Controller
         ]);
     }
 
+    public function purchaseOrder(Repair $repair,Request $request){
+        $request->validate([
+            'image' => ['required', ],
+        ]);
+
+        $repair = Repair::find($repair->id);
+
+        if ($request->hasFile('image')){
+            $imagePath = 'uploads/' . $repair->purchase_order;
+            Storage::disk('public')->delete($imagePath);
+            
+                $imageName = $request->image->getClientOriginalName();
+                $imageName = now()->format('YmdHis') . '-' . $imageName;
+                $imagePath = 'uploads/' . $imageName;
+
+                $path = Storage::disk('public')->put($imagePath, file_get_contents($request->image));
+                // $path = Storage::disk('public')->url($path);
+
+                $repair->purchase_order = $imageName; 
+        }
+        $repair->save();
+
+        $task = $repair->task;
+        $task->stage = 'InProcess';
+        $task->save();
+
+        return redirect()->route('detail.repair.view',[
+            'repair' => $repair,
+        ]);
+    }
+
+    
 
 }

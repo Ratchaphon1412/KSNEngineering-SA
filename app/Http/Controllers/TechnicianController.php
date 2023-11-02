@@ -33,18 +33,36 @@ class TechnicianController extends Controller
             'repairs' => $showRepairs,
         ]);
     }
+    public function doneRepair(Repair $repair)
+    {
+        $task = $repair->task;
+        $task->stage = 'Done';
+        $task->save();
+
+        return redirect()->route('show.repair.view');
+    }
+
+    public function deleteRepair(Repair $repair)
+    {
+        $repair->task->delete();
+        $repair->delete();
+
+        return redirect()->route('show.repair.view');
+    }
 
     public function update(Request $request, Task $task)
     {
         // var_dump($request->all());
         $request->validate([
             'description' => ['required', 'string', 'min:4'],
+            'todo_date' => ['required', 'date'],
         ]);
 
         // update Event
         $task = Task::find($task->id);
         $task->description = $request->get('description');
         $task->user_id = Auth()->user()->id;
+        $task->todo_date = $request->get('todo_date');
 
         if ($request->hasFile('images')){
             foreach ($task->images as $image) {
