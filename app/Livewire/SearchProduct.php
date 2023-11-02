@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Product;
+use App\Models\product;
 use Livewire\WithPagination;
 
 class SearchProduct extends Component
@@ -17,7 +17,7 @@ class SearchProduct extends Component
     public function render()
     {
 
-        $products = Product::paginate(5);
+        $products = product::paginate(5);
 
 
         if ($this->searchproduct) {

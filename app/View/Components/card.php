@@ -2,23 +2,20 @@
 
 namespace App\View\Components;
 
+use App\Models\product;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class card extends Component
 {
-    public $name;
-    public $price;
-    public $status;
+    public $product;
     /**
      * Create a new component instance.
      */
-    public function __construct($name,$price,$status)
+    public function __construct(product $product)
     {
-        $this->name = $name;
-        $this->price = $price;
-        $this->status = $status;
+        $this->product = $product;
     }
 
     /**

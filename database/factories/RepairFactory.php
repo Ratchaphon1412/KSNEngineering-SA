@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +22,7 @@ class RepairFactory extends Factory
             'user_id' => \App\Models\User::all()->random()->id,
             'crane_id' => \App\Models\Crane::all()->random()->id,
             'name' => $this->faker->name(),
-            'description' => $this->faker->name(),
+            'description' => fake()->text(100),
         ];
     }
 }

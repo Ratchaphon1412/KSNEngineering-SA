@@ -19,8 +19,8 @@ class TaskFactory extends Factory
     {
         return [
             'repair_id' => fake()->numberBetween(1,Repair::count()),
-            'stage' => 'todo',
-            'todo_date' => fake()->dateTimeBetween('+1 week', '+2 week'),
+            // 'todo_date' => fake()->dateTimeBetween('+1 week', '+2 week'),
+            'description' => fake()->text(100),
         ];
     }
 }

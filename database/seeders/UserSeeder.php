@@ -32,6 +32,10 @@ class UserSeeder extends Seeder
             $user->assignRole('user');
         });
 
+        \App\Models\User::factory()->count(5)->create()->each(function ($user) {
+            $user->assignRole('technician');
+        });
+
 
         $user = new User();
         $user->name = 'poomffi';
