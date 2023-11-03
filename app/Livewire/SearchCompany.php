@@ -17,6 +17,7 @@ class SearchCompany extends Component
     public $search;
     public $seleted;
     public $toggle;
+    public Company $companySelected;
     protected $queryString = ['search'];
 
 
@@ -46,6 +47,13 @@ class SearchCompany extends Component
             // $this->company_id = $selectedCompany->id;
             $this->dispatch('companySelected', $selectedCompany->id);
         }
+
+        if ($this->companySelected) {
+
+            $this->dispatch('companySelected', $this->companySelected->id);
+        }
+
+
 
 
 

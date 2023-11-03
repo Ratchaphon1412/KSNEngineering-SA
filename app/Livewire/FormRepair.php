@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Repair;
 use App\Models\Task;
+use App\Models\Quotation;
 use App\Models\Company;
 use Livewire\WithFileUploads;
 
@@ -49,7 +50,7 @@ class FormRepair extends Component
         $this->image->store('repairs');
 
 
-        Repair::create([
+        $repair = Repair::create([
             'name' => $this->title,
             'description' => $this->details,
             'company_id' => $this->company_id,
@@ -57,6 +58,26 @@ class FormRepair extends Component
             'crane_id' => $this->crane_id,
             'image' => $this->image->hashName(),
         ]);
+
+        $task = Task::create([
+            'repair_id' => $repair->id,
+            'user_id' => auth()->user()->id,
+
+        ]);
+
+        Quotation::create([
+            'repair_id' => $repair->id,
+            'user_id' => auth()->user()->id,
+            'task_id' => $task->id,
+            'company_id' => $this->company_id,
+            'total' => 0,
+            'grand_total' => 0,
+
+        ]);
+
+
+
+
 
         return redirect()->route('show.repair.view');
     }

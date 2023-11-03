@@ -6,14 +6,12 @@ use Livewire\Component;
 use App\Service\Invoices\Invoice;
 use LaravelDaily\Invoices\Classes\Party;
 use LaravelDaily\Invoices\Classes\InvoiceItem;
-use App\Models\Quotation;
-use App\Models\Task;
 use App\Models\Product;
-use App\Models\User;
+
 
 
 use App\Models\Company;
-
+use App\Models\Repair;
 
 class QuotationCalculate extends Component
 {
@@ -25,6 +23,7 @@ class QuotationCalculate extends Component
     public $total = 0;
     public $grandTotal = 0;
     public Company $company;
+    public Repair $repair;
 
 
     protected $listeners = ['updateCart', 'companySelected'];
@@ -36,6 +35,8 @@ class QuotationCalculate extends Component
 
             $this->total = $this->calculateTotal();
         }
+
+
 
 
 
@@ -84,19 +85,25 @@ class QuotationCalculate extends Component
             return;
         }
 
-        $quotation = Quotation::create([
-            'company_id' => $this->company->id,
-            'user_id' => auth()->user()->id,
-            'discount' => $this->discount,
-            'total' => $this->total,
-            'grand_total' => $this->grandTotal,
-            'payment_status' => 'pending',
-            'task_id' => null,
-            'repair_id' => null,
-            'quotation_pdf' => null,
-            'purchase_order_pdf' => null,
-        ]);
+        // $quotation = Quotation::create([
+        //     'company_id' => $this->company->id,
+        //     'user_id' => auth()->user()->id,
+        //     'discount' => $this->discount,
+        //     'total' => $this->total,
+        //     'grand_total' => $this->grandTotal,
+        //     'payment_status' => 'pending',
+        //     'task_id' => null,
+        //     'repair_id' => null,
+        //     'quotation_pdf' => null,
+        //     'purchase_order_pdf' => null,
+        // ]);
 
+        $quotation = $this->repair->quotation;
+
+        $quotation->update([
+            'total' => $this->total,
+            'grand_total' => $this->grandTotal
+        ]);
 
         foreach ($this->cart as $item) {
             $product = Product::find($item['id']);
@@ -183,6 +190,7 @@ class QuotationCalculate extends Component
 
     public function companySelected(Company $company)
     {
+
         $this->company = $company;
     }
 }

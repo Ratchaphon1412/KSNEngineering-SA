@@ -9,7 +9,16 @@
     </div>
 </div>
 
+<div class="flex items-center justify-center mt-5 font-semibold">
+    <div class="w-9/12">
+        <a href="#" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-2xl shadow my-6">
+            <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+            <span class="relative text-black group-hover:text-white ">Repair</span>
+        </a>    
+    </div>
+</div>
 
+@role('sale')
 <div class="flex items-center justify-center mt-5 font-semibold">
     <div class="w-9/12">
         <a href="{{route('seller.repair.view')}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-2xl shadow my-6">
@@ -18,6 +27,8 @@
         </a>    
     </div>
 </div>
+@endrole
+
 
 <div class="h-full flex items-center justify-center my-8">
     <div class="grid gap-y-10 grid-cols-3 w-9/12" id="eventTable">

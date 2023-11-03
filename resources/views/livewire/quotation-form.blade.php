@@ -9,8 +9,7 @@
                 <livewire:card-items-quotation :product="$item" wire:key="{{$item->id}}"/> 
             @endforeach
            
-        
-           
+      
 
             
           </div>

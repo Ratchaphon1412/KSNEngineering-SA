@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
 
     <x-slot name="header">
         <div class="flex justify-between">
@@ -6,10 +6,13 @@
                 {{ __('product') }}
                 
             </h2>
-            @livewire('search-product')
+          
         </div>
 
     </x-slot>
+    <div class="w-full">
+        @livewire('search-product')
+    </div>
 
     <div class="grid grid-cols-3 container mx-auto">
         @foreach($products as $product)
@@ -18,4 +21,4 @@
     </div>
 
    
-</x-app-layout>
+</x-guest-layout>

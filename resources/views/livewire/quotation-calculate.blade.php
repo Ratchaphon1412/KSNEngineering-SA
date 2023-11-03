@@ -1,5 +1,5 @@
 <div>
- 
+    
         <!-- Sub total -->
     <div class=" h-full w-full rounded-lg border bg-white p-6 m-12 shadow-md   ">
         <div class="mb-2 flex justify-between">

@@ -36,6 +36,10 @@ class UserSeeder extends Seeder
             $user->assignRole('technician');
         });
 
+        \App\Models\User::factory()->count(5)->create()->each(function ($user) {
+            $user->assignRole('sale');
+        });
+
 
         $user = new User();
         $user->name = 'poomffi';
@@ -43,6 +47,7 @@ class UserSeeder extends Seeder
         $user->email_verified_at = now();
         $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // password
         $user->remember_token = Str::random(10);
+        $user->assignRole('admin');
         $user->save();
     }
 }

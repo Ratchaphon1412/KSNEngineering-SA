@@ -6,17 +6,23 @@ use Livewire\Component;
 use App\Models\Product;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use App\Models\Quotation;
 
 class QuotationForm extends Component
 {
 
     public $cart;
 
+    public Quotation $quotation;
+
     protected $listeners = ['selectedProduct', 'removeItem', 'updateQuantity'];
 
     public function mount()
     {
         $this->cart = new Collection();
+
+        if ($this->quotation) {
+        }
     }
 
 
@@ -25,7 +31,7 @@ class QuotationForm extends Component
 
 
 
-        return view('livewire.quotation-form', ['cart' => $this->cart]);
+        return view('livewire.quotation-form', ['cart' => $this->cart, 'quotation' => $this->quotation]);
     }
 
     public function selectedProduct(Product $product)
