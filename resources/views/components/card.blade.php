@@ -1,5 +1,5 @@
 <!-- component -->
-<div class="snap-start mx-4 my-6">
+<div class="mx-4 my-6">
     <div class="container">
         <div class="max-w-md w-full bg-neutral-300 shadow-lg rounded-xl p-6">
             <div class="flex flex-col ">
@@ -12,7 +12,11 @@
                             </svg>
                         </button>
                     </div> -->
-                <img src="{{ $product->post_image }}" alt="Just a flower" class="w-full object-fit rounded-2xl">
+                @if(Str::contains($product->post_image, 'https:') != 1)
+                <img src="{{ asset('storage/product/' . $product->post_image) }}" alt="watch">
+                @else
+                    <img src="{{ $product->post_image }}" alt="Just a flower" class="w-full object-fit rounded-2xl">
+                @endif
             </div>
             <div class="flex-auto justify-evenly">
             <div class="flex flex-wrap ">
