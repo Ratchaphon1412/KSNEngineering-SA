@@ -37,9 +37,9 @@
                 <div class="mt-5 col-span-6 sm:col-span-3">
                     <div class="font-xl">
                         Image
-                        <div class="mt-2 grid grid-cols-5 gap-1">
+                        <div class="w-full">
                             @if($repair->image)
-                                <img src="{{ Storage::url('uploads/' . $repair->image) }}" alt="Event Image" class="w-60 h-60 object-cover rounded-lg mr-2 mb-2 font-base" id="image">
+                                <img src="{{asset('storage/repairs/'.$repair->image)}}" alt="Event Image" class="w-60 h-60 object-cover rounded-lg mr-2 mb-2 font-base" id="image">
                             @endif
                         </div>
                     </div>

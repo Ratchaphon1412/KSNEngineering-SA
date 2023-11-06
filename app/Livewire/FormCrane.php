@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Crane;
+use App\Models\Company;
 use App\Models\CraneImage;
 
 class FormCrane extends Component
@@ -14,20 +15,25 @@ class FormCrane extends Component
     //
 
 
-
     public $name;
-
     public $description;
-
     public $image;
-
-
+    public $company_id;
     public $waranty;
+
     public $images;
+
+    protected $listeners = ['companySelected'];
 
     public function render()
     {
-        return view('livewire.form-crane');
+
+        $selectedCompany = null;
+        if ($this->company_id) {
+            $selectedCompany = Company::find($this->company_id);
+        }
+
+        return view('livewire.form-crane', compact('selectedCompany'));
     }
 
     public function save()
@@ -37,7 +43,7 @@ class FormCrane extends Component
 
             'name' => 'required',
             'description' => 'required',
-            'image' => 'required|image|max:1024',
+            'image' => 'required|image|max:2048',
 
         ]);
 
@@ -50,15 +56,22 @@ class FormCrane extends Component
             'image' => $this->image->hashName(),
             'waranty' => $this->waranty,
         ]);
-
-        foreach ($this->images as $image) {
-            $image->store('cranes');
-            $craneImage = new CraneImage();
-            $craneImage->crane_id = $crane->id;
-            $craneImage->image = $image->hashName();
-            $craneImage->save();
+        if ($this->images) {
+            foreach ($this->images as $image) {
+                $image->store('cranes');
+                $craneImage = new CraneImage();
+                $craneImage->crane_id = $crane->id;
+                $craneImage->image = $image->hashName();
+                $craneImage->save();
+            }
         }
 
+
         return redirect()->route('dashboard');
+    }
+
+    public function companySelected($company)
+    {
+        $this->company_id = $company;
     }
 }

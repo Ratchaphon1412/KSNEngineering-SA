@@ -18,10 +18,13 @@
         @livewireStyles
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
+        @livewire('navigation-menu')
+        <div class="font-sans bg-white antialiased">
             {{ $slot }}
         </div>
 
+        <x-footer/>
+        
         @livewireScripts
     </body>
 </html>

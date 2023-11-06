@@ -1,4 +1,5 @@
 <x-app-layout>
+@role('technician')
 <div class="flex items-center justify-center">
     <div class="bg-white border border-4 rounded-lg shadow relative w-1/2">
         <div class="flex items-start justify-between p-5 border-b rounded-t">
@@ -62,6 +63,8 @@
         </div>
     </div>
 </div>
+@endrole
+
 <script>
     let imgIP = document.querySelector("#inputImage");
     let previewsImgContainer = document.querySelector("#previewsImg-con");

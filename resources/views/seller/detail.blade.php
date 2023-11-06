@@ -4,9 +4,10 @@
         <div class="flex justify-between w-9/12">
             <div class="w-full mb-16 mt-8">
                 <div class="grid grid-cols-2 md:grid-cols-2 gap-4 place-items-center">
+                   
                     @if($repair->image)
                     <div>
-                        <img class="h-auto max-w-full rounded-lg" src="{{asset('storage/uploads/' . $repair->image )}}" alt="">
+                        <img class="h-auto max-w-full rounded-lg" src="{{asset('storage/repairs/' . $repair->image )}}" alt="">
                     </div>
                     @endif
                 @foreach ($repair->task()->get()[0]->images as $image)
@@ -18,13 +19,18 @@
                 </div>
             </div>
             <div class="flex flex-col w-1/2 ml-16 mt-8">
-                <div class="flex flex-col w-full p-4 rounded-lg bg-white outline outline-blue-400">
+                {{-- <div class="flex flex-col w-full p-4 rounded-lg bg-white outline outline-blue-400">
                     <div class="text-xl font-semibold my-2">{{ $repair->name }}</div>
                     <div class="text-lg font-medium my-2">Company: <div class="font-normal bg-blue-200 rounded-lg px-4">{{ $repair->company()->get()[0]->name }}</div></div>
                     <div class="text-lg font-medium my-2">Name: <div class="font-normal bg-blue-200 rounded-lg px-4">{{ $repair->name }}</div></div>
                     <div class="text-lg font-medium my-2">Detail: <div class="font-normal bg-blue-200 rounded-lg px-4 py-2">{{ $repair->description }}</div></div>
                     
+                </div> --}}
+                <div class="flex flex-col w-full p-4 rounded-lg ">
+                    <div class="text-xl font-semibold my-2"> Company</div>
+                    <livewire:card-company :company="$repair->company()->first()"/>
                 </div>
+
                 <div class="mt-5 flex flex-col w-full p-4 rounded-lg bg-white outline outline-blue-400">
                     <div class="text-xl font-semibold my-2">Task</div>
                     <div class="text-lg font-medium my-2">Stage: <div class="font-normal bg-blue-200 rounded-lg px-4">{{ $repair->task->stage }}</div></div>
@@ -36,38 +42,51 @@
                     </div>
                     
                 </div>
+                @role('sale')
                 <a href="{{ route('repair.edit.view',['repair'=>$repair]) }}" class="mt-5 mb-2 p-2 font-bold w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
                     <span class="w-full text-lg font-semibold text-center rounded-3xl px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 group-hover:bg-opacity-0">
                         Edit Repair
                     </span>
                 </a>
+                
                 <button  type="submit" data-modal-target="purchaseModal" data-modal-toggle="purchaseModal" class="my-2 p-2 w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-blue-200 via-green-400 to-red-200 group-hover:from-blue-200 group-hover:via-green-400 group-hover:to-green-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-green-400">
                     <span class="w-full text-lg font-semibold relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-3xl group-hover:bg-opacity-0">
                         Purchase Order
                     </span>
                 </button>
+                @endrole
+
+                @role('technician')
                 <a href="{{ route('task.edit.view',['repair'=>$repair]) }}" class="my-2 p-2 font-bold w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
                     <span class="w-full text-lg font-semibold text-center rounded-3xl px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 group-hover:bg-opacity-0">
                         Edit Task
                     </span>
                 </a>
-                <a href="#" class="my-2 p-2 font-bold w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                @endrole
+
+                @role(['sale','technician'])
+                <a href="{{route('product.quotation.create',['repair'=>$repair])}}" class="my-2 p-2 font-bold w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
                     <span class="w-full text-lg font-semibold text-center rounded-3xl px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 group-hover:bg-opacity-0">
                         Quatation
                     </span>
                 </a>
-                
+                @endrole
+
+                @role('technician')
                 <button  type="submit" data-modal-target="doneModal" data-modal-toggle="doneModal" class="my-2 p-2 w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-blue-200 via-green-400 to-red-200 group-hover:from-blue-200 group-hover:via-green-400 group-hover:to-green-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-green-400">
                     <span class="w-full text-lg font-semibold relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-3xl group-hover:bg-opacity-0">
                         Done
                     </span>
                 </button>
+                @endrole
+
+                @role('sale')
                 <button  type="submit" data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="my-2 p-2 w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-red-200 via-red-500 to-red-200 group-hover:from-red-200 group-hover:via-red-500 group-hover:to-red-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400">
                     <span class="w-full text-lg font-semibold relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-3xl group-hover:bg-opacity-0">
                         Delete
                     </span>
                 </button>
-
+                @endrole
 
                 <div id="purchaseModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative w-full max-w-2xl max-h-full">

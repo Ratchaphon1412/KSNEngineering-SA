@@ -5,3 +5,14 @@
 [x-cloak] {
     display: none;
 }
+
+::-webkit-scrollbar {
+    /* Customize the scrollbar width */
+    background: transparent;
+    width: 12px;
+}
+::-webkit-scrollbar-thumb {
+    /* Customize the scrollbar thumb */
+    background: #888;
+    border-radius: 25px;
+}

@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     <section class="h-[50vh] flex flex-col justify-center items-center pb-[25%] md:pb-0">
         <p class="text-3xl font-semibold mb-5 tracking-wide text-gray-700">ติดต่อเรา</p>
         <p class="text-xl tracking-wide text-gray-700">สอบถามสินค้าและบริการ</p>
@@ -28,4 +28,4 @@
             </iframe>
         </section>
     </main>
-</x-app-layout>
+</x-guest-layout>

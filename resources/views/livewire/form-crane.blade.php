@@ -38,6 +38,28 @@
                 @enderror
 
         </div>
+        <div class="mb-6 pt-4">
+            @if($selectedCompany)
+          
+              
+                <livewire:card-company :company="$selectedCompany"  wire:key="{{$selectedCompany}}"/>
+                <input type="text" class="hidden" wire:model="company_id"  wire:key="{{$selectedCompany->id}}"  >
+            @else
+                <div class="card card-side  shadow-xl">
+                    
+                    <div class="card-body">
+                    <p class="text-black text-md ">Please select company</p>
+                    </div>
+                    @error('company_id')
+                        <p class="text-red-500 text-xs italic">{{$message}}</p>
+                    @enderror
+                    
+                </div>
+            @endif
+    
+    
+        </div>
+
 
         <div class="mb-6 pt-4">
             <label class="mb-5 block text-xl font-semibold text-[#07074D]">
@@ -72,6 +94,7 @@
                 <img src="{{$image->temporaryUrl()}}" alt="">
             @endif
         </div>
+
 
         <div class="mb-6 pt-4">
             <label class="mb-5 block text-xl font-semibold text-[#07074D]">

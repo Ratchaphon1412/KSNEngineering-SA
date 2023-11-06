@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     <div class="w-full md:h-[50vh] bg-cover bg-fixed bg-bottom bg-no-repeat shadow-xl" 
         style="background-image: url('assets/images/aboutKSN.jpg')">
         <div class="bg-black bg-opacity-20 w-full h-full py-[25%] md:py-0">
@@ -84,4 +84,4 @@
         </div>
     </div>
     
-</x-app-layout>
+</x-guest-layout>
