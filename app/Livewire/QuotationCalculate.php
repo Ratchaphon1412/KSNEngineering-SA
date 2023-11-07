@@ -31,6 +31,9 @@ class QuotationCalculate extends Component
     public function render()
     {
 
+
+
+
         if ($this->discount >= 0) {
 
             $this->total = $this->calculateTotal();
@@ -48,6 +51,9 @@ class QuotationCalculate extends Component
 
         $this->cart = $cart;
         $this->total = $this->calculateTotal();
+        if ($this->repair->quotation) {
+            $this->discount = $this->repair->quotation->discount;
+        }
     }
 
     private function calculateTotal()
@@ -84,7 +90,7 @@ class QuotationCalculate extends Component
         if (empty($this->cart)) {
             return;
         }
-
+        // dd($this->cart);
         // $quotation = Quotation::create([
         //     'company_id' => $this->company->id,
         //     'user_id' => auth()->user()->id,
@@ -102,8 +108,14 @@ class QuotationCalculate extends Component
 
         $quotation->update([
             'total' => $this->total,
-            'grand_total' => $this->grandTotal
+            'grand_total' => $this->grandTotal,
+            'discount' => $this->discount,
         ]);
+
+        if ($quotation->orderDetails) {
+            $quotation->orderDetails()->detach();
+        }
+
 
         foreach ($this->cart as $item) {
             $product = Product::find($item['id']);
@@ -122,9 +134,9 @@ class QuotationCalculate extends Component
         ]);
 
         $customer = new Party([
-            'name'          => $this->company->name,
-            'address'       => $this->company->address,
-            'code'          => str_pad($this->company->id, 6, '0', STR_PAD_LEFT),
+            'name'          => $this->repair->company->name,
+            'address'       => $this->repair->company->address,
+            'code'          => str_pad($this->repair->company->id, 6, '0', STR_PAD_LEFT),
             'custom_fields' => [
                 'order number' => '> 654321 <',
             ],
@@ -142,6 +154,11 @@ class QuotationCalculate extends Component
                 ->pricePerUnit($priceTemp)
                 ->quantity($quantityTemp);
         }
+
+
+
+
+
         $notes = [
             'your multiline',
             'additional notes',
@@ -164,8 +181,8 @@ class QuotationCalculate extends Component
             ->currencySymbol('฿')
             ->currencyCode('THB')
             ->currencyFormat('{SYMBOL}{VALUE}')
-            ->currencyThousandsSeparator('.')
-            ->currencyDecimalPoint(',')
+            ->currencyThousandsSeparator(',')
+            ->currencyDecimalPoint('.')
             ->filename(time() . '_quotation')
             ->addItems($items)
             ->notes($notes)
@@ -181,16 +198,15 @@ class QuotationCalculate extends Component
 
 
 
-
         // And return invoice itself to browser or have a different view
         // Replace with your desired URL
-        return redirect($link);
+        return redirect()->route('show.repair.view');
     }
 
 
-    public function companySelected(Company $company)
-    {
+    // public function companySelected(Company $company)
+    // {
 
-        $this->company = $company;
-    }
+    //     $this->company = $company;
+    // }
 }
