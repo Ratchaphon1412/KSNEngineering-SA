@@ -111,4 +111,15 @@ class SellController extends Controller
             'repair' => $repair,
         ]);
     }
+
+    public function addAmount(Request $request, Repair $repair) {
+        $repair = Repair::find($repair->id);
+        $repair->amount = $request->amount;
+        $repair->save();
+        return redirect()->route('detail.repair.view', [
+            'repair' => $repair,
+        ]);
+
+    }
+
 }

@@ -76,6 +76,7 @@ Route::controller(SellController::class)->group(function () {
     Route::get('/update-repair/{repair}', 'updateRepairShow')->name('repair.edit.view')->middleware(['auth', 'verified']);
     Route::post('/updated-repair/{repair}', 'updateRepair')->name('repair.edit.update')->middleware(['auth', 'verified']);
     Route::post('/add-purchase-order/{repair}', 'purchaseOrder')->name('purchase.add')->middleware(['auth', 'verified']);
+    Route::post("/add-amount/{repair}",'addAmount')->name('add.amount')->middleware(['auth', 'verified']);
 });
 
 Route::controller(TechnicianController::class)->group(function () {
@@ -85,6 +86,7 @@ Route::controller(TechnicianController::class)->group(function () {
     Route::post('/done-repair/{repair}', 'doneRepair')->name('done.repair')->middleware(['auth', 'verified']);
     Route::post('/delete-repair/{repair}', 'deleteRepair')->name('delete.repair')->middleware(['auth', 'verified']);
     Route::get("/myWork/{user}",'myWorkTech')->name('repair.mywork')->middleware(['auth', 'verified']);
+    
 });
 
 Route::controller(ProductController::class)->group(function () {
