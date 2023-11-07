@@ -77,6 +77,7 @@ Route::controller(SellController::class)->group(function () {
     Route::post('/updated-repair/{repair}', 'updateRepair')->name('repair.edit.update')->middleware(['auth', 'verified']);
     Route::post('/add-purchase-order/{repair}', 'purchaseOrder')->name('purchase.add')->middleware(['auth', 'verified']);
     Route::post("/add-amount/{repair}",'addAmount')->name('add.amount')->middleware(['auth', 'verified']);
+    Route::get("/inprocess-repair",'inProcessRepair')->name('seller.InProcess.view')->middleware(['auth', 'verified']);
 });
 
 Route::controller(TechnicianController::class)->group(function () {

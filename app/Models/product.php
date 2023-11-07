@@ -23,7 +23,7 @@ class product extends Model
 
     public function image(): HasMany
     {
-        return $this->hasMany(productImage::class);
+        return $this->hasMany(ProductImage::class);
     }
 
     public function searchableAs(): string

@@ -22,14 +22,14 @@ class SearchProduct extends Component
 
         if ($this->searchproduct) {
             $this->resetPage();
-            $products = Product::search($this->searchproduct)->paginate(5);
+            $products = product::search($this->searchproduct)->paginate(5);
         }
 
 
         return view('livewire.search-product', compact('products'));
     }
 
-    public function selectProduct(Product $product)
+    public function selectProduct(product $product)
     {
         $this->selectedProduct = $product;
         $this->dispatch('selectedProduct', $product);

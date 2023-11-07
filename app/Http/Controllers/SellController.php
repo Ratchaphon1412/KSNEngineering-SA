@@ -122,4 +122,19 @@ class SellController extends Controller
 
     }
 
+    public function inProcessRepair(){
+
+        $repairs = Repair::get();
+        $showRepairs = [];
+        foreach ($repairs as $repair) {
+            if($repair->task->stage == "InProcess"){
+                $showRepairs[] = $repair;
+            }
+        }
+
+        return view('technician.myWork', [
+            'repairs' => $showRepairs,
+        ]);
+    }
+
 }

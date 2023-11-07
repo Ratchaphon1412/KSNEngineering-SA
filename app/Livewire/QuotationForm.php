@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Product;
+use App\Models\product;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use App\Models\Quotation;
@@ -34,7 +34,7 @@ class QuotationForm extends Component
         return view('livewire.quotation-form', ['cart' => $this->cart, 'quotation' => $this->quotation]);
     }
 
-    public function selectedProduct(Product $product)
+    public function selectedProduct(product $product)
     {
         if ($this->cart->contains('id', $product->id)) {
 
@@ -64,7 +64,7 @@ class QuotationForm extends Component
     }
 
 
-    public function removeItem(Product $product)
+    public function removeItem(product $product)
     {
         $this->cart = $this->cart->reject(function ($item) use ($product) {
             return $item->id == $product->id;
@@ -72,7 +72,7 @@ class QuotationForm extends Component
 
         $this->dispatch('updateCart', $this->cart);
     }
-    public function updateQuantity(Product $product, $quantity)
+    public function updateQuantity(product $product, $quantity)
     {
         $productIndex = $this->cart->search(function ($item) use ($product) {
             return $item->id == $product->id;
