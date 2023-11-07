@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('image')->nullable();
+            $table->double('amount')->default(0);
             $table->string('purchase_order')->nullable();
 
             $table->timestamps();

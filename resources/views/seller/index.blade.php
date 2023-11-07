@@ -9,14 +9,17 @@
     </div>
 </div>
 
+@role('technician')
 <div class="flex items-center justify-center mt-5 font-semibold">
     <div class="w-9/12">
-        <a href="#" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-2xl shadow my-6">
+        <a href="{{route('repair.mywork', ['user'=>Auth::user() ])}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-2xl shadow my-6">
             <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
-            <span class="relative text-black group-hover:text-white ">Repair</span>
+            <span class="relative text-black group-hover:text-white ">My Repair</span>
         </a>    
     </div>
 </div>
+@endrole
+
 
 @role('sale')
 <div class="flex items-center justify-center mt-5 font-semibold">

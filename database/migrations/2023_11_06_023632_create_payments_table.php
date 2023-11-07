@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('purchase_order');
             $table->double('amount');
-            $table->int('tax_invoice');
+            $table->integer('tax_invoice');
             $table->timestamps();
         });
     }

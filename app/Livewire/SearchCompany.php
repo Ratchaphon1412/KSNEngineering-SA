@@ -17,7 +17,8 @@ class SearchCompany extends Component
     public $search;
     public $seleted;
     public $toggle;
-    public Company $companySelected;
+    protected ?Company $companySelected = null;
+
     protected $queryString = ['search'];
 
 

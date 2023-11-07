@@ -20,10 +20,16 @@ class SellController extends Controller
     public function indexRepair()
     {
         $repairs = Repair::all();
+        $repairs_select = array();
+        foreach ($repairs as $repair) {
+            if($repair->task->stage == "Pending"){
+                array_push($repairs_select ,$repair);
+            }
+        }
 
 
         return view('seller.index', [
-            'repairs' => $repairs,
+            'repairs' => $repairs_select,
         ]);
     }
 

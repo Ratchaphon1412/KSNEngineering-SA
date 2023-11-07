@@ -84,6 +84,7 @@ Route::controller(TechnicianController::class)->group(function () {
     Route::get('/my-work', 'myWork')->name('repair.tech.work')->middleware(['auth', 'verified']);
     Route::post('/done-repair/{repair}', 'doneRepair')->name('done.repair')->middleware(['auth', 'verified']);
     Route::post('/delete-repair/{repair}', 'deleteRepair')->name('delete.repair')->middleware(['auth', 'verified']);
+    Route::get("/myWork/{user}",'myWorkTech')->name('repair.mywork')->middleware(['auth', 'verified']);
 });
 
 Route::controller(ProductController::class)->group(function () {

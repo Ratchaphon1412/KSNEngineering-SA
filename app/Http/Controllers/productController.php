@@ -37,8 +37,6 @@ class ProductController extends Controller
 
     public function createQuotation(Repair $repair)
     {
-
-
         return view('product.create-quotation', compact('repair'));
     }
 }
