@@ -91,6 +91,21 @@ class TechnicianController extends Controller
         ]);
     }
 
+    public function myWorkTech(User $user)
+    {
+        $repairs = Repair::all();
+        $repairs_select = array();
+        foreach ($repairs as $repair) {
+            if($repair->task->stage == "InProcess" && $repair->task->user_id == $user->id){
+                array_push($repairs_select ,$repair);
+            }
+        }
+
+
+        return view('seller.index', [
+            'repairs' => $repairs_select,
+        ]);
+    }
 
 
 

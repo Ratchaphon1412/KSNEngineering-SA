@@ -1,156 +1,54 @@
-<div class="h-sreen w-full">
-   <div class="flex flex-col justify-center items-center mx-auto h-full w-full p-12">
-      <div class="flex justify-center w-full">
-         <form class="w-full bg-white p-10 rounded-lg max-w-lg" wire:submit.prevent="save" >
-               
-                  <div class="flex flex-wrap -mx-3 mb-6">
-                  <div class="w-full md:w-5/6 px-3 mb-6 md:mb-0">
-                      <label for="title" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                      Title
-                      </label>
-                      <input id="title" wire:model="title" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"  type="text" placeholder="Repair Title">
-                      @error('title')
-                        <p class="text-red-500 text-xs italic">{{$message}}</p>
-                      @enderror
-                      
-                  </div>
-   
-                  </div>
-                  <div class="flex flex-wrap -mx-3 mb-6">
-                  <div class="w-full px-3">
-                      <label for="details" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                        Details
-                      </label>
-
-                      <textarea id="details"  wire:model="details" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your thoughts here..."></textarea>
-
-                      
-                      @error('details')
-                        <p class="text-red-500 text-xs italic">{{$message}}</p>
-                      @enderror
-                  </div>
-                  </div>
-                  <div class="flex flex-wrap -mx-3 mb-6">
-                     <label for="image" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                        Images
-                      </label>
-                     <div class="flex items-center justify-center w-full">
-                        <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                           <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                              <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                              </svg>
-                              <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                              <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-                           </div>
-                           <input id="dropzone-file"   wire:model="image" type="file" class="hidden" />
-                        </label>
-                     </div> 
-                     @if($image)
-                        <img id="preview-image" class="w-full h-full mb-4 " src="{{$image->temporaryUrl()}}" alt="">
-                     @endif
-
-                     @error('image')
-                        <p class="text-red-500 text-xs italic">{{$message}}</p>
-                      @enderror
-                  </div>
-             
-                  <div class="w-full  px-3 mb-6 md:mb-0">
-                     <label  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
-                     Search Company
-                     </label>
-                     @if($selectedCompany)
+<div class="w-full">
+   <div class="flex flex-row justify-center items-center mx-auto h-full w-full ">
+      <div class="flex  items-start w-full   ">
+          <div class="w-full  "> 
+            <div class="w-full h-full flex flex-col items-center justify-center">
+               <div class=" relative w-11/12 md:w-8/12 xl:w-2/3 h-auto p-2 rounded-3xl bg-white flex flex-col">
+                  <!-- First section (search bar container) -->
+                  <label for="company" class="mb-2">
+                   <h1 class="text-xs uppercase font-bold tracking-wide  text-gray-700">Search Company</h1>
+                  </label>
+                  <section  class="w-full h-10 flex items-center">
+                     <!-- Search icon container -->
+                     <span class="w-10 h-full hidden md:flex items-center">
+                        <i class="uil uil-search-alt text-xl text-blue-800"></i>
+                     </span>
+                     <!-- Input -->
+                     <input id="company"  wire:model.live="search" type="search"  class="w-full h-full font-medium md:pl-2 focus:outline-none searchInput rounded-lg px-4 mx-4"
+                        placeholder="Search what you want ...">
+                     <!-- Search button -->
                     
-                        
-                        <livewire:card-company :company="$selectedCompany"  wire:key="{{$selectedCompany}}"/>
-                        <input type="text" class="hidden" wire:model="company_id"  wire:key="{{$selectedCompany->id}}"  >
-                     @else
-                     <div>
-                     {{-- start of search --}}
-                     <div class="w-full"> 
-                        <div class="w-full h-full flex flex-col items-center justify-center">
-                           <div class="w-full h-auto p-2 rounded-3xl bg-gray-100 flex flex-col">
-                              <!-- First section (search bar container) -->
-                              <label for="company" class="mb-2">
-                              <!-- <h1 class="text-xs uppercase font-bold tracking-wide  text-gray-700">Search Company</h1> -->
-                              </label>
-                              <section  class="w-full h-10 flex items-center">
-                                 <!-- Search icon container -->
-                                 <span class="w-10 h-full hidden md:flex items-center justify-end">
-                                    <i class="uil uil-search-alt text-xl text-blue-800"></i>
-                                 </span>
-                                 <!-- Input -->
-                                 <input id="company"  wire:model.live="search" type="search"  class="w-full h-full font-medium md:pl-2 focus:outline-none searchInput rounded-lg px-4 mx-4"
-                                    placeholder="Search what you want ...">
-                                 <!-- Search button -->
-                              
-                              </section>
-                              <!-- Second section (results container) -->
-                              <section class="w-full h-auto  flex-col gap-y-2 mt-8 resultsContainer">
+                  </section>
+                  <!-- Second section (results container) -->
+                  <section   class="{{!$toggle || $search ? 'absolute w-full h-auto top-10 bg-white rounded-lg p-6 flex-col gap-y-2 mt-8 resultsContainer z-40' : 'absolute w-full h-auto top-10 bg-white rounded-lg p-6 flex-col gap-y-2 mt-8 resultsContainer z-40 hidden'}}">
+       
+                     @foreach ($items as $item )
                   
-                                 @foreach ($items as $item )
+                        <div class="w-full h-10 flex items-center gap-x-2 hover:border border-gray-400 rounded-lg p-4" wire:click.live="selectItem({{$item->id}})" wire:key="{{$item->id}}" >
+                              <!-- Image container -->
+                              <span class="w-7 h-7">
+                                 <img src="{{$item->logo}}" alt="">
+                              </span>
+                              <p class="font-medium text-base text-black">{{$item->name}}</p>
                               
-                                    <div class="w-full h-10 flex items-center gap-x-2 hover:border border-gray-400 rounded-lg p-4" wire:click.live="selectItem({{$item->id}})" wire:key="{{$item->id}}" >
-                                          <!-- Image container -->
-                                          <span class="w-7 h-7">
-                                             <img src="{{$item->logo}}" alt="">
-                                          </span>
-                                          <p class="font-medium text-base text-gray-500">{{$item->name}}</p>
-                                          
-                                    </div>
-                                    
-                                 @endforeach
-                                 
-                                 @if($items)
-                                    {{ $items->links() }}
-                                 
-                                 @endif
-
-
-                              
-                              
-                              </section>
-
-                           </div>
                         </div>
-                     </div>
-                     {{-- end of search --}}
-                        @error('company_id')
-                           <p class="text-red-500 text-xs italic">{{$message}}</p>
-                        @enderror
                         
-                    </div>
+                     @endforeach
+                     
+                     @if($items)
+                        {{ $items->links() }}
+                     
                      @endif
-                  </div>
-                  <div class="w-full  px-3 mb-6 md:mb-0 mt-4">
-              
-                                    
-                     <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a Crane</label>
-                     @isset($selectedCompany->cranes)
-                        <select id="countries"  wire:model="crane_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                           <option selected>Not Select Crane</option>
-                           {{-- {{$selectedCompany->cranes}} --}}
-                           @foreach ($selectedCompany->cranes as $crane)
-                              <option value="{{$crane->id}}">{{$crane->name}}</option>
-                           @endforeach
-                           
-                        
-                        </select>
-                     @else
-                     <p class="text-gray-700 text-md text-xs tracking-wide">No Crane</p>
-                     @error('crane_id')
-                        <p class="text-red-500 text-xs italic">{{$message}}</p>
-                     @enderror
-
-                     @endisset
-
-                  </div>
 
 
-                  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center m-4">Submit</button>
-                 
+                  
+                  
+                  </section>
 
-              </form>
+               </div>
+            </div>
+          </div>
+
       </div>
      </div>
 

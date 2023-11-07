@@ -37,4 +37,9 @@ class Repair extends Model
     {
         return $this->hasOne(Task::class);
     }
+
+    public function quotation(): HasOne
+    {
+        return $this->hasOne(Quotation::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\product;
+use App\Models\Repair;
 
 class ProductController extends Controller
 {
@@ -30,5 +31,10 @@ class ProductController extends Controller
     public function createProduct()
     {
         return view('product.create-product');
+    }
+    public function createQuotation(Repair $repair)
+    {
+
+        return view('product.create-quotation', compact('repair'));
     }
 }

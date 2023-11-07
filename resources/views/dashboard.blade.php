@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     <section
         class="w-full h-screen overflow-y-hidden bg-cover bg-fixed bg-bottom bg-no-repeat shadow-lg"
         style="background-image: url('assets/images/crane-hero.jpg')"
@@ -232,4 +232,4 @@
             </a>
         </div>
     </div>
-</x-app-layout>
+</x-guest-layout>

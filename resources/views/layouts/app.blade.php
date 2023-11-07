@@ -44,14 +44,15 @@
                 {{ $slot }}
             </main>
             
-            @if(Auth::user()->roles->contains('name','user'))
-                <x-footer/>
-            @endif
+            
+            <x-footer/>
+            
 
-            @role(['admin','user'])
-            <x-basement::chat-box />
-          @endrole
-         
+            @auth
+                @role(['admin','user'])
+                    <x-basement::chat-box />
+                @endrole
+            @endauth
           
         </div>
 

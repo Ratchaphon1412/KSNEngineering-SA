@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="grid md:grid-cols-2">
+    <div>
         <div>
             <div class="bg-white shadow-lg rounded-lg border border-slate-200 my-9 mx-4 h-fit">
                 <header class="px-5 py-4 border-b border-slate-100">
@@ -12,7 +12,7 @@
                             <!-- Table header -->
                             <div class="flex justify-between">
                                 <div class="ml-3 pb-3 px-4 pt-2 text-lg tracking-wide rounded-t-xl text-slate-400 bg-slate-100">
-                                    จำนวน user ในระบบ  
+                                    จำนวน Customers ในระบบ  
                                     {{ $users->count() }} คน
                                 </div>
                                 <div class="ml-3 pb-3 px-4 pt-2 text-lg tracking-wide rounded-t-xl text-slate-400 bg-slate-100">
@@ -63,7 +63,7 @@
         
             <div class="bg-white shadow-lg rounded-lg border border-slate-200 my-9 mx-4">
                 <header class="px-5 py-4 border-b border-slate-100">
-                    <h2 class="font-semibold text-slate-800 ">Product</h2>
+                    <h2 class="font-semibold text-slate-800 ">Product and Service</h2>
                 </header>
                     <div class="p-3">
                         <!-- Table -->
@@ -72,7 +72,7 @@
                                 <!-- Table header -->
                                 <div class="flex justify-between">
                                     <div class="ml-3 pb-3 px-4 pt-2 text-lg tracking-wide rounded-t-xl text-slate-400 bg-slate-100">
-                                        ชนิดของ product ในระบบ  
+                                        ชนิดของ product and Service ในระบบ  
                                         {{ $products->count() }}
                                     </div>
                                     <div class="ml-3 pb-3 px-4 pt-2 text-lg tracking-wide rounded-t-xl text-slate-400 bg-slate-100">
@@ -133,11 +133,5 @@
                     </div>
                 </div>
         </div>
-        <div class="bg-white shadow-lg rounded-lg border border-slate-200 my-9 mr-4">
-
-        </div>
     </div>
-    
-    
-    
 </x-app-layout>

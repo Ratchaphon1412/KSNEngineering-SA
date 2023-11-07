@@ -4,26 +4,25 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Company;
-use App\Models\Repair;
-use App\Models\Task;
+
 
 use Livewire\WithPagination;
-use Livewire\WithFileUploads;
+
 
 
 class SearchCompany extends Component
 {
     use WithPagination;
-    use WithFileUploads;
+
     public $search;
     public $seleted;
+    public $toggle;
+    protected ?Company $companySelected = null;
+
     protected $queryString = ['search'];
 
-    public $title;
-    public $details;
-    public $company_id;
-    public $crane_id;
-    public $image;
+
+
 
 
 
@@ -38,19 +37,31 @@ class SearchCompany extends Component
 
 
 
+
         if ($this->search) {
+            $this->resetPage();
             $items = Company::search($this->search)->paginate(5);
         }
 
         if ($this->seleted) {
             $selectedCompany = Company::find($this->seleted);
-            $this->company_id = $selectedCompany->id;
+            // $this->company_id = $selectedCompany->id;
+            $this->dispatch('companySelected', $selectedCompany->id);
+        }
+
+        if ($this->companySelected) {
+
+            $this->dispatch('companySelected', $this->companySelected->id);
         }
 
 
 
 
-        return view('livewire.search-company', ['items' => $items, 'selectedCompany' => $selectedCompany]);
+
+
+
+
+        return view('livewire.search-company', ['items' => $items, 'selectedCompany' => $selectedCompany, 'toggle' => $this->toggle]);
     }
 
 
@@ -60,39 +71,5 @@ class SearchCompany extends Component
 
         $this->seleted = $company;
         $this->search = '';
-    }
-
-
-    public function save()
-    {
-
-
-        $this->validate([
-            'title' => 'required',
-            'details' => 'required',
-            'company_id' => 'required',
-            // 'crane_id' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-
-
-        // $imageName = time() . '.' . $this->image->extension();
-
-        $this->image->store('/public/repairs');
-
-
-        $repair = Repair::create([
-            'name' => $this->title,
-            'description' => $this->details,
-            'company_id' => $this->company_id,
-            'user_id' => auth()->user()->id,
-            'crane_id' => $this->crane_id,
-            'image' => $this->image->hashName(),
-        ]);
-
-        $repair->task()->save(new Task);
-
-
-        return redirect()->route('show.repair.view');
     }
 }

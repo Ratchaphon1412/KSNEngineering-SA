@@ -36,13 +36,26 @@ class UserSeeder extends Seeder
             $user->assignRole('technician');
         });
 
+        \App\Models\User::factory()->count(5)->create()->each(function ($user) {
+            $user->assignRole('sale');
+        });
+
 
         $user = new User();
-        $user->name = 'poomffi';
-        $user->email = 'poomffi@hotmail.com';
+        $user->name = 'poomffi sale';
+        $user->email = 'poomffi1@hotmail.com';
         $user->email_verified_at = now();
         $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // password
         $user->remember_token = Str::random(10);
+        $user->assignRole('sale');
+        $user->save();
+        $user = new User();
+        $user->name = 'poomffi technician';
+        $user->email = 'poomffi2@hotmail.com';
+        $user->email_verified_at = now();
+        $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // password
+        $user->remember_token = Str::random(10);
+        $user->assignRole('technician');
         $user->save();
     }
 }
