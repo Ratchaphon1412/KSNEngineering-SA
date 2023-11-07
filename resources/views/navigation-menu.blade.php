@@ -28,7 +28,7 @@
                         {{ __('Service') }}
                     </x-nav-link>
                     
-                    <x-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product')">
+                    <x-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product.index')">
                         {{ __('Product') }}
                     </x-nav-link>
 
@@ -209,7 +209,7 @@
                     {{ __('Service') }}
                 </x-responsive-nav-link>
                 
-                <x-responsive-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product')">
+                <x-responsive-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product.index')">
                     {{ __('Product') }}
                 </x-responsive-nav-link>
 

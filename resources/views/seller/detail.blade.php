@@ -189,8 +189,10 @@
                                         <p class="text-4xl text-gray-900 dark:text-white">Balance: {{ $repair->amount }} / {{ $repair->quotation->grand_total }}</p>
                                             @endif
                                         <form action="{{ route('add.amount',['repair'=>$repair]) }}" method="POST" enctype="multipart/form-data" class="w-10/12">
-                                        @csrf     
-                                            <input type="number" name="amount" id="amount" value="{{$repair->amount}}" min="0"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please enter a number">
+                                        @csrf
+                                        @if($repair->quotation)     
+                                            <input type="number" name="amount" id="amount" step="0.01" value="{{$repair->amount}}" min="0" max="{{ $repair->quotation->grand_total }}"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please enter a number">
+                                            @endif
                                         </div>
                                     </div>
 
@@ -201,8 +203,9 @@
                             <!-- Modal footer -->
                             <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                                 <button data-modal-hide="payModal" type="button" class="text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">close</button>
-                                
+                                @if($repair->quotation)   
                                 <button type="submit" class="right-5 absolute flex-2 rounded-full bg-green-600 text-white antialiased font-bold hover:bg-green-800 px-12 py-2">Add</button>
+                                @endif
                             </form>
                                 
                             

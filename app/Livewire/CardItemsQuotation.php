@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Product;
+use App\Models\product;
 use Livewire\Component;
 
 class CardItemsQuotation extends Component

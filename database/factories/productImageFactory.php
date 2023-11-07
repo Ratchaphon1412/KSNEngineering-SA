@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProductImage>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\productImage>
  */
 class productImageFactory extends Factory
 {
@@ -20,7 +20,7 @@ class productImageFactory extends Factory
             //
             'type' => $this->faker->randomElement(['image', 'video']),
             'imageUrl' => $this->faker->imageUrl(),
-            'product_id' =>  \App\Models\Product::all()->random()->id,
+            'product_id' =>  \App\Models\product::all()->random()->id,
 
         ];
     }

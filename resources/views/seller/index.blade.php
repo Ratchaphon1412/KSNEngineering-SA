@@ -26,11 +26,28 @@
     <div class="w-9/12">
         <a href="{{route('seller.repair.view')}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-2xl shadow my-6">
             <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
-            <span class="relative text-black group-hover:text-white ">create repair</span>
+            <span class="relative text-black group-hover:text-white ">Create Repair</span>
+        </a>    
+    </div>
+</div>
+<div class="flex items-center justify-center mt-5 font-semibold">
+    <div class="w-9/12">
+        <a href="{{route('seller.InProcess.view')}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-2xl shadow my-6">
+            <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+            <span class="relative text-black group-hover:text-white ">InProcess Repair</span>
         </a>    
     </div>
 </div>
 @endrole
+<div class="flex items-center justify-center mt-5 font-semibold">
+    <div class="w-9/12">
+        <a href="{{route('show.repair.view')}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-2xl shadow my-6">
+            <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+            <span class="relative text-black group-hover:text-white ">Repair</span>
+        </a>    
+    </div>
+</div>
+
 
 
 <div class="h-full flex items-center justify-center my-8">
