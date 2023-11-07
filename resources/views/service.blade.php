@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="text-center text-4xl font-extrabold my-20">
+    <div class="text-center text-4xl font-extrabold py-20 bg-zinc-100">
         <span>“พวกเรา</span>
         <span class="text-amber-400">เต็มใจ</span>
         <p class="text-amber-400">เต็มที่</p>
@@ -22,39 +22,78 @@
     </div>
     
     <div class="bg-white">
-        <div class="container mx-auto">
-            <div class="flex justify-between py-12">
-                <p class="text-3xl font-extrabold indent-10">Prepare</p>
+        <div class="mx-auto">
+            <div class="text-center text-2xl">
+                <p class="text-amber-400 mt-10 font-semibold">ONE STOP SERVICE</p>
+                <p class="text-black my-5">“พร้อมให้บริการทั่วไทย โดยวิศวกรและทีมงานผู้เชี่ยวชาญประสบการณ์มากกว่า 20 ปี”</p>
             </div>
-            <hr class="border border-2 border-black rounded-full">
             <!-- content -->
-            <div class="flex flex-col md:flex-row justify-between py-12">
-                <img src="assets/slide/crane.jpg" alt="" class="object-cover rounded-lg md:w-96">
-                <div class="p-10">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi iure illo cumque eius, odit aliquid unde eum esse. Quidem incidunt, illo itaque et cupiditate nesciunt. Deserunt, ab. Iure enim repellendus, perspiciatis velit facilis nulla eum, officia delectus tempora quia voluptas.
+            <div>
+                <div class="px-10 flex flex-col md:flex-row justify-between items-center py-12">
+                    <img src="assets/slide/crane.jpg" alt="" class="object-cover rounded-lg md:w-96">
+                    <div class="text-center text-black flex-cols">
+                        <p class="text-2xl font-semibold ">ออกแบบ ผลิต ติดตั้ง รอกและเครนโรงงานทุกประเภท</p>
+                        <p class="p-3 tracking-wide text-lg">
+                            ให้คำปรึกษา ออกแบบ และติดตั้งเครนแบบครบวงจร โดยวิศวกรและทีมช่างผู้เชี่ยวชาญ ตามหลักวิศวกรรมและคำนึงถึงความปลอดภัยในการใช้งานสูงสุด
+                        </p>
+                    </div>
                 </div>
+
             </div>
             
-            <div class="flex flex-col md:flex-row justify-between py-10">
-                <div class="p-10 order-last md:order-none">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi iure illo cumque eius, odit aliquid unde eum esse. Quidem incidunt, illo itaque et cupiditate nesciunt. Deserunt, ab. Iure enim repellendus, perspiciatis velit facilis nulla eum, officia delectus tempora quia voluptas.
+            <div>
+                <div class="px-10 flex flex-col md:flex-row justify-between items-center py-10 bg-zinc-100">
+                    <div class="text-center text-black flex-cols">
+                        <p class="text-2xl font-semibold text-amber-400">ตรวจเช็คเครนหรือปั้นจั่น</p>
+                        <p class="p-3 tracking-wide text-lg">
+                            ตรวจเช็คเครนว่ามีปัจจัยเสี่ยงด้านความปลอดภัยและสอดคล้องตามข้อกำหนดตามกฎหมายหรือไม่ เพื่อให้เครนอยู่ในสภาพพร้อมใช้งานได้อย่างปลอดภัยและป้องกันความเสียหายขณะใช้งาน
+                        </p>
+                    </div>
+                    <img src="assets/slide/keeping.jpg" alt="" class="object-cover rounded-lg md:w-96">
                 </div>
-                <img src="assets/slide/keeping.jpg" alt="" class="object-cover rounded-lg md:w-96">
+                
             </div>
-        </div>
-    </div>
 
-    <!-- content -->
-    <div class="container mx-auto">
-        <div class="flex justify-between my-12">
-            <p class="text-3xl font-extrabold indent-10">Working</p>
-        </div>
-        <hr class="border border-2 border-black rounded-full">
-        <p class="text-center my-12">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quam labore fugit soluta beatae harum, nostrum laborum quis animi necessitatibus.</p>
-        <div class="flex flex-col md:flex-row justify-center md:space-x-3 space-y-5">
-            <img src="assets/slide/prepare.jpg" alt="" class="rounded-lg md:w-96">
-            <img src="assets/slide/sendingProduct.jpg" alt="" class="rounded-lg md:w-96">
-            <img src="assets/slide/product.jpg" alt="" class="rounded-lg md:w-96">
+            <div>
+                <div class="px-10 flex flex-col md:flex-row justify-between items-center py-12">
+                    <img src="assets/slide/prepare.jpg" alt="" class="object-cover rounded-lg md:w-96">
+                    <div class="text-center text-black flex-cols">
+                        <p class="text-2xl font-semibold ">ซ่อมบำรุงรอกและเครน (PM Cranes)</p>
+                        <p class="p-3 tracking-wide text-lg">
+                        การบำรุงรักษาอย่างสม่ำเสมอสามารถเพิ่มประสิทธิภาพในการใช้งานที่ราบรื่น เรามีช่างและทีมงานผู้เชี่ยวชาญพร้อมให้บริการและรองรับลูกค้าในกรณีเร่งด่วน ไม่ว่าลูกค้าใช้เครนยี่ห้อใดเราพร้อมให้บริการ
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div>
+                <div class="px-10 flex flex-col md:flex-row justify-between items-center py-10 bg-zinc-100">
+                    <div class="text-center text-black flex-cols">
+                        <p class="text-2xl font-semibold text-amber-400">ปรับปรุงและเคลื่อนย้ายเครน</p>
+                        <p class="p-3 tracking-wide text-lg">
+                            บริการแก้ไข ปรับปรุง และเคลื่อนย้ายเครน ในกรณีที่ลูกค้าต้องการ เช่น ติดตั้งเครื่องจักรใหม่ ติดตั้งเครนไปแล้วต้องการแก้ไขให้ถูกต้องตามข้อกฎหมาย เป็นต้น เรายินดีให้คำปรึกษา
+                        </p>
+                    </div>
+                    <img src="assets/slide/sendingProduct.jpg" alt="" class="object-cover rounded-lg md:w-96">
+                </div>
+                
+            </div>
+
+            <div>
+                <div class="px-10 flex flex-col md:flex-row justify-between items-center py-12">
+                    <img src="assets/slide/product.jpg" alt="" class="object-cover rounded-lg md:w-96">
+                    <div class="text-center text-black flex-cols">
+                        <p class="text-2xl font-semibold ">ทดสอบมาตรฐานการรับน้ำหนักบรรทุก (Test Load)</p>
+                        <p class="p-3 tracking-wide text-lg">
+                            เรามีทีมวิศวกรที่เชี่ยวชาญในการตรวจสอบและทดสอบการรับน้ำหนักของเครนหรือปั้นจั่นชนิดอยู่กับที่ พร้อมออกเอกสารรับรองความปลอดภัย (ปจ.1) ตามข้อกฎหมายกำหนด
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+
         </div>
     </div>
     

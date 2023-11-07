@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\product;
 use App\Models\productImage;
+use App\Models\User;
 use Livewire\WithFileUploads;
 use Livewire\Component;
 
@@ -19,6 +20,7 @@ class UpdateProduct extends Component
     public $description;
     public $images;
     public $post_image;
+    public $route;
 
     public function mount(product $product){
         $this->product = $product;
@@ -27,6 +29,7 @@ class UpdateProduct extends Component
         $this->amount = $product->amount;
         $this->description = $product->description;
         $this->post_image = $product->post_image;
+        $this->route = url()->previous();
     }
 
     public function render()
@@ -65,5 +68,6 @@ class UpdateProduct extends Component
             $productImage->save();
         }
 
+        return redirect($this->route);        
     }
 }

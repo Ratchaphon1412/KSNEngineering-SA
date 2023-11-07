@@ -11,24 +11,36 @@
                     Product Name
                 </label>
                 <input type="text" id="name" wire:model="name" placeholder="name" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                @error('name') 
+                    <p class="text-red-500 text-xs italic">{{$message}}</p>
+                @enderror
             </div>
             <div class="mb-5">
                 <label for="price" class="mb-3 block text-base font-medium text-[#07074D]">
                     Price
                 </label>
                 <input type="text" id="price" wire:model="price" placeholder="price" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                @error('price') 
+                    <p class="text-red-500 text-xs italic">{{$message}}</p>
+                @enderror
             </div>
             <div class="mb-5">
                 <label for="amount" class="mb-3 block text-base font-medium text-[#07074D]">
                     Amount
                 </label>
                 <input type="text" id="amount" wire:model="amount" placeholder="Amount" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                @error('amount') 
+                    <p class="text-red-500 text-xs italic">{{$message}}</p>
+                @enderror
             </div>
             <div class="mb-5">
                 <label for="description" class="mb-3 block text-base font-medium text-[#07074D]">
                     Description
                 </label>
                 <textarea rows="10" cols="50" type="text" id="description" wire:model="description" placeholder="Detail" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" ></textarea>
+                @error('description') 
+                    <p class="text-red-500 text-xs italic">{{$message}}</p>
+                @enderror
             </div>
 
             <div class="mb-6 pt-4">
@@ -61,8 +73,10 @@
                                 @endforeach
                             @endif
                         </div>
+                        @error('images') 
+                            <p class="text-red-500 text-xs italic">{{$message}}</p>
+                        @enderror
                     </div>
-                    @error('images.*') <span class="text-red-400">{{ $message }}</span> @enderror
                 </div>
             </div>
 

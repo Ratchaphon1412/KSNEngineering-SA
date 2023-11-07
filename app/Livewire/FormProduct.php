@@ -16,6 +16,11 @@ class FormProduct extends Component
     public $amount;
     public $description;
     public $images;
+    public $route;
+
+    public function mount(){
+        $this->route = url()->previous();
+    }
 
     public function render()
     {
@@ -48,6 +53,6 @@ class FormProduct extends Component
             $productImage->imageUrl = $image->hashName();
             $productImage->save();
         }
-
+        return redirect($this->route);
     }
 }

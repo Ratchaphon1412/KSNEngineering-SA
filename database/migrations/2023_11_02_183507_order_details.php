@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\Quotation::class);
-            $table->foreignIdFor(\App\Models\Product::class);
+            $table->foreignIdFor(\App\Models\product::class);
             $table->integer('quantity');
             $table->double('sub_total');
             $table->timestamps();

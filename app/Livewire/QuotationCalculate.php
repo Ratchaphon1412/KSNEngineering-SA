@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Service\Invoices\Invoice;
 use LaravelDaily\Invoices\Classes\Party;
 use LaravelDaily\Invoices\Classes\InvoiceItem;
-use App\Models\Product;
+use App\Models\product;
 
 
 
@@ -118,7 +118,7 @@ class QuotationCalculate extends Component
 
 
         foreach ($this->cart as $item) {
-            $product = Product::find($item['id']);
+            $product = product::find($item['id']);
             $quotation->orderDetails()->attach($product, ['quantity' => $item['quantity'], 'sub_total' => $item['price'] * $item['quantity']]);
         }
 
