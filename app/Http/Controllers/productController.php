@@ -39,6 +39,7 @@ class ProductController extends Controller
     {
 
 
+
         return view('product.create-quotation', compact('repair'));
     }
 }
