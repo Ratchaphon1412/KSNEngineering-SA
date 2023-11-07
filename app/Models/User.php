@@ -71,7 +71,7 @@ class User extends Authenticatable implements BasementUserContract
     public function repairs(): HasMany {
         return $this->hasMany(Repair::class);
     }
-    public function tarks(): HasMany {
+    public function tasks(): HasMany {
         return $this->hasMany(Task::class);
     }
 

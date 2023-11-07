@@ -5,7 +5,7 @@
 <div>
     <div class="flex flex-1 items-center justify-center p-6">
         <div class="w-full max-w-lg">
-            <p class="text-gray-900 text-7xl dark:text-white">Aa</p>
+            <p class="text-gray-900 text-7xl text-center dark:text-white">My repair</p>
         </div>
     </div>
 </div>

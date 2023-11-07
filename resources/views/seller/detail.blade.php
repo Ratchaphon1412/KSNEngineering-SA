@@ -84,11 +84,13 @@
                 @endrole
 
                 @role('technician')
+                @if($repair->quotation && ($repair->quotation->grand_total == $repair->amount ))
                 <button  type="submit" data-modal-target="doneModal" data-modal-toggle="doneModal" class="my-2 p-2 w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-blue-200 via-green-400 to-red-200 group-hover:from-blue-200 group-hover:via-green-400 group-hover:to-green-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-green-400">
                     <span class="w-full text-lg font-semibold relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-3xl group-hover:bg-opacity-0">
                         Done
                     </span>
                 </button>
+                @endif
                 @endrole
 
                 @role('sale')
@@ -191,7 +193,7 @@
                                         <form action="{{ route('add.amount',['repair'=>$repair]) }}" method="POST" enctype="multipart/form-data" class="w-10/12">
                                         @csrf
                                         @if($repair->quotation)     
-                                            <input type="number" name="amount" id="amount" step="0.01" value="{{$repair->amount}}" min="0" max="{{ $repair->quotation->grand_total }}"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please enter a number">
+                                            <input type="number" name="amount" id="amount" step="0.0001" value="{{$repair->amount}}" min="0" max="{{ $repair->quotation->grand_total }}"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please enter a number">
                                             @endif
                                         </div>
                                     </div>
