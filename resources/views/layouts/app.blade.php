@@ -21,6 +21,9 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+        <link rel="stylesheet" href="{{ asset('vendor/basement/basement.bundle.min.css') }}">
+
+
         <!-- Styles -->
         @livewireStyles
     </head>
@@ -47,17 +50,20 @@
             
             <x-footer/>
             
-
             @auth
-                @role(['admin','user'])
-                    <x-basement::chat-box />
-                @endrole
-            @endauth
+            @role(['admin','user','technician','sale'])
+                <x-basement::chat-box />
+                
+            @endrole
+        @endauth
+           
           
         </div>
-
+   
+        <script src="{{ asset('vendor/basement/basement.bundle.min.js') }}"></script>
         @stack('modals')
 
         @livewireScripts
+        
     </body>
 </html>

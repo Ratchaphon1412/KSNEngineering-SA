@@ -15,7 +15,7 @@
                         
                     </h2>
                 </div>
-                @livewire('search-company',['toggle'=>true,'companySelected'=>$repair->company])
+                {{-- @livewire('search-company',['toggle'=>true,'companySelected'=>$repair->company]) --}}
                 <div class="mt-4 mb-4">
                     <h1 class="text-xl font-semibold"> Select Company</h1>
                 </div>

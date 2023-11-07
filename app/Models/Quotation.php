@@ -33,6 +33,6 @@ class Quotation extends Model
 
     public function orderDetails(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'order_details', 'quotation_id', 'product_id')->withPivot('quantity', 'sub_total');
+        return $this->belongsToMany(Product::class, 'order_details');
     }
 }
