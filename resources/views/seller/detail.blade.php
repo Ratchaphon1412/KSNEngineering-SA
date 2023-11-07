@@ -3,21 +3,38 @@
     <div class="flex justify-center">
         <div class="flex justify-between w-9/12">
             <div class="w-full mb-16 mt-8">
+                <h1 class="text-xl font-bold mt-4 mb-4">Repair ID :  {{ str_pad($repair->id, 6, '0', STR_PAD_LEFT) }}</h1>
                 <div class="grid grid-cols-2 md:grid-cols-2 gap-4 place-items-center">
-                   
                     @if($repair->image)
                     <div>
                         <img class="h-auto max-w-full rounded-lg" src="{{asset('storage/repairs/' . $repair->image )}}" alt="">
                     </div>
                     @endif
-                @foreach ($repair->task()->get()[0]->images as $image)
-                    <div>
-                        <img class="h-auto max-w-full rounded-lg" src="{{asset('storage/uploads/' . $image->path)}}" alt="">
-                    </div>
-                    
-                @endforeach   
+
+                   <div>
+                        <h1 class="text-xl font-bold ">{{$repair->name}}</h1>
+                        <p class="block font-medium text-sm text-gray-700">{{$repair->description}} </p>
+
+                   </div>
+
                 </div>
+
+                <h1 class="text-xl font-bold mt-4 mb-4">Task</h1>
+                <div class="grid grid-cols-2 md:grid-cols-2 gap-4 place-items-center">
+                   
+                 
+                   @foreach ($repair->task()->get()[0]->images as $image)
+                   <div>
+                       <img class="h-auto max-w-full rounded-lg" src="{{asset('storage/uploads/' . $image->path)}}" alt="">
+                   </div>
+                   
+                    @endforeach 
+         
+                </div>
+                
+                
             </div>
+            
             <div class="flex flex-col w-1/2 ml-16 mt-8">
                 {{-- <div class="flex flex-col w-full p-4 rounded-lg bg-white outline outline-blue-400">
                     <div class="text-xl font-semibold my-2">{{ $repair->name }}</div>
@@ -302,8 +319,22 @@
 
             </div>
         </div>
+      
+    </div>
+    <div class="mt-4 w-full flex justify-center items-center ">
+        <div>
+            @if ($repair->quotation->quotation_pdf)
+            <div class="flex flex-col justify-center w-full p-4 rounded-lg ">
+                <div class="text-xl font-semibold my-2"> Quotation </div>
+                <iframe src="{{$repair->quotation->quotation_pdf}}" width="1800" height="1600">
+            </div>
+                
+            @endif
+        </div>
+        
     </div>
 
+    
 
     <script>
     let imgIP = document.querySelector("#inputImage");
