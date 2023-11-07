@@ -3,10 +3,10 @@
         style="background-image: url('assets/images/aboutKSN.jpg')">
         <div class="bg-black bg-opacity-20 w-full h-full py-[25%] md:py-0">
             <div class="container mx-auto flex flex-col md:justify-center md:items-center text-center h-full space-y-4">
-                <div class="uppercase tracking-wide font-extrabold text-4xl text-transparent bg-clip-text bg-[#03045E]">
+                <div class="uppercase tracking-wide font-extrabold text-4xl text-transparent bg-clip-text bg-[#03045E]" id="type">
                     about us
                 </div>
-                <p class="text-white text-xl">
+                <p class="text-white text-xl" id="intro">
                     บริษัท เค.เอส.เอ็น.เอ็นจิเนียร์ริ่ง จำกัด “ผู้นำด้าน รอก เครนโรงงาน และอุปกรณ์ช่วยยกครบวงจร”
                 </p>
             </div>
@@ -83,5 +83,41 @@
                 </ol>
         </div>
     </div>
+
+    <style scoped>
+    #type{
+        width: 8ch;
+        animation: typing 1s steps(8), blink .5s step-end infinite alternate;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid;
+    }
+
+    @keyframes typing{
+        from {
+            width: 0
+        }
+    }
+
+    @keyframes blink {
+        50%{
+            border-color: transparent
+        }
+    }
+
+    #intro{
+        animation: intro 1.5s;
+    }
+
+    @keyframes intro{
+        0% {
+        transform: translateY(25%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+    }
+
+    </style>
     
 </x-app-layout>
