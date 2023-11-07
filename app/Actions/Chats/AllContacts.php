@@ -20,23 +20,39 @@ class AllContacts extends BasementAllContactsAction
     {
 
 
-        if ($user->hasRole('admin')) {
+        if ($user->hasRole('sale')) {
             /** @var EloquentCollection<int,User> $contacts */
             $contacts = User::addSelectLastPrivateMessageId($user)
                 ->addSelectUnreadMessages($user)
                 ->whereHas('roles', function (EloquentBuilder $query): void {
-                    $query->where('name', 'user');
+                    $query->where('name', ['user', 'admin', 'sale', 'technician']);
                 })
+
                 ->get();
         } elseif ($user->hasRole('user')) {
             $contacts = User::addSelectLastPrivateMessageId($user)
                 ->addSelectUnreadMessages($user)
                 ->whereHas('roles', function (EloquentBuilder $query): void {
-                    $query->where('name', 'admin');
+                    $query->where('name', 'sale');
                 })
                 ->get();
-        }
+        } elseif ($user->hasRole('admin')) {
+            $contacts = User::addSelectLastPrivateMessageId($user)
+                ->addSelectUnreadMessages($user)
+                ->whereHas('roles', function (EloquentBuilder $query): void {
+                    $query->where('name', ['admin', 'sale', 'technician', 'user']);
+                })
 
+                ->get();
+        } elseif ($user->hasRole('technician')) {
+            $contacts = User::addSelectLastPrivateMessageId($user)
+                ->addSelectUnreadMessages($user)
+                ->whereHas('roles', function (EloquentBuilder $query): void {
+                    $query->where('name', ['admin', 'technician',  'sale']);
+                })
+
+                ->get();
+        }
 
 
 

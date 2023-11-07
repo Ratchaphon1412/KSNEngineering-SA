@@ -19,5 +19,10 @@ export default defineConfig({
         hmr: {
             host: 'localhost',
         },
+        watch: {
+                  ignored: [
+                   './vendor/**',
+                  ],
+                },
     }
 });

@@ -68,12 +68,17 @@ class User extends Authenticatable implements BasementUserContract
     ];
 
 
-    public function repairs(): HasMany {
+    public function repairs(): HasMany
+    {
         return $this->hasMany(Repair::class);
     }
-    public function tasks(): HasMany {
+    public function tarks(): HasMany
+    {
         return $this->hasMany(Task::class);
     }
 
-
+    public function getNameAttribute(): string
+    {
+        return str($this->attributes['name'])->explode(' ')->last() . '  ' . str($this->getRoleNames()[0]);
+    }
 }
