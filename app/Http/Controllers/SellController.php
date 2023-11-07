@@ -132,7 +132,7 @@ class SellController extends Controller
             }
         }
 
-        return view('technician.myWork', [
+        return view('seller.index', [
             'repairs' => $showRepairs,
         ]);
     }
