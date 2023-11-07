@@ -21,7 +21,24 @@ class QuotationForm extends Component
     {
         $this->cart = new Collection();
 
-        if ($this->quotation) {
+
+        if ($this->quotation->orderDetails) {
+            $this->quotation->orderDetails->each(function ($item) {
+                $product = Product::find($item->id);
+                $temp = (object) [
+                    'id' => $product->id,
+                    'name' => $product->name,
+                    'description' => $product->description,
+                    'type' => $product->type,
+                    'price' => $product->price,
+                    'amount' => $product->sub_total,
+                    'quantity' => $item->quantity,
+                    'post_image' => $product->post_image,
+                ];
+
+                $this->cart->push($temp);
+                $this->dispatch('updateCart', $this->cart);
+            });
         }
     }
 
