@@ -24,7 +24,7 @@ class QuotationForm extends Component
 
         if ($this->quotation->orderDetails) {
             $this->quotation->orderDetails->each(function ($item) {
-                $product = Product::find($item->id);
+                $product = product::find($item->id);
                 $temp = (object) [
                     'id' => $product->id,
                     'name' => $product->name,

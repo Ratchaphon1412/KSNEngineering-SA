@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Repair;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -78,6 +79,32 @@ class SellController extends Controller
             'repair' => $repair,
             'selectedCompany' => $repair->company
         ]);
+    }
+
+    public function showCreateCompany(){
+        return view('company');
+    }
+
+
+    public function registerCompany(Request $request){
+        $request->validate([
+            'name' => ['required',],
+            'email' => ['required',],
+            'phone' => ['required',],
+            'website' => ['required',],
+            'address' => ['required',],
+        ]);
+
+        $company = new Company();
+        $company->name      = $request->name;
+        $company->email     = $request->email;
+        $company->phone     = $request->phone;
+        $company->website   = $request->website;
+        $company->address   = $request->address;
+        $company->save();
+
+        return redirect()->route('seller.repair.view');
+
     }
 
     public function purchaseOrder(Repair $repair, Request $request)
