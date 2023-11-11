@@ -44,7 +44,65 @@
 
             <!-- Page Content -->
             <main class="relative">
+            @role(['technician','sale'])
+                <div class="bg-white">
+                    <div>
+                        <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                        <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+                            <h1 class="text-4xl font-bold tracking-tight text-gray-900">New Arrivals</h1>
+                        </div>
+
+                        <section aria-labelledby="products-heading" class="pb-24 pt-6">
+                            <h2 id="products-heading" class="sr-only">Products</h2>
+
+                            <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+                                <!-- Filters -->
+                                <form class="block">
+                                    <h3 class="sr-only">Categories</h3>
+                                    <ul role="list" class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
+                                    <li>
+                                    @role('technician')
+                                        <div class="flex items-center justify-center mt-5 font-semibold">
+                                            <div class="w-9/12">
+                                                <a href="{{route('repair.mywork', ['user'=>Auth::user() ])}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-2xl shadow my-6">
+                                                    <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                    <span class="relative text-black group-hover:text-white ">My Repair</span>
+                                                </a>    
+                                            </div>
+                                        </div>
+                                    @endrole
+                                    </li>
+                                    <li>
+                                        <a href="#">Backpacks</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Travel Bags</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Hip Bags</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Laptop Sleeves</a>
+                                    </li>
+                                    </ul>
+
+                                    </div>
+                                    </div>
+                                </form>
+
+                                <!-- Product grid -->
+                                <div class="lg:col-span-3">
+                                    <!-- Your content -->
+                                    {{ $slot }}
+                                </div>
+                            </div>
+                        </section>
+                        </main>
+                    </div>
+                </div>
+            @else
                 {{ $slot }}
+            @endrole
             </main>
             
             

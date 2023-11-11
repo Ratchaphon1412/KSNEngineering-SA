@@ -1,7 +1,10 @@
 <x-guest-layout>
-    <section class="h-[50vh] flex flex-col justify-center items-center pb-[25%] md:pb-0">
-        <p class="text-3xl font-semibold mb-5 tracking-wide text-gray-700">ติดต่อเรา</p>
-        <p class="text-xl tracking-wide text-gray-700">สอบถามสินค้าและบริการ</p>
+    <section class="h-[60vh] bg-cover bg-bottom bg-no-repeat shadow-xl"
+    style="background-image: url('assets/images/contactPage.png')">
+        <div class="bg-black bg-opacity-20 flex flex-col justify-center items-center h-full w-full text-black">
+            <p class="text-5xl font-semibold mb-5 tracking-wide text-[#03045E]">Contact us</p>
+            <p class="text-4xl tracking-wide">products and services</p>
+        </div>
     </section>
     <main class="bg-white">
         <section class="grid md:grid-cols-2 gap-4 bg-white shadow-xl container mx-auto -translate-y-[20%] p-5">
