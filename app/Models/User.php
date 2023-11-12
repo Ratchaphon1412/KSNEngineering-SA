@@ -14,6 +14,7 @@ use Spatie\Permission\Traits\HasRoles; // use Role
 
 use BasementChat\Basement\Contracts\User as BasementUserContract; // chat
 use BasementChat\Basement\Traits\HasPrivateMessages;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable implements BasementUserContract
@@ -66,6 +67,11 @@ class User extends Authenticatable implements BasementUserContract
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class);
+    }
 
 
     public function repairs(): HasMany
