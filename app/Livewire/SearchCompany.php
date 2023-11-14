@@ -14,9 +14,9 @@ class SearchCompany extends Component
 {
     use WithPagination;
 
-    public $search;
+    public $search = '';
     public $seleted;
-    public $toggle;
+    public $toggle = false;
     protected ?Company $companySelected = null;
 
     protected $queryString = ['search'];
@@ -71,5 +71,6 @@ class SearchCompany extends Component
 
         $this->seleted = $company;
         $this->search = '';
+        $this->toggle = true;
     }
 }

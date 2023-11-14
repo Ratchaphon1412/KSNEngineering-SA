@@ -49,7 +49,7 @@
                     <div>
                         <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
-                            <h1 class="text-4xl font-bold tracking-tight text-gray-900">New Arrivals</h1>
+                            <h1 class="text-4xl font-bold tracking-tight text-gray-900">Task</h1>
                         </div>
 
                         <section aria-labelledby="products-heading" class="pb-24 pt-6">
@@ -64,32 +64,44 @@
                                     @role('technician')
                                         <div class="flex items-center justify-center mt-5 font-semibold">
                                             <div class="w-9/12">
-                                                <a href="{{route('repair.mywork', ['user'=>Auth::user() ])}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-2xl shadow my-6">
+                                                <a href="{{route('repair.mywork', ['user'=>Auth::user() ])}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
                                                     <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
                                                     <span class="relative text-black group-hover:text-white ">My Repair</span>
                                                 </a>    
                                             </div>
                                         </div>
                                     @endrole
+                                    @role('sale')
+                                    <div class="flex items-center justify-center mt-5 font-semibold">
+                                        <div class="w-9/12">
+                                            <a href="{{route('seller.repair.view')}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                                <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                <span class="relative text-black group-hover:text-white ">Create Repair</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-center mt-5 font-semibold">
+                                        <div class="w-9/12">
+                                            <a href="{{route('seller.InProcess.view')}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                                <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                <span class="relative text-black group-hover:text-white ">InProcess Repair</span>
+                                            </a>    
+                                        </div>
+                                    </div>
+                                    @endrole
                                     </li>
                                     <li>
-                                        <a href="#">Backpacks</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Travel Bags</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Hip Bags</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Laptop Sleeves</a>
+                                        <div class="flex items-center justify-center mt-5 font-semibold">
+                                            <div class="w-9/12">
+                                                <a href="{{route('show.repair.view')}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                                    <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                    <span class="relative text-black group-hover:text-white ">Repair</span>
+                                                </a>    
+                                            </div>
+                                        </div>
                                     </li>
                                     </ul>
-
-                                    </div>
-                                    </div>
                                 </form>
-
                                 <!-- Product grid -->
                                 <div class="lg:col-span-3">
                                     <!-- Your content -->
