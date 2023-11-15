@@ -1,7 +1,7 @@
 <div>
     
         <!-- Sub total -->
-    <div class=" h-full w-full rounded-lg border bg-white p-6 m-12 shadow-md   ">
+    <div class=" h-full w-full rounded-lg border bg-white p-6 my-12 shadow-md   ">
         <div class="mb-2 flex justify-between">
             <p class="text-gray-700">Subtotal</p>
             <p class="text-gray-700">{{$total}}</p>
@@ -10,7 +10,8 @@
             <p class="text-gray-700">Discount</p>
            
             <div>
-                <input type="number" id="discunt" wire:model.live="discount" min="0" max="100" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5  " placeholder="Discount" >
+                <input type="number" id="discunt" wire:model.live="discount" min="0" max="20" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5  " placeholder="Discount" >
+                <div>@error('discount') {{ $message }} @enderror</div>
             </div>    
             
             

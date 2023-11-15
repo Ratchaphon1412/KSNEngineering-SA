@@ -16,6 +16,7 @@ class TechnicianController extends Controller
     {
         return view('technician.index',[
             'task' => $repair->task()->get()[0],
+            'repair' => $repair
         ]);
     }
 

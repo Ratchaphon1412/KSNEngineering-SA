@@ -54,7 +54,7 @@
                 <section aria-labelledby="products-heading" class="pb-24 pt-6">
                     <h2 id="products-heading" class="sr-only">Products</h2>
 
-                    <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+                    <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 h-fit">
                         <ul role="list" class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
                             <li>
                                 @role('sale')
@@ -63,7 +63,7 @@
                                         <a href="{{ route('repair.edit.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
                                             <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
                                             <span class="relative text-black group-hover:text-white">
-                                                Edit Repair
+                                                Manage Repair
                                             </span>
                                         </a>
                                     </div>

@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-employee-layout>
 
 
 
@@ -46,4 +46,4 @@
     </div>
 </div>
     
-</x-app-layout>
+</x-employee-layout>

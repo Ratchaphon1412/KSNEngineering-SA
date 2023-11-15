@@ -12,12 +12,12 @@ use App\Service\Payments\Omise;
 class PaymentView extends Component
 {
 
-    public function render()
-    {
-        $transactions = Omise::AllTransection();
-        $list_transaction = $transactions['list'];
+    // public function render()
+    // {
+    //     $transactions = Omise::AllTransection();
+    //     $list_transaction = $transactions['list'];
 
 
-        return view('livewire.payment-view', compact('transactions', 'list_transaction'));
-    }
+    //     return view('livewire.payment-view', compact('transactions', 'list_transaction'));
+    // }
 }
