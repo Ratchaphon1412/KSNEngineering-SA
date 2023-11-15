@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\product;
+use App\Models\Product;
 use App\Models\Repair;
 
 class ProductController extends Controller
 {
     public function view(){
-        $products = product::get();
+        $products = Product::get();
 
         return view('product.index', [
             'products' => $products
         ]);
     }
 
-    public function detail(product $product){
-        $images = product::find($product->id)->image()->get();
+    public function detail(Product $product){
+        $images = Product::find($product->id)->image()->get();
         return view('kanban',[
             'product' => $product,
             'images' => $images

@@ -1,5 +1,4 @@
 <x-app-layout>
-        <x-slidebar>
             <div class="flex justify-center">
                 <div class="flex justify-between w-9/12">
                     <div class="w-full mb-16 mt-8">
@@ -29,7 +28,7 @@
                         </div>
                         
                             @endforeach 
-                
+
                         </div>
                         
                         
@@ -324,7 +323,7 @@
 
                     </div>
                 </div>
-            
+                        
             </div>
             <div class="mt-4 w-full flex justify-center items-center ">
                 <div>
@@ -338,7 +337,6 @@
                 </div>
                 
             </div>
-        </x-slidebar> 
 
 
     <script>

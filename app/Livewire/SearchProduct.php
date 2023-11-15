@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\product;
+use App\Models\Product;
 use Livewire\WithPagination;
 
 class SearchProduct extends Component
@@ -17,19 +17,19 @@ class SearchProduct extends Component
     public function render()
     {
 
-        $products = product::paginate(5);
+        $products = Product::paginate(5);
 
 
         if ($this->searchproduct) {
             $this->resetPage();
-            $products = product::search($this->searchproduct)->paginate(5);
+            $products = Product::search($this->searchproduct)->paginate(5);
         }
 
 
         return view('livewire.search-product', compact('products'));
     }
 
-    public function selectProduct(product $product)
+    public function selectProduct(Product $product)
     {
         $this->selectedProduct = $product;
         $this->dispatch('selectedProduct', $product);

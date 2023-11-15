@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\product;
+use App\Models\Product;
 
 return new class extends Migration
 {
@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('product_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(product::class);
+            $table->foreignIdFor(Product::class);
             $table->enum('type', ['image', 'video']);
             $table->string('imageUrl');
             $table->timestamps();
