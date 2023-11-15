@@ -1,5 +1,5 @@
-<x-app-layout>
-    <div class="h-full flex items-center justify-center">
+<x-employee-layout>
+<div class="h-full flex items-center justify-center">
         @if($repairs)
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500">
@@ -66,5 +66,4 @@
             </div>
         @endif
     </div>
-    
-</x-app-layout>
+</x-employee-layout>
