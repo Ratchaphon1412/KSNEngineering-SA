@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class product extends Model
+class Product extends Model
 {
     use HasFactory;
     use Searchable;
