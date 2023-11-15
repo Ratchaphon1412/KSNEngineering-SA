@@ -1,8 +1,8 @@
 <x-app-layout>
 
-<div class="flex h-screen bg-indigo-700">
+<div class="flex bg-gray-200 rounded-lg">
     <div class="w-full flex flex-col items-center">
-        <div class="w-1/2 p-10 pt-56">
+        <div class="w-1/2 py-10">
             <form action="{{ route('register.company') }}" method="POST" enctype="multipart/form-data" class="w-10/12">
                 @csrf
                 <p class="text-5xl text-gray-900 dark:text-white text-center mb-5 bg-white p-4 rounded-lg">Register Company</p>

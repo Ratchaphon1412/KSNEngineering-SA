@@ -24,12 +24,16 @@ class FormRepair extends Component
     public function render()
     {
         $selectedCompany = null;
+        $selectedCrane = null;
 
         if ($this->company_id) {
             $selectedCompany = Company::find($this->company_id);
         }
+        if($this->crane_id){
+            $selectedCrane = $this->crane_id;
+        }
 
-        return view('livewire.form-repair', compact('selectedCompany'));
+        return view('livewire.form-repair', compact('selectedCompany','selectedCrane'));
     }
 
     public function save()

@@ -1,9 +1,9 @@
 <div class="w-full">
-   <div class="flex flex-row justify-center items-center mx-auto h-full w-full ">
-      <div class="flex  items-start w-full   ">
-          <div class="w-full  "> 
+   <div class="flex flex-row justify-center items-center mx-auto h-full w-full">
+      <div class="flex items-start w-full">
+          <div class="w-full"> 
             <div class="w-full h-full flex flex-col items-center justify-center">
-               <div class=" relative w-11/12 md:w-8/12 xl:w-2/3 h-auto p-2 rounded-3xl bg-white flex flex-col">
+               <div class=" relative w-full h-auto rounded-3xl bg-white flex flex-col">
                   <!-- First section (search bar container) -->
                   <label for="company" class="mb-2">
                    <h1 class="text-xs uppercase font-bold tracking-wide  text-gray-700">Search Company</h1>
@@ -20,7 +20,7 @@
                     
                   </section>
                   <!-- Second section (results container) -->
-                  <section   class="{{!$toggle || $search ? 'absolute w-full h-auto top-10 bg-white rounded-lg p-6 flex-col gap-y-2 mt-8 resultsContainer z-40' : 'absolute w-full h-auto top-10 bg-white rounded-lg p-6 flex-col gap-y-2 mt-8 resultsContainer z-40 hidden'}}">
+                  <section class="{{!$toggle || $search ? 'absolute w-full h-auto top-10 bg-white rounded-lg p-6 flex-col gap-y-2 mt-8 resultsContainer z-40' : 'absolute w-full h-auto top-10 bg-white rounded-lg p-6 flex-col gap-y-2 mt-8 resultsContainer z-40 hidden'}}">
        
                      @foreach ($items as $item )
                   
