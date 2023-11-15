@@ -44,14 +44,12 @@ require __DIR__ . '/../vendor/autoload.php';
 |
 */
 
+
 $app = require_once __DIR__ . '/../bootstrap/app.php';
 
 
 $kernel = $app->make(Kernel::class);
 
-define('OMISE_PUBLIC_KEY',  env('OMISE_PUBLIC_KEY'));
-define('OMISE_SECRET_KEY', env('OMISE_SECRET_KEY'));
-define('OMISE_API_VERSION', env('OMISE_API_VERSION'));
 
 $response = $kernel->handle(
     $request = Request::capture()
