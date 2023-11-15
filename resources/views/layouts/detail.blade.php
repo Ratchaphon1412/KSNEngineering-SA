@@ -123,7 +123,7 @@
                                         <a href="{{ route('repair.payment.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
                                             <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
                                             <span class="relative text-black group-hover:text-white">
-                                                payment
+                                                Payment
                                             </span>
                                         </a>
                                     </div>

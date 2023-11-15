@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-detail-layout :repair="$repair">
     <div class="flex justify-center w-full min-h-screen mx-auto p-8">
  
     
@@ -39,4 +39,4 @@
         </div>
     </div>
 
-</x-app-layout>
+</x-detail-layout>
