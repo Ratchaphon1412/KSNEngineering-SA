@@ -1,10 +1,10 @@
-<x-app-layout>
+<x-employee-layout>
     <div class="flex items-start mt-5 font-semibold">
         <div class="w-9/12">
             <a href="{{route('show.company.view')}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-2xl shadow my-6">
                 <div class="absolute inset-0 w-3 bg-green-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
                 <span class="relative text-black group-hover:text-white ">Create company</span>
-            </a>    
+            </a>
         </div>
     </div>
     <div class="h-min-sreen w-full">
@@ -14,4 +14,4 @@
            </div>
           </div>
      </div>
-</x-app-layout>
+</x-employee-layout>

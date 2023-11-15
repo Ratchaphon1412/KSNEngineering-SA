@@ -164,4 +164,10 @@ class SellController extends Controller
         ]);
     }
 
+    public function paymentRepairShow(Repair $repair){
+        return view('seller.payment',[
+            'repair' => $repair
+        ]);
+    }
+
 }
