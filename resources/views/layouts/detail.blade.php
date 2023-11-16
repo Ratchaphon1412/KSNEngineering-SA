@@ -23,7 +23,8 @@
 
         <link rel="stylesheet" href="{{ asset('vendor/basement/basement.bundle.min.css') }}">
 
-
+        <script src="sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="sweetalert2.min.css">
         <!-- Styles -->
         @livewireStyles
     </head>
@@ -188,6 +189,6 @@
         @stack('modals')
 
         @livewireScripts
-        
+
     </body>
 </html>

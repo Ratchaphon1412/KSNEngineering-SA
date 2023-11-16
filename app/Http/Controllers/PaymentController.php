@@ -11,8 +11,6 @@ class PaymentController extends Controller
 
     public function link($amount)
     {
-
-
         return view('seller.payment-link', compact('amount'));
     }
 
