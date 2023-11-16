@@ -5,6 +5,7 @@ use App\Http\Controllers\SellController;
 use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PaymentController;
 use App\Livewire\UpdateProduct;
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,11 @@ Route::get('/register', function () {
 
 
 
+Route::controller(PaymentController::class)->group(function () {
+    Route::get('/payment/link/{amount}', 'link')->name('payment.link');
+    Route::post('/payment/charge', 'charge')->name('payment.charge');
+});
+
 Route::controller(SellController::class)->group(function () {
     Route::get('/repair', 'repairView')->name('seller.repair.view');
     Route::get('/list-repair', 'indexRepair')->name('show.repair.view')->middleware(['auth', 'verified']);
@@ -79,10 +85,10 @@ Route::controller(SellController::class)->group(function () {
     Route::get('/payment-repair/{repair}', 'paymentRepairShow')->name('repair.payment.view')->middleware(['auth', 'verified']);
     Route::post('/updated-repair/{repair}', 'updateRepair')->name('repair.edit.update')->middleware(['auth', 'verified']);
     Route::post('/add-purchase-order/{repair}', 'purchaseOrder')->name('purchase.add')->middleware(['auth', 'verified']);
-    Route::post("/add-amount/{repair}",'addAmount')->name('add.amount')->middleware(['auth', 'verified']);
-    Route::get("/inprocess-repair",'inProcessRepair')->name('seller.InProcess.view')->middleware(['auth', 'verified']);
-    Route::get("/createCompany",'showCreateCompany')->name('show.company.view')->middleware(['auth', 'verified']);
-    Route::post("/registerCompany",'registerCompany')->name('register.company')->middleware(['auth', 'verified']);
+    Route::post("/add-amount/{repair}", 'addAmount')->name('add.amount')->middleware(['auth', 'verified']);
+    Route::get("/inprocess-repair", 'inProcessRepair')->name('seller.InProcess.view')->middleware(['auth', 'verified']);
+    Route::get("/createCompany", 'showCreateCompany')->name('show.company.view')->middleware(['auth', 'verified']);
+    Route::post("/registerCompany", 'registerCompany')->name('register.company')->middleware(['auth', 'verified']);
 });
 
 Route::controller(TechnicianController::class)->group(function () {
@@ -91,8 +97,7 @@ Route::controller(TechnicianController::class)->group(function () {
     Route::get('/my-work', 'myWork')->name('repair.tech.work')->middleware(['auth', 'verified']);
     Route::post('/done-repair/{repair}', 'doneRepair')->name('done.repair')->middleware(['auth', 'verified']);
     Route::post('/delete-repair/{repair}', 'deleteRepair')->name('delete.repair')->middleware(['auth', 'verified']);
-    Route::get("/myWork/{user}",'myWorkTech')->name('repair.mywork')->middleware(['auth', 'verified']);
-    
+    Route::get("/myWork/{user}", 'myWorkTech')->name('repair.mywork')->middleware(['auth', 'verified']);
 });
 
 Route::controller(ProductController::class)->group(function () {

@@ -11,6 +11,7 @@ use App\Service\Payments\Omise;
 
 class PaymentView extends Component
 {
+    public $repair;
 
     public function render()
     {

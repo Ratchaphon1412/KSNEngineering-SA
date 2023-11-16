@@ -9,8 +9,13 @@ import echoOptions from '../../vendor/basement-chat/basement-chat/dist/basement.
 import basement from '../../vendor/basement-chat/basement-chat/dist/basement.plugin.esm'
 import 'flowbite';
 import './datepicker';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 window.axios = axios
+
+
+
 
 window.Pusher = Pusher
 window.Echo = new Echo(echoOptions)

@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'omise' => [
+        'public_key' => env('OMISE_PUBLIC_KEY'),
+    ]
+
 ];
