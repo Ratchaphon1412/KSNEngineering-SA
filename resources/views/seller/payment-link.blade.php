@@ -15,6 +15,7 @@
         @csrf
         <input type="hidden" name="omiseToken">
         <input type="hidden" name="omiseSource">
+        <input type="hidden" name="amount" value="{{$amount}}">
         <button type="submit" id="checkoutButton">Checkout</button>
       </form>
       
@@ -38,7 +39,7 @@
             otherPaymentMethods: "mobile_banking_bbl,mobile_banking_kbank,mobile_banking_ktb,promptpay,internet_banking",
             frameLabel: "KSN Engineering",
             onCreateTokenSuccess: (nonce) => {
-                alert("Hello! I am an alert box!!");
+               
                 if (nonce.startsWith("tokn_")) {
                     form.omiseToken.value = nonce;
                 } else {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "640cf7176a1e20faea26c83aae8f589f",
+    "content-hash": "c5a13cea2a9f3764e0f26b6e23497d7b",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -1489,6 +1489,101 @@
                 "source": "https://github.com/http-interop/http-factory-guzzle/tree/1.2.0"
             },
             "time": "2021-07-21T13:50:14+00:00"
+        },
+        {
+            "name": "keenthekeen/php-promptpay-qr",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/keenthekeen/php-promptpay-qr.git",
+                "reference": "42bd29333ad38353386ed333eeb55b8ca5ad734f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/keenthekeen/php-promptpay-qr/zipball/42bd29333ad38353386ed333eeb55b8ca5ad734f",
+                "reference": "42bd29333ad38353386ed333eeb55b8ca5ad734f",
+                "shasum": ""
+            },
+            "require": {
+                "bacon/bacon-qr-code": "^2.0",
+                "kittinan/php-crc": "1.0.0",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.2",
+                "pestphp/pest": "^1.22",
+                "php-coveralls/php-coveralls": "^2.5",
+                "phpstan/phpstan": "^1.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PromptPayQR\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHP Library to generate QR Code payload for PromptPay",
+            "keywords": [
+                "Promptpay"
+            ],
+            "support": {
+                "source": "https://github.com/keenthekeen/php-promptpay-qr/tree/v1.0.0"
+            },
+            "time": "2022-10-15T13:01:14+00:00"
+        },
+        {
+            "name": "kittinan/php-crc",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kittinan/php-crc.git",
+                "reference": "878bab5ee779a20d62c4ebfd800bf10a1779c29f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kittinan/php-crc/zipball/878bab5ee779a20d62c4ebfd800bf10a1779c29f",
+                "reference": "878bab5ee779a20d62c4ebfd800bf10a1779c29f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "mermshaus\\CRC\\": "src",
+                    "mermshaus\\CRC\\Tests\\": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marc Ermshaus",
+                    "email": "marc@ermshaus.org",
+                    "homepage": "http://www.ermshaus.org/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Calculates CRC checksums for input data",
+            "keywords": [
+                "ccitt",
+                "crc",
+                "crc1",
+                "crc16",
+                "crc16dnp",
+                "crc16qt",
+                "crc16usb",
+                "modbus",
+                "xmodem",
+                "zmodem"
+            ],
+            "support": {
+                "source": "https://github.com/kittinan/php-crc/tree/master"
+            },
+            "time": "2017-09-02T08:59:05+00:00"
         },
         {
             "name": "laravel/fortify",

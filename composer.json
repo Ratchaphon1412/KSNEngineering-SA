@@ -9,12 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "omise/omise-php": "dev-master",
         "algolia/algoliasearch-client-php": "^3.4",
         "barryvdh/laravel-dompdf": "^2.0",
         "basement-chat/basement-chat": "^1.1",
-        "guzzlehttp/guzzle": "^7.2",
+        "guzzlehttp/guzzle": "^7.8",
         "http-interop/http-factory-guzzle": "^1.2",
+        "keenthekeen/php-promptpay-qr": "^1.0",
         "laravel/framework": "^10.10",
         "laravel/jetstream": "^4.0",
         "laravel/sanctum": "^3.2",
@@ -23,6 +23,7 @@
         "laraveldaily/laravel-invoices": "^3.0",
         "livewire/livewire": "^3.0",
         "meilisearch/meilisearch-php": "^1.4",
+        "omise/omise-php": "dev-master",
         "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-permission": "^6.0"
     },
