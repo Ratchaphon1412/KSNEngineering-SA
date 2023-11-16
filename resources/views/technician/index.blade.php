@@ -1,7 +1,7 @@
-<x-app-layout>
+<x-detail-layout :repair="$repair">
 @role('technician')
 <div class="flex items-center justify-center">
-    <div class="bg-white border border-4 rounded-lg shadow relative w-1/2">
+    <div class="bg-white border border-4 rounded-lg shadow relative w-full">
         <div class="flex items-start justify-between p-5 border-b rounded-t">
             <h3 class="text-xl font-semibold">
                 Edit Task
@@ -94,4 +94,4 @@
 
 </script>
 
-</x-app-layout>
+</x-detail-layout>

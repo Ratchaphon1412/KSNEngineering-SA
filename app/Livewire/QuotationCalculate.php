@@ -87,6 +87,9 @@ class QuotationCalculate extends Component
     }
     public function checkout()
     {
+        $this->validate([
+            'discount' => 'max:20'
+        ]);
         if (empty($this->cart)) {
             return;
         }

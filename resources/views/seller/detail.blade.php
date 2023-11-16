@@ -47,17 +47,36 @@
                             <livewire:card-company :company="$repair->company()->first()"/>
                         </div>
 
-                        <div class="mt-5 flex flex-col w-full p-4 rounded-lg bg-white outline outline-blue-400">
-                            <div class="text-xl font-semibold my-2">Task</div>
-                            <div class="text-lg font-medium my-2">Stage: <div class="font-normal bg-blue-200 rounded-lg px-4">{{ $repair->task->stage }}</div></div>
-                            <div class="text-lg font-medium my-2">description: <div class="font-normal bg-blue-200 rounded-lg px-4">{{ $repair->task->description }}</div></div>
+                        <div class="mt-5 flex flex-col w-full p-4 rounded-lg bg-white outline outline-zinc-200">
+                            <div class="text-3xl font-semibold my-2 border-b-2 text-black">Task</div>
+                            <div class="text-base font-medium my-2 text-black">
+                                Stage: 
+                                <div class="font-normal bg-zinc-200 rounded-lg p-3 text-zinc-600 mt-3">
+                                    {{ $repair->task->stage }}
+                                </div>
+                            </div>
+                            <div class="text-base font-medium my-2 text-black">
+                                description: 
+                                <div class="font-normal bg-zinc-200 rounded-lg p-3 text-zinc-600 mt-3">
+                                    {{ $repair->task->description }}
+                                </div>
+                            </div>
                             @if($repair->task->user)
-                            <div class="text-lg font-medium my-2">crane technician: <div class="font-normal bg-blue-200 rounded-lg px-4">{{ $repair->task->user->name }}</div></div>
+                                <div class="text-base font-medium my-2 text-black">
+                                    crane technician: 
+                                    <div class="font-normal bg-zinc-200 rounded-lg p-3 text-zinc-500 mt-3">
+                                        {{ $repair->task->user->name }}
+                                    </div>
+                                </div>
                             @endif
-                            <div class="outline-blue-600 outline outline-2 p-4 mt-4 rounded-md">
-                                <div class="my-2"><div class="font-medium">Todo date</div>
+                            <div class="outline-zinc-400 outline outline-2 p-4 mt-4 rounded-md">
+                                <div class="my-2"><div class="font-medium text-zinc-600">Todo date</div>
+                                @if($repair->task()->get()[0]->todo_date)
                                 <div class="text-sm"><i class="fa-solid fa-circle" style="color: green"></i> {{$repair->task()->get()[0]->todo_date}}</div></div>
-                                
+                                @else
+                                <div class="text-sm text-zinc-600 mt-3"><i class="fa-solid fa-circle" style="color: green"></i> It hasn't been dated yet. </div></div>
+
+                                @endif
                             </div>
                             
                         </div>
