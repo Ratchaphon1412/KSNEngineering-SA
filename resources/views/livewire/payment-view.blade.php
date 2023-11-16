@@ -3,7 +3,7 @@
     
     <div class="flex justify-between m-5">
         <p class="m-2">name : {{$repair->name}}</p>
-        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm p-2 focus:outline-none">create payment</button>
+        <button id="createBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm p-2 focus:outline-none">create payment</button>
     </div>
     <div class="relative overflow-x-auto">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
@@ -43,8 +43,3 @@
     </div>
 
 </div>
-
-<script>
-    import Swal from 'sweetalert2'
-    
-</script>

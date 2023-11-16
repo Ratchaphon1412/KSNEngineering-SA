@@ -31,7 +31,7 @@
 
                 
            </div>
-           <div class="w-full">
+           <div class="w-full h-full">
             
             @livewire('search-product')
             @livewire('quotation-form',['quotation'=>$repair->quotation])

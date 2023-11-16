@@ -11,8 +11,6 @@ class PaymentController extends Controller
 
     public function link($amount)
     {
-
-
         return view('seller.payment-link', compact('amount'));
     }
 
@@ -22,6 +20,7 @@ class PaymentController extends Controller
         $omiseToken = $request->get('omiseToken');
         $omiseSource = $request->get('omiseSource');
         $amount = $request->get('amount');
+
         // dd($request->all());
 
         if ($omiseToken != null) {

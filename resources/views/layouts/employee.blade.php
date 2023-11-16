@@ -43,7 +43,7 @@
             @endif
 
             <!-- Page Content -->
-            <main class="relative">
+            <main >
             @role(['technician','sale'])
                 <div class="bg-white">
                     <div>

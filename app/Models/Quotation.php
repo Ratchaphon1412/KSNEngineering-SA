@@ -33,6 +33,6 @@ class Quotation extends Model
 
     public function orderDetails(): BelongsToMany
     {
-        return $this->belongsToMany(product::class, 'order_details');
+        return $this->belongsToMany(Product::class, 'order_details');
     }
 }
