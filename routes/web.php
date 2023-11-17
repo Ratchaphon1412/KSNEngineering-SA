@@ -81,7 +81,7 @@ Route::get('/payment/qr', function(){
 })->name('qr');
 
 Route::controller(PaymentController::class)->group(function () {
-    Route::get('/payment/link/{amount}', 'link')->name('payment.link');
+    Route::get('/payment/link/{amount}/{repair}', 'link')->name('payment.link');
     Route::post('/payment/charge', 'charge')->name('payment.charge');
 });
 

@@ -20,9 +20,9 @@ return new class extends Migration
             $table->integer('discount')->default(0);
             $table->double('total');
             $table->double('grand_total');
-            $table->string('payment_status')->default('pending')->enum('pending', 'paid');
+            // $table->string('payment_status')->default('pending')->enum('pending', 'paid');
             $table->string('quotation_pdf')->nullable();
-            $table->string('purchase_order_pdf')->nullable();
+            // $table->string('purchase_order_pdf')->nullable();
             $table->timestamps();
         });
     }

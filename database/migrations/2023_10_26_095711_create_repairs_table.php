@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->double('amount')->default(0);
             $table->string('purchase_order')->nullable();
+            $table->string('payment_status')->default('pending')->enum('pending', 'paid');
 
             $table->timestamps();
         });

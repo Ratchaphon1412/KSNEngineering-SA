@@ -77,4 +77,11 @@ class Omise
         ]);
         return $charge;
     }
+
+
+    public static function ChargeInformation($charge_token)
+    {
+        $charge = OmiseCharge::retrieve($charge_token);
+        return $charge;
+    }
 }
