@@ -70,7 +70,15 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
+Route::get('/payment/charge', function(){
+    return view('seller.payment-confirm',[
+        'status' => 'success'
+    ]);
+})->name('confirm');
 
+Route::get('/payment/qr', function(){
+    return view('seller.payment-qr');
+})->name('qr');
 
 Route::controller(PaymentController::class)->group(function () {
     Route::get('/payment/link/{amount}', 'link')->name('payment.link');

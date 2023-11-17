@@ -3,7 +3,7 @@
        <div class="flex  items-start w-full gap-2">
            <div class="w-full  "> 
              <div class="w-full h-full flex flex-col items-center justify-center">
-                <div class="relative w-11/12 md:w-8/12 xl:w-2/3 h-auto p-2 rounded-3xl bg-white flex flex-col">
+                <div class="relative w-full h-auto p-2 rounded-3xl bg-white flex flex-col">
                    <!-- First section (search bar container) -->
                    <label for="company" class="mb-2">
                     <h1 class="text-xs uppercase font-bold tracking-wide  text-gray-700">Search Product</h1>

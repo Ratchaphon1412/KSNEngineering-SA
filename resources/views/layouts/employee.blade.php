@@ -48,16 +48,16 @@
                 <div class="bg-white">
                     <div>
                         <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                        <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+                        <div class="flex items-baseline justify-between border-b border-gray-200 py-6">
                             <h1 class="text-4xl font-bold tracking-tight text-gray-900">Task</h1>
                         </div>
 
                         <section aria-labelledby="products-heading" class="pb-24 pt-6">
                             <h2 id="products-heading" class="sr-only">Products</h2>
 
-                            <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+                            <div class="grid grid-cols-1 gap-y-10 lg:grid-cols-4">
                                 <!-- Filters -->
-                                <form class="block">
+                                <form class="block mr-3">
                                     <h3 class="sr-only">Categories</h3>
                                     <ul role="list" class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
                                     <li>
