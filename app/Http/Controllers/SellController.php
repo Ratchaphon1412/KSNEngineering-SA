@@ -7,6 +7,8 @@ use App\Models\Repair;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+use App\Service\Payments\Omise;
+
 class SellController extends Controller
 {
     //
@@ -23,8 +25,8 @@ class SellController extends Controller
         $repairs = Repair::all();
         $repairs_select = array();
         foreach ($repairs as $repair) {
-            if($repair->task->stage == "Pending"){
-                array_push($repairs_select ,$repair);
+            if ($repair->task->stage == "Pending") {
+                array_push($repairs_select, $repair);
             }
         }
 
@@ -81,12 +83,14 @@ class SellController extends Controller
         ]);
     }
 
-    public function showCreateCompany(){
+    public function showCreateCompany()
+    {
         return view('company');
     }
 
 
-    public function registerCompany(Request $request){
+    public function registerCompany(Request $request)
+    {
         $request->validate([
             'name' => ['required',],
             'email' => ['required',],
@@ -104,7 +108,6 @@ class SellController extends Controller
         $company->save();
 
         return redirect()->route('seller.repair.view');
-
     }
 
     public function purchaseOrder(Repair $repair, Request $request)
@@ -139,22 +142,23 @@ class SellController extends Controller
         ]);
     }
 
-    public function addAmount(Request $request, Repair $repair) {
+    public function addAmount(Request $request, Repair $repair)
+    {
         $repair = Repair::find($repair->id);
         $repair->amount = $request->amount;
         $repair->save();
         return redirect()->route('detail.repair.view', [
             'repair' => $repair,
         ]);
-
     }
 
-    public function inProcessRepair(){
+    public function inProcessRepair()
+    {
 
         $repairs = Repair::get();
         $showRepairs = [];
         foreach ($repairs as $repair) {
-            if($repair->task->stage == "InProcess"){
+            if ($repair->task->stage == "InProcess") {
                 $showRepairs[] = $repair;
             }
         }
@@ -164,10 +168,38 @@ class SellController extends Controller
         ]);
     }
 
-    public function paymentRepairShow(Repair $repair){
-        return view('seller.payment',[
-            'repair' => $repair
+    public function paymentRepairShow(Repair $repair)
+    {
+
+        $payments = $repair->payments;
+        $temp_amount = 0;
+
+        foreach ($payments as $payment) {
+            $info = Omise::ChargeInformation($payment->transection_token);
+            $payment->payment_status = $info['status'];
+            $payment->save();
+            if ($info['status'] == 'successful') {
+                $temp_amount += $payment->pay;
+            }
+        }
+        $repair->amount = $temp_amount;
+        $repair->save();
+
+        $balance = $repair->quotation->grand_total - $repair->amount;
+
+        if ($balance <= 0) {
+            $repair->payment_status = 'paid';
+            $repair->save();
+        }
+
+
+
+        // $charge = Omise::retrieve($payment->charge_id);
+        // $chargeInfo = OmiseCharge::chargeInformation($charge['id']);
+
+        return view('seller.payment', [
+            'repair' => $repair,
+            'balance' => $balance,
         ]);
     }
-
 }

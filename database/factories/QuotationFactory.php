@@ -31,9 +31,9 @@ class QuotationFactory extends Factory
             'discount' => 0,
             'total' => 0,
             'grand_total' => 0,
-            'payment_status' => $this->faker->randomElement(['pending', 'paid']),
+            // 'payment_status' => $this->faker->randomElement(['pending', 'paid']),
             'quotation_pdf' => null,
-            'purchase_order_pdf' => null,
+            // 'purchase_order_pdf' => null,
 
 
         ];

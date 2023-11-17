@@ -14,7 +14,7 @@ class Quotation extends Model
     use HasFactory;
 
 
-    protected $fillable = ['company_id', 'user_id', 'task_id', 'repair_id', 'discount', 'total', 'grand_total', 'payment_status', 'quotation_pdf', 'purchase_order_pdf'];
+    protected $fillable = ['company_id', 'user_id', 'task_id', 'repair_id', 'discount', 'total', 'grand_total', 'quotation_pdf'];
 
     public function company(): BelongsTo
     {
