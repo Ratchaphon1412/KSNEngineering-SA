@@ -173,23 +173,29 @@ class SellController extends Controller
 
         $payments = $repair->payments;
         $temp_amount = 0;
-
+        // fetch payment status from omise
         foreach ($payments as $payment) {
             $info = Omise::ChargeInformation($payment->transection_token);
             $payment->payment_status = $info['status'];
             $payment->save();
             if ($info['status'] == 'successful') {
+                //calculate amount from payment
                 $temp_amount += $payment->pay;
             }
         }
+        // save amount to repair
         $repair->amount = $temp_amount;
         $repair->save();
 
+        // calculate balance
         $balance = $repair->quotation->grand_total - $repair->amount;
 
-        if ($balance <= 0) {
-            $repair->payment_status = 'paid';
-            $repair->save();
+
+        if ($repair->quotation->grand_total != 0) {
+            if ($balance == 0) {
+                $repair->payment_status = 'paid';
+                $repair->save();
+            }
         }
 
 

@@ -25,7 +25,7 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             <a href="{{ route('detail.repair.view',['repair'=>$repair]) }}">
                                 <div>
-                                    <img class="w-48 object-none h-48" src="https://cdn.hswstatic.com/gif/gears-1.jpg">
+                                    <img class="w-48 object-none h-48" src="{{asset('storage/repairs/'.$repair->image)}}">
                                 </div>
                             </a>
                         </th>
