@@ -60,7 +60,18 @@
                             <ul role="list" class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
                                 @role('sale')
                                     <li>
-                                        
+                                        <div class="flex items-center justify-center mt-5 font-semibold">
+                                            <div class="w-9/12">
+                                                <a href="{{ route('detail.repair.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                                    <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                    <span class="relative text-black group-hover:text-white">
+                                                        View Detail repair
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
                                         <div class="flex items-center justify-center mt-5 font-semibold">
                                             <div class="w-9/12">
                                                 <a href="{{ route('repair.edit.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
@@ -92,20 +103,30 @@
                                         </li>
                                     @endif
                                 @endrole
-                            @role('technician')  
+                            @role('technician')
                             <li>
-                                    
-                                    <div class="flex items-center justify-center mt-5 font-semibold">
-                                        <div class="w-9/12">
-                                            <a href="{{ route('task.edit.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
-                                                <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
-                                                <span class="relative text-black group-hover:text-white">
-                                                    Manage
-                                                </span>
-                                            </a>
-                                        </div>
+                                <div class="flex items-center justify-center mt-5 font-semibold">
+                                    <div class="w-9/12">
+                                        <a href="{{ route('detail.repair.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                            <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                            <span class="relative text-black group-hover:text-white">
+                                                View Detail repair
+                                            </span>
+                                        </a>
                                     </div>
-                               
+                                </div>
+                            </li>  
+                            <li>                                    
+                                <div class="flex items-center justify-center mt-5 font-semibold">
+                                    <div class="w-9/12">
+                                        <a href="{{ route('task.edit.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                            <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                            <span class="relative text-black group-hover:text-white">
+                                                Manage
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
                             </li>
                             <li>
                                 @if($repair->task()->get()[0]->todo_date)
