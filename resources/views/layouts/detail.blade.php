@@ -48,27 +48,64 @@
             <div class="bg-white">
                 <div>
                     <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+                    <div class="flex items-baseline justify-between border-b border-gray-200 py-6">
                         <h1 class="text-4xl font-bold tracking-tight text-gray-900">Task</h1>
                     </div>
 
                 <section aria-labelledby="products-heading" class="pb-24 pt-6">
                     <h2 id="products-heading" class="sr-only">Products</h2>
 
-                    <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 h-fit">
-                        <ul role="list" class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
-                            <li>
+                    <div class="grid grid-cols-1 gap-y-10 lg:grid-cols-4 h-fit">
+                        <div class="block mr-6">
+                            <ul role="list" class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
                                 @role('sale')
-                                <div class="flex items-center justify-center mt-5 font-semibold">
-                                    <div class="w-9/12">
-                                        <a href="{{ route('repair.edit.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
-                                            <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
-                                            <span class="relative text-black group-hover:text-white">
-                                                Manage Repair
-                                            </span>
-                                        </a>
+                                    <li>
+                                        
+                                        <div class="flex items-center justify-center mt-5 font-semibold">
+                                            <div class="w-9/12">
+                                                <a href="{{ route('repair.edit.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                                    <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                    <span class="relative text-black group-hover:text-white">
+                                                        Manage Repair
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    @if($repair->task()->get()[0]->todo_date)
+                                        <li>
+                                        
+                                            <button  type="submit" data-modal-target="purchaseModal" data-modal-toggle="purchaseModal" class="my-2 p-2 w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-blue-200 via-green-400 to-red-200 group-hover:from-blue-200 group-hover:via-green-400 group-hover:to-green-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-green-400">
+                                                <span class="w-full text-lg font-semibold relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-3xl group-hover:bg-opacity-0">
+                                                    Purchase Order
+                                                </span>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            @if($repair->quotation)
+                                            <button  type="submit" data-modal-target="payModal" data-modal-toggle="payModal" class="my-2 p-2 w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-blue-200 via-green-400 to-red-200 group-hover:from-blue-200 group-hover:via-green-400 group-hover:to-green-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-green-400">
+                                                <span class="w-full text-lg font-semibold relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-3xl group-hover:bg-opacity-0">
+                                                    Payment
+                                                </span>
+                                            </button>
+                                            @endif
+                                        </li>
+                                    @endif
+                                @endrole
+                            @role('technician')  
+                            <li>
+                                    
+                                    <div class="flex items-center justify-center mt-5 font-semibold">
+                                        <div class="w-9/12">
+                                            <a href="{{ route('task.edit.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                                <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                <span class="relative text-black group-hover:text-white">
+                                                    Manage
+                                                </span>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
+                               
                             </li>
                             <li>
                                 @if($repair->task()->get()[0]->todo_date)
@@ -82,6 +119,7 @@
                                         </button>
                                     </div>
                                 </div>
+                                @endif
                          
                             </li>
                             <li>
@@ -92,82 +130,81 @@
                                     </span>
                                 </button>
                                 @endif --}}
-                                @endif
-                                @endrole
+                                {{-- @endif --}}
+                                
                             </li>
+                            @endrole
+                            {{-- @role('technician')
                             <li>
-                                @role('technician')
+                                
                                 <div class="flex items-center justify-center mt-5 font-semibold">
                                     <div class="w-9/12">
-                                        <a href="{{ route('task.edit.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                        <a href="{{ route('task.edit.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6"> Edit Task</a>
+                                    </div>
+                                </div>
+                                   
+                            </li>
+                            @endrole --}}
+                                <li>
+                                    @role(['sale','technician'])
+                                    <div class="flex items-center justify-center mt-5 font-semibold">
+                                        <div class="w-9/12">
+                                            <a href="{{route('product.quotation.create',['repair'=>$repair])}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
                                             <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
-                                            <span class="relative text-black group-hover:text-white">
-                                                Manage
-                                            </span>
-                                        </a>
+                                                <span class="relative text-black group-hover:text-white">
+                                                    Quatation
+                                                </span>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                @endrole
-                            </li>
-                            <li>
-                                @role(['sale','technician'])
-                                <div class="flex items-center justify-center mt-5 font-semibold">
-                                    <div class="w-9/12">
-                                        <a href="{{route('product.quotation.create',['repair'=>$repair])}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
-                                        <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
-                                            <span class="relative text-black group-hover:text-white">
-                                                Quatation
-                                            </span>
-                                        </a>
+                                    @endrole
+                                </li>
+                                <li>
+                                    @role('sale')
+                                    <div class="flex items-center justify-center mt-5 font-semibold">
+                                        <div class="w-9/12">
+                                            <a href="{{ route('repair.payment.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                                <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                <span class="relative text-black group-hover:text-white">
+                                                    Payment
+                                                </span>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                @endrole
-                            </li>
-                            <li>
-                                @role('sale')
-                                <div class="flex items-center justify-center mt-5 font-semibold">
-                                    <div class="w-9/12">
-                                        <a href="{{ route('repair.payment.view',['repair'=>$repair]) }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                    @endrole
+                                </li>
+                                <li>
+                                    @role('technician')
+                                    @if($repair->quotation && ($repair->quotation->grand_total == $repair->amount ))
+                                    <div class="flex items-center justify-center mt-5 font-semibold">
+                                        <div class="w-9/12">
+                                            <button  type="submit" data-modal-target="doneModal" data-modal-toggle="doneModal" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
                                             <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
-                                            <span class="relative text-black group-hover:text-white">
-                                                Payment
-                                            </span>
-                                        </a>
+                                                <span class="relative text-black group-hover:text-white">
+                                                    Done
+                                                </span>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                                @endrole
-                            </li>
-                            <li>
-                                @role('technician')
-                                @if($repair->quotation && ($repair->quotation->grand_total == $repair->amount ))
-                                <div class="flex items-center justify-center mt-5 font-semibold">
-                                    <div class="w-9/12">
-                                        <button  type="submit" data-modal-target="doneModal" data-modal-toggle="doneModal" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
-                                        <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
-                                            <span class="relative text-black group-hover:text-white">
-                                                Done
-                                            </span>
-                                        </button>
+                                    @endif
+                                    @endrole
+                                </li>
+                                <li>
+                                    @role('sale')
+                                    <div class="flex items-center justify-center mt-5 font-semibold">
+                                        <div class="w-9/12">
+                                            <button  type="submit" data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                            <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                <span class="relative text-black group-hover:text-white">
+                                                    Delete
+                                                </span>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                                @endif
-                                @endrole
-                            </li>
-                            <li>
-                                @role('sale')
-                                <div class="flex items-center justify-center mt-5 font-semibold">
-                                    <div class="w-9/12">
-                                        <button  type="submit" data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
-                                        <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
-                                            <span class="relative text-black group-hover:text-white">
-                                                Delete
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                                @endrole
-                            </li>
-                        </ul>
+                                    @endrole
+                                </li>
+                            </ul>
+                        </div>
                         <!-- Product grid -->
                         <div class="lg:col-span-3">
                             <!-- Your content -->

@@ -61,6 +61,14 @@ class Omise
         return $response;
     }
 
+    public static function ChargeFailed($charge_id)
+    {
+        $response = Http::withHeaders([
+            'Authorization' => 'Basic ' . base64_encode(OMISE_SECRET_KEY . ':'),
+        ])->post("https://api.omise.co/charges/{$charge_id}/mark_as_failed");
+        return $response;
+    }
+
     public static function ChargeCreditCard($amount, $card_token)
     {
         $date = new DateTime();

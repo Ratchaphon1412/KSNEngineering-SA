@@ -117,11 +117,15 @@ class PaymentController extends Controller
                     'repair_id' => $repair
                 ]);
 
+                // $response = Omise::ChargePaid($id);
 
 
-                return view('seller.payment-qr', compact('qrcode', 'expires_at', 'create_at', 'authorize_uri'));
+                return view('seller.payment-qr', compact('qrcode', 'expires_at', 'create_at', 'authorize_uri', 'pay', 'id'));
             }
         }
+
+
+
 
 
         // $amount = $request->get('amount');
@@ -130,5 +134,30 @@ class PaymentController extends Controller
         // $source_array = $source->toArray();
 
         // $charge = Omise::Charge($token,$amount, $omiseSource);
+    }
+
+
+    public function chargePaid(Request $request)
+    {
+        $charge_id = $request->get('charge_id');
+        $charge = Omise::ChargePaid($charge_id);
+        // $charge_array = $charge->toArray();
+        // $status = $charge_array['status'];
+
+        // return view('seller.payment-confirm', compact('status'));
+        // return view('seller.payment-confirm', compact('status'));
+        return $charge;
+    }
+
+    public function chargeFailed(Request $request)
+    {
+        $charge_id = $request->get('charge_id');
+        $charge = Omise::ChargeFailed($charge_id);
+        // $charge_array = $charge->toArray();
+        // $status = $charge_array['status'];
+        return $charge;
+
+        // return view('seller.payment-confirm', compact('status'));
+        // return view('seller.payment-confirm', compact('status'));
     }
 }
