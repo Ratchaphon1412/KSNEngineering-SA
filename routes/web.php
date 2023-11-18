@@ -6,6 +6,7 @@ use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ManagerController;
 use App\Livewire\UpdateProduct;
 /*
 |--------------------------------------------------------------------------
@@ -62,9 +63,9 @@ Route::get('/kanban', function () {
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin', 'dashboard')->name('admin');
     Route::post('/admin/deleteProduct/{product}', 'deleteProduct')->name('deleteProduct');
-    Route::get('/show_team','showTeam')->name('team.show');
-    Route::post('/addteam/{user}','editTeam')->name('user.team.edit');
-    Route::post('/creat_team',"createTeam")->name('create.team');
+    Route::get('/show_team', 'showTeam')->name('team.show');
+    Route::post('/addteam/{user}', 'editTeam')->name('user.team.edit');
+    Route::post('/create_team', "createTeam")->name('create.team');
 });
 
 Route::get('/admin/updateProduct/{product}', UpdateProduct::class)->name('product.update');
@@ -113,6 +114,10 @@ Route::controller(TechnicianController::class)->group(function () {
     Route::get("/myWork/{user}", 'myWorkTech')->name('repair.mywork')->middleware(['auth', 'verified']);
 });
 
+Route::controller(ManagerController::class)->group(function () {
+    Route::post('/manageTeam/{task}', 'manageTeam')->name('repair.team.edit')->middleware(['auth', 'verified']);
+});
+
 Route::controller(ProductController::class)->group(function () {
     Route::get('/product', 'view')->name('product.index');
     Route::get('/product/{product}', 'detail')->name('kanban');
@@ -120,5 +125,3 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/product/create/product', 'createProduct')->name('product.product.create');
     Route::get('/product/create/quotation/{repair}', 'createQuotation')->name('product.quotation.create');
 });
-
-

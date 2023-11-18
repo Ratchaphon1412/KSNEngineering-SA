@@ -1,4 +1,24 @@
 <x-app-layout>
+@if (session('error'))
+    <div id="errorAlert" class="alert alert-danger bg-red-500 scrolling-alert">
+        {{ session('error') }}
+    </div>
+
+    <script>
+        // Set the animation duration (in milliseconds)
+        const animationDuration = 5000; // 10 seconds
+
+        // Add animation class
+        document.getElementById('errorAlert').classList.add('scrolling-animation');
+
+        // Set a timeout to remove the element after the animation duration
+        setTimeout(function () {
+            document.getElementById('errorAlert').remove();
+        }, animationDuration);
+    </script>
+@endif
+
+
     <div class="flex justify-center items-center">
         <div class="min-h-screen bg-gray-200 my-20 w-3/4 rounded-3xl">
             <div class="flex">
@@ -84,8 +104,8 @@
                                             
                                         <form action="{{ route('create.team') }}" method="POST" enctype="multipart/form-data" class="w-10/12">
                                         @csrf
-                                           
-                                        <input type="text" name="name" id="name" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please enter a name">
+                                        
+                                        <input type="text" name="name" id="name" required class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please enter a name">
                                         
                                         </div>
                                     </div>

@@ -20,10 +20,15 @@ class LoginController extends Controller  implements LoginResponseContract, TwoF
             if (Auth::user()->hasRole('admin')) {
                 $home = '/admin';
             } elseif (Auth::user()->hasRole('technician')) {
+                $home = "/myWork/" . Auth::user()->id;
+            } 
+            elseif (Auth::user()->hasRole('sale')) {
                 $home = '/list-repair';
-            } elseif (Auth::user()->hasRole('sale')) {
+            }
+            elseif (Auth::user()->hasRole('manager')) {
                 $home = '/list-repair';
-            } else {
+            }
+             else {
                 $home = '/dashboard';
             }
         }
