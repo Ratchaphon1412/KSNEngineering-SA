@@ -54,6 +54,11 @@ class AdminController extends Controller
     }
 
     public Function createTeam(Request $request) {
+        if(Team::where('name', $request->name)->first()){
+            return back()->with('error', "Please choose another name, it's already taken.");
+        }
+
+
         $team = new Team();
         $team->name = $request->name;
         $team->save();

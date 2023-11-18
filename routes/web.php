@@ -5,6 +5,7 @@ use App\Http\Controllers\SellController;
 use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ManagerController;
 use App\Livewire\UpdateProduct;
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +64,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::post('/admin/deleteProduct/{product}', 'deleteProduct')->name('deleteProduct');
     Route::get('/show_team','showTeam')->name('team.show');
     Route::post('/addteam/{user}','editTeam')->name('user.team.edit');
-    Route::post('/creat_team',"createTeam")->name('create.team');
+    Route::post('/create_team',"createTeam")->name('create.team');
 });
 
 Route::get('/admin/updateProduct/{product}', UpdateProduct::class)->name('product.update');
@@ -94,6 +95,11 @@ Route::controller(TechnicianController::class)->group(function () {
     Route::post('/done-repair/{repair}', 'doneRepair')->name('done.repair')->middleware(['auth', 'verified']);
     Route::post('/delete-repair/{repair}', 'deleteRepair')->name('delete.repair')->middleware(['auth', 'verified']);
     Route::get("/myWork/{user}",'myWorkTech')->name('repair.mywork')->middleware(['auth', 'verified']);
+    
+});
+
+Route::controller(ManagerController::class)->group(function () {
+    Route::post('/manageTeam/{task}', 'manageTeam')->name('repair.team.edit')->middleware(['auth', 'verified']);
     
 });
 

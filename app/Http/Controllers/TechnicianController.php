@@ -96,7 +96,7 @@ class TechnicianController extends Controller
         $repairs = Repair::all();
         $repairs_select = array();
         foreach ($repairs as $repair) {
-            if($repair->task->stage == "InProcess" && $repair->task->user_id == $user->id){
+            if($repair->task->team == $user->team){
                 array_push($repairs_select ,$repair);
             }
         }

@@ -75,7 +75,39 @@
                         <p class="font-normal text-gray-700 my-3 ml-4">Stage: {{$repair->task()->get()[0]->stage}}</p>
                     </div>
                     @endif
-                    </a>
+                    <div class="flex bg-blue-300 p-1 mt-3 rounded-lg">
+                        
+                        <form action="{{ route('repair.team.edit',['task'=>$repair->task()->get()[0]]) }}" method="POST" enctype="multipart/form-data">
+                            @csrf        
+                            <div class="flex ">
+                                <p class=" text-gray-900 px-3 py-2.5 text-center mr-2 my-2 dark:text-white">Team:</p>
+                                
+                                @if (Auth::user()->hasRole('manager'))
+                                <select id="selected" name="selected" class="mr-8 px-3 my-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected value="0">delete Team</option>
+                                    @foreach ($teams as $team)
+                                   
+                                    @if($team == $repair->task()->get()[0]->team)
+                                        <option selected value="{{ $team->id }}">{{ $team->name }}</option>
+                                    @else
+                                        <option value="{{ $team->id }}">{{ $team->name }}</option>
+                                    @endif
+                                    
+                                    @endforeach
+                                </select>
+                                <button type="submit"
+                                    class=" text-white bg-green-400 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2 my-2 ">
+                                    change
+                                </button>
+                                @else
+                                    @if($repair->task()->get()[0]->team)
+                                    <p class=" text-gray-900 px-3 py-2.5 text-center mr-2 my-2 dark:text-white">{{ $repair->task()->get()[0]->team->name }}</p>
+                                    @endif
+                                @endif
+                            </div>
+                        </form>
+                    </div>
+                    
 
 
                     <div class="grid items-center justify-end">

@@ -62,26 +62,63 @@
                     </div>
                     
                 </div>
+                <div class="flex mt-5 mb-2 p-2 w-full rounded-3xl group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                    <form action="{{ route('repair.team.edit',['task'=>$repair->task()->get()[0]]) }}" method="POST" enctype="multipart/form-data" class="w-full">
+                        @csrf
+                        <div class="flex">
+                            <p class="text-xl text-gray-900 px-3 py-2.5 text-center mr-2 my-2 dark:text-white">Team:</p>
+                            @if (Auth::user()->hasRole('sale'))
+                                <select id="selected" name="selected" class="my-2 bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full flex-grow p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected value="0">delete Team</option>
+                                    @foreach ($teams as $team)
+                                        @if($team == $repair->task()->get()[0]->team)
+                                            <option selected value="{{ $team->id }}">{{ $team->name }}</option>
+                                        @else
+                                            <option value="{{ $team->id }}">{{ $team->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                <button type="submit"
+                                        class="text-white bg-green-400 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2 my-2">
+                                    change
+                                </button>
+                            @else
+                                @if($repair->task()->get()[0]->team)
+                                    <p class="text-xl text-gray-900 px-3 py-2.5 text-center mr-2 my-2 dark:text-white">{{ $repair->task()->get()[0]->team->name }}</p>
+                                @endif
+                            @endif
+                        </div>
+                    </form>
+                </div>
+
+                @if($repair->task()->get()[0]->team)
+                    <button  type="submit" data-modal-target="teamModal" data-modal-toggle="teamModal" class="mt-2 p-2 w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                        <span class="w-full text-lg font-semibold relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-3xl group-hover:bg-opacity-0">
+                            Team Member
+                        </span>
+                    </button>
+                @endif
+
                 @role('sale')
-                <a href="{{ route('repair.edit.view',['repair'=>$repair]) }}" class="mt-5 mb-2 p-2 font-bold w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-                    <span class="w-full text-lg font-semibold text-center rounded-3xl px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 group-hover:bg-opacity-0">
-                        Edit Repair
-                    </span>
-                </a>
-                @if($repair->task()->get()[0]->todo_date)
-                <button  type="submit" data-modal-target="purchaseModal" data-modal-toggle="purchaseModal" class="my-2 p-2 w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-blue-200 via-green-400 to-red-200 group-hover:from-blue-200 group-hover:via-green-400 group-hover:to-green-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-green-400">
-                    <span class="w-full text-lg font-semibold relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-3xl group-hover:bg-opacity-0">
-                        Purchase Order
-                    </span>
-                </button>
-                @if($repair->quotation)
-                <button  type="submit" data-modal-target="payModal" data-modal-toggle="payModal" class="my-2 p-2 w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-blue-200 via-green-400 to-red-200 group-hover:from-blue-200 group-hover:via-green-400 group-hover:to-green-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-green-400">
-                    <span class="w-full text-lg font-semibold relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-3xl group-hover:bg-opacity-0">
-                        Payment
-                    </span>
-                </button>
-                @endif
-                @endif
+                    <a href="{{ route('repair.edit.view',['repair'=>$repair]) }}" class="mt-3 mb-2 p-2 font-bold w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                        <span class="w-full text-lg font-semibold text-center rounded-3xl px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 group-hover:bg-opacity-0">
+                            Edit Repair
+                        </span>
+                    </a>
+                    @if($repair->task()->get()[0]->todo_date)
+                    <button  type="submit" data-modal-target="purchaseModal" data-modal-toggle="purchaseModal" class="my-2 p-2 w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-blue-200 via-green-400 to-red-200 group-hover:from-blue-200 group-hover:via-green-400 group-hover:to-green-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-green-400">
+                        <span class="w-full text-lg font-semibold relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-3xl group-hover:bg-opacity-0">
+                            Purchase Order
+                        </span>
+                    </button>
+                        @if($repair->quotation)
+                        <button  type="submit" data-modal-target="payModal" data-modal-toggle="payModal" class="my-2 p-2 w-full relative inline-flex items-center justify-center overflow-hidden text-sm font-medium text-gray-900 rounded-3xl group bg-gradient-to-br from-blue-200 via-green-400 to-red-200 group-hover:from-blue-200 group-hover:via-green-400 group-hover:to-green-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-green-400">
+                            <span class="w-full text-lg font-semibold relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-3xl group-hover:bg-opacity-0">
+                                Payment
+                            </span>
+                        </button>
+                        @endif
+                    @endif
                 @endrole
 
                 @role('technician')
@@ -233,6 +270,50 @@
                         </div>
                     </div>
                 </div>
+
+                @if($repair->task()->get()[0]->team)
+                <div id="teamModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative w-full max-w-2xl max-h-full">
+                        <!-- Modal content -->
+                        <div class=" bg-white rounded-lg shadow dark:bg-gray-700">
+                             <!-- Modal header -->
+                            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                                <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-sky-400 to-cyan-500">
+                                    Team Member: {{ $repair->task()->get()[0]->team->name }}        
+                                </h1>
+                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="teamModal">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                            </div>
+                            
+                            <!-- Modal body -->
+                            <div class="p-6 space-y-6">
+                                <div class=" bg-white px-2">
+                                    <div class="flex flex-wrap">
+                                        @foreach ($repair->task()->get()[0]->team->users as $user)
+                                        <div class="w-1/3 mt-2 mb-2">
+                                            <div class="bg-amber-200 rounded-xl ml-2 p-2">
+                                                <p class="text-xl text-gray-900 dark:text-white p-2 rounded-xl bg-amber-300">{{ $user->name }}</p>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                            
+                            <!-- Modal footer -->
+                            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                <button data-modal-hide="teamModal" type="button" class="text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
 
 
                 

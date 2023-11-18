@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Repair;
+use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,17 +28,20 @@ class SellController extends Controller
                 array_push($repairs_select ,$repair);
             }
         }
-
+        $teams = Team::get();
 
         return view('seller.index', [
             'repairs' => $repairs_select,
+            'teams' =>$teams, 
         ]);
     }
 
     public function detailRepair(Repair $repair)
     {
+        $teams = Team::get();
         return view('seller.detail', [
             'repair' => $repair,
+            'teams' =>$teams, 
         ]);
     }
 

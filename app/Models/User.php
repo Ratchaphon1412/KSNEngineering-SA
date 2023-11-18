@@ -87,4 +87,8 @@ class User extends Authenticatable implements BasementUserContract
     {
         return str($this->attributes['name'])->explode(' ')->last() . '  ' . str($this->getRoleNames()[0]);
     }
+
+    public function getName() {
+        return $this->name;
+    }
 }

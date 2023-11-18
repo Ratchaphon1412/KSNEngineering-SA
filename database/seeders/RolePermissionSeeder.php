@@ -42,6 +42,11 @@ class RolePermissionSeeder extends Seeder
         $role = Role::create(['name' => 'technician']);
         $permission10 = Permission::create(['name' => 'can update tasks']);
         $role->syncPermissions([$permission10]);
+        
+        $role = Role::create(['name' => 'manager']);
+        $permission11 = Permission::create(['name' => 'can manage work technician']);
+        $role->syncPermissions([$permission11]);
+
 
 
     }
