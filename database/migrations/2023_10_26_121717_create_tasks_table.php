@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Repair;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,6 +17,7 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Repair::class);
+            $table->foreignIdFor(Team::class)->nullable();
             $table->foreignIdFor(User::class)->nullable();
             $table->string('stage')->default('Pending');
             $table->date('todo_date')->nullable();

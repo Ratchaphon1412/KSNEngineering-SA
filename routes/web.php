@@ -62,6 +62,9 @@ Route::get('/kanban', function () {
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin', 'dashboard')->name('admin');
     Route::post('/admin/deleteProduct/{product}', 'deleteProduct')->name('deleteProduct');
+    Route::get('/show_team','showTeam')->name('team.show');
+    Route::post('/addteam/{user}','editTeam')->name('user.team.edit');
+    Route::post('/creat_team',"createTeam")->name('create.team');
 });
 
 Route::get('/admin/updateProduct/{product}', UpdateProduct::class)->name('product.update');
@@ -117,3 +120,5 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/product/create/product', 'createProduct')->name('product.product.create');
     Route::get('/product/create/quotation/{repair}', 'createQuotation')->name('product.quotation.create');
 });
+
+
