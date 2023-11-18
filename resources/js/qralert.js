@@ -39,9 +39,17 @@ Swal.fire({
       },
     
       willClose: async () => {
+        await Swal.fire({
+            icon: 'error',
+            title: 'Payment Failed',
+            text: 'Please try again or contact us',
+            showConfirmButton: false,
+            timer: 1500
+        })
    
-   
+        
         clearInterval(timerInterval);
+        window.location.href = '/';
       },
     
 
