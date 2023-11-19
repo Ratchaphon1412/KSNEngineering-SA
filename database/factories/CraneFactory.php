@@ -22,7 +22,7 @@ class CraneFactory extends Factory
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
             'image' => $this->faker->imageUrl(),
-            'waranty' => $this->faker->date(),
+            'waranty' => $this->faker->dateTimeBetween('-3 years', '3 years')->format('Y-m-d'),
         ];
     }
 }

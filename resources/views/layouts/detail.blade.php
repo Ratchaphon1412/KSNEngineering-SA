@@ -108,8 +108,8 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        
                                     @endif
+                                    
                                 @endrole
                             @role('technician')
                             <li>
@@ -159,18 +159,7 @@
                                 </div>
                             </li>
                             
-                            <li>
-                                <div class="flex items-center justify-center mt-5 font-semibold">
-                                    <div class="w-9/12">
-                                        <button  type="submit" data-modal-target="teanModal" data-modal-toggle="teamModal" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow ">
-                                            <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
-                                            <span class="relative text-black group-hover:text-white">
-                                                Finish the repair
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
+                            
                             @endrole
                             
                                 <li>
@@ -202,14 +191,31 @@
                                     @endrole
                                 </li>
                                 <li>
-                                    @role('technician')
-                                    @if($repair->quotation && ($repair->quotation->grand_total == $repair->amount ))
+                                    @role('sale')
+                                    @if($repair->waranty ||( ($repair->quotation->grand_total != 0 ) && ($repair->amount == $repair->quotation->grand_total) )  )
                                     <div class="flex items-center justify-center mt-5 font-semibold">
                                         <div class="w-9/12">
                                             <button  type="submit" data-modal-target="doneModal" data-modal-toggle="doneModal" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
                                             <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
                                                 <span class="relative text-black group-hover:text-white">
                                                     Done
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    @endrole
+                                </li>
+                                <li>
+                                    @role('technician')
+                                    @if( ($repair->quotation->grand_total != 0 ) && ($repair->amount == $repair->quotation->grand_total) )  
+                                    
+                                    <div class="flex items-center justify-center mt-5 font-semibold">
+                                        <div class="w-9/12">
+                                            <button  type="submit" data-modal-target="finishModal" data-modal-toggle="finishModal" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                            <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                <span class="relative text-black group-hover:text-white">
+                                                    Finish the repair
                                                 </span>
                                             </button>
                                         </div>
@@ -268,19 +274,15 @@
                                                                     <!-- <span class="block text-gray-400 font-normal">Select file video here</span> -->
                                                                     <form action="{{ route('purchase.add',['repair'=>$repair]) }}" method="POST" enctype="multipart/form-data" class="w-10/12">
                                                                     @csrf
-                                                                    <input type="file" name="image" id="inputImage" accept="image/*" required>
+                                                                    <input type="file" name="image" id="image" accept="image/*" required>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="font-xl" id="previewsImg-con" style="display: none">
-                                        Preview Image
-                                        <div class="mt-2 gap-1 flex justify-center items-center" id="preview-image">
-                                    
+                                            
+                                            
                                         </div>
                                     </div>
                                     @endif
@@ -342,6 +344,109 @@
                         @endif
 
 
+                        <div id="doneModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div class="fixed z-10 inset-0 overflow-y-auto">
+                                <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                                    <div class="fixed inset-0 transition-opacity">
+                                        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                                    </div>
+                                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
+                                    <div
+                                        class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                                        <div class="sm:flex sm:items-start">
+                                            <div
+                                                class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                                                <svg class="h-6 w-6 text-green-600" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                                    Done work
+                                                </h3>
+                                                <div class="mt-2">
+                                                    <p class="text-sm leading-5 text-gray-500">
+                                                        Are you sure you want to Done this repair?
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                                            <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+                                            <form action="{{ route('done.repair',['repair'=>$repair]) }}" method="POST" enctype="multipart/form-data" class="w-10/12">
+                                                @csrf         
+                                                <button type="submit"
+                                                    class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                                                    Accept
+                                                </button>
+                                            </form>
+                                            </span>
+                                            <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                                                <button type="button" data-modal-hide="doneModal"
+                                                    class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                                                    Cancel
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                        </div>
+
+
+
+                <div id="finishModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="fixed z-10 inset-0 overflow-y-auto">
+                        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                            <div class="fixed inset-0 transition-opacity">
+                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                            </div>
+                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
+                            <div
+                                class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                                <div class="sm:flex sm:items-start">
+                                    <div
+                                        class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                                        <svg class="h-6 w-6 text-green-600" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                            Finish work
+                                        </h3>
+                                        <div class="mt-2">
+                                            <p class="text-sm leading-5 text-gray-500">
+                                                Are you sure you want to Finish this repair?
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                                    <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+                                    <form action="{{ route('finish.repair',['repair'=>$repair]) }}" method="POST" enctype="multipart/form-data" class="w-10/12">
+                                        @csrf         
+                                        <button type="submit"
+                                            class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                                            Accept
+                                        </button>
+                                    </form>
+                                    </span>
+                                    <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                                        <button type="button" data-modal-hide="finishModal"
+                                            class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                                            Cancel
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
                         <!-- Product grid -->
                         <div class="lg:col-span-3">
                             <!-- Your content -->
@@ -365,7 +470,11 @@
           
         </div>
    
-        <script src="{{ asset('vendor/basement/basement.bundle.min.js') }}"></script>
+        <script src="{{ asset('vendor/basement/basement.bundle.min.js') }}">
+
+
+
+        </script>
         @stack('modals')
 
         @livewireScripts

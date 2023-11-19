@@ -101,6 +101,7 @@ Route::controller(SellController::class)->group(function () {
     Route::post('/add-purchase-order/{repair}', 'purchaseOrder')->name('purchase.add')->middleware(['auth', 'verified']);
     Route::post("/add-amount/{repair}", 'addAmount')->name('add.amount')->middleware(['auth', 'verified']);
     Route::get("/inprocess-repair", 'inProcessRepair')->name('seller.InProcess.view')->middleware(['auth', 'verified']);
+    Route::get("/finish-repair", 'finishRepair')->name('seller.Finish.view')->middleware(['auth', 'verified']);
     Route::get("/createCompany", 'showCreateCompany')->name('show.company.view')->middleware(['auth', 'verified']);
     Route::post("/registerCompany", 'registerCompany')->name('register.company')->middleware(['auth', 'verified']);
 });
@@ -108,10 +109,11 @@ Route::controller(SellController::class)->group(function () {
 Route::controller(TechnicianController::class)->group(function () {
     Route::get('/task/{repair}', 'show')->name('task.edit.view')->middleware(['auth', 'verified']);
     Route::post('/update-task/{task}', 'update')->name('task.update')->middleware(['auth', 'verified']);
-    Route::get('/my-work', 'myWork')->name('repair.tech.work')->middleware(['auth', 'verified']);
+    Route::post('/finish-repair/{repair}', 'finishRepair')->name('finish.repair')->middleware(['auth', 'verified']);
     Route::post('/done-repair/{repair}', 'doneRepair')->name('done.repair')->middleware(['auth', 'verified']);
     Route::post('/delete-repair/{repair}', 'deleteRepair')->name('delete.repair')->middleware(['auth', 'verified']);
     Route::get("/myWork/{user}", 'myWorkTech')->name('repair.mywork')->middleware(['auth', 'verified']);
+    Route::get("/myWorkInProcess/{user}", 'myWorkInProcessTech')->name('repair.myworkInProcess')->middleware(['auth', 'verified']);
 });
 
 Route::controller(ManagerController::class)->group(function () {

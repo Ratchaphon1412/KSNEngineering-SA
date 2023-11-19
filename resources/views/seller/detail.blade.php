@@ -87,7 +87,7 @@
                         @csrf
                         <div class="flex">
                             <p class="text-xl text-gray-900 px-3 py-2.5 text-center mr-2 my-2 dark:text-white">Team:</p>
-                            @if (Auth::user()->hasRole('sale'))
+                            @if (Auth::user()->hasRole('manager'))
                                 <select id="selected" name="selected" class="my-2 bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full flex-grow p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option selected value="0">delete Team</option>
                                     @foreach ($teams as $team)

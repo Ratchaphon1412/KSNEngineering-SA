@@ -170,8 +170,29 @@ class SellController extends Controller
             }
         }
 
+        $teams = Team::get();
+
         return view('seller.index', [
             'repairs' => $showRepairs,
+            'teams' =>$teams,
+        ]);
+    }
+    public function finishRepair()
+    {
+
+        $repairs = Repair::get();
+        $showRepairs = [];
+        foreach ($repairs as $repair) {
+            if ($repair->task->stage == "FinishRepair") {
+                $showRepairs[] = $repair;
+            }
+        }
+
+        $teams = Team::get();
+
+        return view('seller.index', [
+            'repairs' => $showRepairs,
+            'teams' =>$teams,
         ]);
     }
 

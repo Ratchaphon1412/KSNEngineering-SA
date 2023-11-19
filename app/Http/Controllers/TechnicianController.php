@@ -20,20 +20,7 @@ class TechnicianController extends Controller
         ]);
     }
 
-    public function myWork()
-    {
-        $repairs = Repair::get();
-        $showRepairs = [];
-        foreach ($repairs as $repair) {
-            if($repair->task->user_id === Auth()->user()->id){
-                $showRepairs[] = $repair;
-            }
-        }
-
-        return view('technician.myWork', [
-            'repairs' => $showRepairs,
-        ]);
-    }
+    
     public function doneRepair(Repair $repair)
     {
         $task = $repair->task;
@@ -41,6 +28,14 @@ class TechnicianController extends Controller
         $task->save();
 
         return redirect()->route('show.repair.view');
+    }
+    public function finishRepair(Repair $repair)
+    {
+        $task = $repair->task;
+        $task->stage = 'FinishRepair';
+        $task->save();
+
+        return redirect()->route('repair.mywork', ['user'=>Auth::user() ]);
     }
 
     public function deleteRepair(Repair $repair)
@@ -97,7 +92,23 @@ class TechnicianController extends Controller
         $repairs = Repair::all();
         $repairs_select = array();
         foreach ($repairs as $repair) {
-            if($repair->task->team == $user->team){
+            if($repair->task->team == $user->team && $repair->task->stage == "Pending"){
+                array_push($repairs_select ,$repair);
+            }
+        }
+
+
+        return view('seller.index', [
+            'repairs' => $repairs_select,
+        ]);
+    }
+
+    public function myWorkInProcessTech(User $user)
+    {
+        $repairs = Repair::all();
+        $repairs_select = array();
+        foreach ($repairs as $repair) {
+            if($repair->task->team == $user->team && $repair->task->stage == "InProcess"){
                 array_push($repairs_select ,$repair);
             }
         }

@@ -7,6 +7,7 @@ use App\Models\Repair;
 use App\Models\Task;
 use App\Models\Quotation;
 use App\Models\Company;
+use App\Models\Crane;
 use Livewire\WithFileUploads;
 
 
@@ -63,6 +64,12 @@ class FormRepair extends Component
             'crane_id' => $this->crane_id,
             'image' => $this->image->hashName(),
         ]);
+
+        if(Crane::find($this->crane_id)->waranty >= now()){
+            $repair = Repair::find($repair->id);
+            $repair->waranty = true;
+            $repair->save();
+        }
 
         $task = Task::create([
             'repair_id' => $repair->id,

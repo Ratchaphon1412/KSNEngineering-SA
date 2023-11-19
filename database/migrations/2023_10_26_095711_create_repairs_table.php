@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('image')->nullable();
             $table->double('amount')->default(0);
+            $table->boolean('waranty')->default(false);
             $table->string('purchase_order')->nullable();
             $table->string('payment_status')->default('pending')->enum('pending', 'paid');
 

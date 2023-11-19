@@ -80,8 +80,8 @@
       @if($selectedCrane)
          @foreach ($selectedCompany->cranes as $crane)
             @if($crane->id == $selectedCrane)
-
-               @if((int)explode('-',$crane->waranty)[0] > (int)now()->format('Y') && (int)explode('-',$crane->waranty)[1] > (int)now()->format('m') && (int)explode('-',$crane->waranty)[2] > (int)now()->format('d'))
+               
+               @if($crane->waranty >= now())
                   <div class="w-full px-3 mb-6 md:mb-0 mt-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg">
                         <p class="text-center text-green-700 text-lg tracking-wide">
                            the crane has waranty

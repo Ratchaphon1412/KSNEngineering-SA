@@ -44,7 +44,7 @@
 
             <!-- Page Content -->
             <main >
-            @role(['technician','sale'])
+            @role(['technician','sale', 'manager'])
                 <div class="bg-white">
                     <div>
                         <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -70,6 +70,14 @@
                                                 </a>    
                                             </div>
                                         </div>
+                                        <div class="flex items-center justify-center mt-5 font-semibold">
+                                            <div class="w-9/12">
+                                                <a href="{{route('repair.myworkInProcess', ['user'=>Auth::user() ])}}" class="rounded-r-lg group relative px-4 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                                    <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                    <span class="relative text-black group-hover:text-white ">My Repair InProcess</span>
+                                                </a>    
+                                            </div>
+                                        </div>
                                     @endrole
                                     @role('sale')
                                     <div class="flex items-center justify-center mt-5 font-semibold">
@@ -80,6 +88,18 @@
                                             </a>
                                         </div>
                                     </div>
+                                    <li>
+                                        <div class="flex items-center justify-center mt-5 font-semibold">
+                                            <div class="w-9/12">
+                                                <a href="{{ route('show.repair.view') }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                                    <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                    <span class="relative text-black group-hover:text-white">
+                                                        Repair
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
                                     <div class="flex items-center justify-center mt-5 font-semibold">
                                         <div class="w-9/12">
                                             <a href="{{route('seller.InProcess.view')}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
@@ -88,10 +108,19 @@
                                             </a>    
                                         </div>
                                     </div>
+                                    <div class="flex items-center justify-center mt-5 font-semibold">
+                                        <div class="w-9/12">
+                                            <a href="{{route('seller.Finish.view')}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                                <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                <span class="relative text-black group-hover:text-white ">Finish Repair</span>
+                                            </a>    
+                                        </div>
+                                    </div>
                                     @endrole
                                     </li>
 
                                     <li>
+                                        @role('manager')
                                         <div class="flex items-center justify-center mt-5 font-semibold">
                                             <div class="w-9/12">
                                                 <a href="{{route('team.show')}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
@@ -100,6 +129,7 @@
                                                 </a>
                                             </div>
                                         </div>
+                                        @endrole
                                     </li>
 
                                     </ul>

@@ -41,7 +41,7 @@
                                     <div class="flex ">
                                         <p class=" text-gray-900 px-3 text-xl text-center mr-2 my-2 dark:text-white">Team:</p>
                                         
-                                        @if (Auth::user()->hasRole('sale'))
+                                        @if (Auth::user()->hasRole('manager'))
                                         <select id="selected" name="selected" class="mr-8 px-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             <option selected value="0">delete Team</option>
                                             @foreach ($teams as $team)

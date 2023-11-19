@@ -13,6 +13,14 @@
         <button  class="text-white bg-gray-600 hover:bg-gray-800  font-medium rounded-lg text-sm p-2 focus:outline-none">create payment</button>
         @endif
     </div>
+    <div class="flex m-5">
+        <p class="mx-2 text-2xl text-gray-900 dark:text-white ">waranty: </p>
+            @if($repair->waranty)
+            <p class="text-2xl text-green-500  dark:text-white">True</p>
+            @else
+            <p class="text-2xl text-red-500 dark:text-white">False</p>
+            @endif
+    </div>
     <div class="relative overflow-x-auto">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
