@@ -39,4 +39,9 @@ class Task extends Model
     {
         return $this->hasOne(Quotation::class);
     }
+
+    public function team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class);
+    }
 }

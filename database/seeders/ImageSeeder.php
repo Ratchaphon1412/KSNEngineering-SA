@@ -14,6 +14,6 @@ class ImageSeeder extends Seeder
     {
         //
 
-        \App\Models\Image::factory(30)->create();
+        \App\Models\Image::factory(10)->create();
     }
 }

@@ -4,7 +4,7 @@
             <div class="flex flex-col items-start">
                 Users
                 <p>
-                    {{ $users->count() }}
+                    {{ $count_users }}
                 </p>
             </div>
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#CBD5E1" class="w-10 h-12"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
@@ -13,7 +13,7 @@
             <div class="flex flex-col items-start">
                 Product & Service
                 <p>
-                    {{ $products->count() }}
+                    {{ $count_products }}
                 </p>
             </div>
             <svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#CBD5E1" class="w-10 h-12"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill="#CBD5E1" d="M12 6v-6h-8v6h-4v7h16v-7h-4zM7 12h-6v-5h2v1h2v-1h2v5zM5 6v-5h2v1h2v-1h2v5h-6zM15 12h-6v-5h2v1h2v-1h2v5z"></path> <path fill="#CBD5E1" d="M0 16h3v-1h10v1h3v-2h-16v2z"></path> </g></svg>
@@ -22,7 +22,7 @@
             <div class="flex flex-col items-start">
                 payment
                 <p>
-                    
+                    {{$payments}}
                 </p>
             </div>
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-10 h-12"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M14.5 9C14.5 9 13.7609 8 11.9999 8C8.49998 8 8.49998 12 11.9999 12C15.4999 12 15.5 16 12 16C10.5 16 9.5 15 9.5 15" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 7V17" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#CBD5E1" stroke-width="2"></path> </g></svg>
@@ -174,43 +174,62 @@
             <header class="px-5 py-4 border-b border-slate-100">
                 <h2 class="font-semibold text-slate-800 ">All Payment</h2>
             </header>
-            <div class="relative overflow-x-auto p-3">
-                <table class="w-full text-sm text-left rtl:text-right">
-                    <thead class="text-xs uppercase text-slate-400 bg-slate-100">
+            <div class="relative overflow-x-auto">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="uppercase px-6 py-3">
                                 amount
                             </th>
                             <th scope="col" class="uppercase px-6 py-3">
-                                details
+                                method
                             </th>
                             <th scope="col" class="uppercase px-6 py-3">
-                                type
+                                status
                             </th>
                             <th scope="col" class="uppercase px-6 py-3">
                                 created at
                             </th>
+                            <th scope="col" class="uppercase px-6 py-3">
+                                verify information (Manual)
+                            </th>
+        
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b">
+                        @foreach ($transections as $payment)
+                        <tr class="bg-white border-b dark:bg-gray-800">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                100.00 THB
+                                {{$payment->pay}} THB
                             </th>
                             <td class="px-6 py-4">
-                                test test
+                                {{$payment->payment_method}}
                             </td>
                             <td class="px-6 py-4">
-                                One time use
+                                {{$payment->payment_status}}
                             </td>
                             <td class="px-6 py-4">
-                                Nov 15, 2023
+                                {{$payment->created_at->format('M d, Y')}}
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{{$payment->confirm_payment_uri}}">link</a>
                             </td>
                         </tr>
+                        
+                            
+                        @endforeach
+        
+               
                     </tbody>
                 </table>
+                
+               
+        
+            </div>
+            <div class="p-4">
+                {{$transections->links()}}
             </div>
         </div>
-
+       
     </div>
 </x-app-layout>

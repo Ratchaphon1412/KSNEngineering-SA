@@ -14,6 +14,7 @@ use Spatie\Permission\Traits\HasRoles; // use Role
 
 use BasementChat\Basement\Contracts\User as BasementUserContract; // chat
 use BasementChat\Basement\Traits\HasPrivateMessages;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable implements BasementUserContract
@@ -67,6 +68,11 @@ class User extends Authenticatable implements BasementUserContract
         'profile_photo_url',
     ];
 
+    public function team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class);
+    }
+
 
     public function repairs(): HasMany
     {
@@ -80,5 +86,9 @@ class User extends Authenticatable implements BasementUserContract
     public function getNameAttribute(): string
     {
         return str($this->attributes['name'])->explode(' ')->last() . '  ' . str($this->getRoleNames()[0]);
+    }
+
+    public function getName() {
+        return $this->name;
     }
 }

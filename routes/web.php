@@ -6,6 +6,7 @@ use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ManagerController;
 use App\Livewire\UpdateProduct;
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,9 @@ Route::get('/kanban', function () {
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin', 'dashboard')->name('admin');
     Route::post('/admin/deleteProduct/{product}', 'deleteProduct')->name('deleteProduct');
+    Route::get('/show_team', 'showTeam')->name('team.show');
+    Route::post('/addteam/{user}', 'editTeam')->name('user.team.edit');
+    Route::post('/create_team', "createTeam")->name('create.team');
 });
 
 Route::get('/admin/updateProduct/{product}', UpdateProduct::class)->name('product.update');
@@ -70,19 +74,21 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-Route::get('/payment/charge', function(){
-    return view('seller.payment-confirm',[
+Route::get('/payment/charge', function () {
+    return view('seller.payment-confirm', [
         'status' => 'success'
     ]);
 })->name('confirm');
 
-Route::get('/payment/qr', function(){
+Route::get('/payment/qr', function () {
     return view('seller.payment-qr');
 })->name('qr');
 
 Route::controller(PaymentController::class)->group(function () {
     Route::get('/payment/link/{amount}/{repair}', 'link')->name('payment.link');
     Route::post('/payment/charge', 'charge')->name('payment.charge');
+    Route::post('/payment/charge/qr/confirm', 'ChargePaid')->name('payment.charge.qr');
+    Route::post('/payment/charge/qr/failed', 'chargeFailed')->name('payment.charge.qr.view');
 });
 
 Route::controller(SellController::class)->group(function () {
@@ -106,6 +112,10 @@ Route::controller(TechnicianController::class)->group(function () {
     Route::post('/done-repair/{repair}', 'doneRepair')->name('done.repair')->middleware(['auth', 'verified']);
     Route::post('/delete-repair/{repair}', 'deleteRepair')->name('delete.repair')->middleware(['auth', 'verified']);
     Route::get("/myWork/{user}", 'myWorkTech')->name('repair.mywork')->middleware(['auth', 'verified']);
+});
+
+Route::controller(ManagerController::class)->group(function () {
+    Route::post('/manageTeam/{task}', 'manageTeam')->name('repair.team.edit')->middleware(['auth', 'verified']);
 });
 
 Route::controller(ProductController::class)->group(function () {

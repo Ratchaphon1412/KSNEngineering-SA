@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Repair;
+use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -29,17 +30,20 @@ class SellController extends Controller
                 array_push($repairs_select, $repair);
             }
         }
-
+        $teams = Team::get();
 
         return view('seller.index', [
             'repairs' => $repairs_select,
+            'teams' =>$teams, 
         ]);
     }
 
     public function detailRepair(Repair $repair)
     {
+        $teams = Team::get();
         return view('seller.detail', [
             'repair' => $repair,
+            'teams' =>$teams, 
         ]);
     }
 
@@ -173,23 +177,29 @@ class SellController extends Controller
 
         $payments = $repair->payments;
         $temp_amount = 0;
-
+        // fetch payment status from omise
         foreach ($payments as $payment) {
             $info = Omise::ChargeInformation($payment->transection_token);
             $payment->payment_status = $info['status'];
             $payment->save();
             if ($info['status'] == 'successful') {
+                //calculate amount from payment
                 $temp_amount += $payment->pay;
             }
         }
+        // save amount to repair
         $repair->amount = $temp_amount;
         $repair->save();
 
+        // calculate balance
         $balance = $repair->quotation->grand_total - $repair->amount;
 
-        if ($balance <= 0) {
-            $repair->payment_status = 'paid';
-            $repair->save();
+
+        if ($repair->quotation->grand_total != 0) {
+            if ($balance == 0) {
+                $repair->payment_status = 'paid';
+                $repair->save();
+            }
         }
 
 
