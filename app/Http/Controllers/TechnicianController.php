@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Crane;
 use App\Models\Image;
 use App\Models\Repair;
 use App\Models\Task;
@@ -9,6 +10,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Faker\Factory as Faker;
+
 
 class TechnicianController extends Controller
 {
@@ -23,9 +26,21 @@ class TechnicianController extends Controller
     
     public function doneRepair(Repair $repair)
     {
-        $task = $repair->task;
-        $task->stage = 'Done';
-        $task->save();
+        if($repair->crane_id){
+            $task = $repair->task;
+            $task->stage = 'Done';
+            $task->save();
+
+            $crane = Crane::find($repair->crane_id);
+            $warrantyExpiration = date('Y-m-d', strtotime('+2 years'));
+            $crane->warranty = $warrantyExpiration;
+            $crane->save();
+        }
+        else{
+            return view('product.crane.create', [
+                'repair' => $repair,
+            ]);
+        }
 
         return redirect()->route('show.repair.view');
     }

@@ -123,7 +123,7 @@ Route::controller(ManagerController::class)->group(function () {
 Route::controller(ProductController::class)->group(function () {
     Route::get('/product', 'view')->name('product.index');
     Route::get('/product/{product}', 'detail')->name('kanban');
-    Route::get('/product/create/crane', 'createCrane')->name('product.crane.create');
+    Route::get('/product/create/crane/{repair}', 'createCrane')->name('product.crane.create');
     Route::get('/product/create/product', 'createProduct')->name('product.product.create');
     Route::get('/product/create/quotation/{repair}', 'createQuotation')->name('product.quotation.create');
 });
