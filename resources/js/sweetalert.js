@@ -8,20 +8,25 @@ const repairInput = document.getElementById('repair')
 const btnEl = document.getElementById('createBtn')
 
 const balance = document.getElementById('balance')
+
 async function create() {
     let { value: amount } = await Swal.fire({
-    title: "Enter purchase",
+    title: `Enter purchase (Balance: ${balance.value})`,
     input: "number",
+    inputAttributes: { // เพิ่ม inputAttributes เพื่อกำหนด min และ max
+        min: 0, // ตั้งค่า min เป็น 0 หรือค่าต่ำสุดที่ต้องการ
+        max: balance.value, // ตั้งค่า max เป็น balance.value หรือค่าสูงสุดที่ต้องการ
+        step: 0.01,
+    },
     showCancelButton: true,
     inputValidator: (value) => {
         if (!value) {
         return "Please enter the amount";
         }
-        if (value < 0) {
+        else if (value <= 0) {
         return "Please enter a positive number";
         }
-
-        if (value > balance.value) {
+        else if (parseFloat(value) > parseFloat(balance.value)) {
         return "Please enter the amount less than or equal to the balance";
         }
     }

@@ -49,7 +49,7 @@
                     <div>
                         <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div class="flex items-baseline justify-between border-b border-gray-200 py-6">
-                            <h1 class="text-4xl font-bold tracking-tight text-gray-900">Task</h1>
+                            <h1 class="text-4xl font-bold tracking-tight text-gray-900">Repair</h1>
                         </div>
 
                         <section aria-labelledby="products-heading" class="pb-24 pt-6">
@@ -90,16 +90,18 @@
                                     </div>
                                     @endrole
                                     </li>
+
                                     <li>
                                         <div class="flex items-center justify-center mt-5 font-semibold">
                                             <div class="w-9/12">
-                                                <a href="{{route('show.repair.view')}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                                <a href="{{route('team.show')}}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
                                                     <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
-                                                    <span class="relative text-black group-hover:text-white ">Repair</span>
-                                                </a>    
+                                                    <span class="relative text-black group-hover:text-white ">Edit Team</span>
+                                                </a>
                                             </div>
                                         </div>
                                     </li>
+
                                     </ul>
                                 </form>
                                 <!-- Product grid -->

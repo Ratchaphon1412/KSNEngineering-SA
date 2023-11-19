@@ -12,6 +12,7 @@ use App\Models\Product;
 
 use App\Models\Company;
 use App\Models\Repair;
+use App\Models\Team;
 
 class QuotationCalculate extends Component
 {
@@ -199,11 +200,14 @@ class QuotationCalculate extends Component
         $quotation->quotation_pdf = $link;
         $quotation->save();
 
-
+        $teams = Team::get();
 
         // And return invoice itself to browser or have a different view
         // Replace with your desired URL
-        return redirect()->route('show.repair.view');
+        return redirect()->route('detail.repair.view', [
+            'repair' => $this->repair,
+            'teams' =>$teams, 
+        ]);
     }
 
 

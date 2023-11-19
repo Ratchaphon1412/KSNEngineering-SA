@@ -1,4 +1,5 @@
 <x-detail-layout :repair="$repair">
+    
     <div class="flex justify-center">
         <div class="flex justify-between w-full">
             <div class="w-full mb-16 mt-8">
@@ -63,7 +64,7 @@
                     </div>
                     @if($repair->task->user)
                         <div class="text-base font-medium my-2 text-black">
-                            crane technician: 
+                            The technician last edited: 
                             <div class="font-normal bg-zinc-200 rounded-lg p-3 text-zinc-500 mt-3">
                                 {{ $repair->task->user->name }}
                             </div>
@@ -81,167 +82,38 @@
                     
                 </div>
 
+                <div class="flex mt-5 mb-2 p-2 w-full rounded-3xl group bg-gradient-to-br from-gray-200 to-gray-200 group-hover:from-gray-600 group-hover:to-gray-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                    <form action="{{ route('repair.team.edit',['task'=>$repair->task()->get()[0]]) }}" method="POST" enctype="multipart/form-data" class="w-full">
+                        @csrf
+                        <div class="flex">
+                            <p class="text-xl text-gray-900 px-3 py-2.5 text-center mr-2 my-2 dark:text-white">Team:</p>
+                            @if (Auth::user()->hasRole('sale'))
+                                <select id="selected" name="selected" class="my-2 bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full flex-grow p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected value="0">delete Team</option>
+                                    @foreach ($teams as $team)
+                                        @if($team == $repair->task()->get()[0]->team)
+                                            <option selected value="{{ $team->id }}">{{ $team->name }}</option>
+                                        @else
+                                            <option value="{{ $team->id }}">{{ $team->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                <button type="submit"
+                                        class="text-white bg-green-400 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2 my-2">
+                                    change
+                                </button>
+                            @else
+                                @if($repair->task()->get()[0]->team)
+                                    <p class="text-xl text-gray-900 px-3 py-2.5 text-center mr-2 my-2 dark:text-white">{{ $repair->task()->get()[0]->team->name }}</p>
+                                @endif
+                            @endif
+                        </div>
+                    </form>
+                </div>
+
                 
 
-                <div id="purchaseModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative w-full max-w-2xl max-h-full">
-                        <!-- Modal content -->
-                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <!-- Modal header -->
-                            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                                <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-sky-400 to-cyan-500">
-                                    Purchase order
-                                </h1>
-                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="purchaseModal">
-                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                    </svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                            </div>
-                            @if($repair->purchase_order)
-                                <div>
-                                    <img class="h-auto max-w-full rounded-lg" src="{{asset('storage/uploads/' . $repair->purchase_order)}}" alt="">
-                                </div>
-                            @else
-                            <!-- Modal body -->
-                            <div class="p-6 space-y-6">
-                                <div class="py-20 bg-white px-2">
-                                    <div class="max-w-md mx-auto rounded-lg overflow-hidden md:max-w-xl">
-                                        <div class="md:flex">
-                                            <div class="w-full p-3">
-                                                <div class="relative border-dotted h-48 rounded-lg border-dashed border-2 border-blue-700 bg-gray-100 flex justify-center items-center">
-                                                    <div class="absolute">
-                                                        <div class="flex flex-col items-center">
-                                                            <i class="fa fa-folder-open fa-4x text-blue-700"></i>
-                                                            <!-- <span class="block text-gray-400 font-normal">Select file video here</span> -->
-                                                            <form action="{{ route('purchase.add',['repair'=>$repair]) }}" method="POST" enctype="multipart/form-data" class="w-10/12">
-                                                            @csrf
-                                                            <input type="file" name="image" id="inputImage" accept="image/*" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="font-xl" id="previewsImg-con" style="display: none">
-                                Preview Image
-                                <div class="mt-2 gap-1 flex justify-center items-center" id="preview-image">
-
-                                </div>
-                            </div>
-                            @endif
-                            <!-- Modal footer -->
-                            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                <button data-modal-hide="purchaseModal" type="button" class="text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">close</button>
-                                @if(!$repair->purchase_order)    
-                                <button type="submit" class="right-5 absolute flex-2 rounded-full bg-green-600 text-white antialiased font-bold hover:bg-green-800 px-12 py-2">Add</button>
-                                @endif
-                            </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div id="payModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative w-full max-w-2xl max-h-full">
-                        <!-- Modal content -->
-                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <!-- Modal header -->
-                            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                                <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-sky-400 to-cyan-500">
-                                    Payment
-                                </h1>
-                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="payModal">
-                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                    </svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                            </div>
-                            
-                            <!-- Modal body -->
-                            <div class="p-6 space-y-6">
-                                <div class="py-20 bg-white px-2">
-                                    <div class="flex justify-center items-center">
-                                        <div class="w-3/4">
-                                            @if($repair->quotation)
-                                        <p class="text-4xl text-gray-900 dark:text-white">Balance: {{ $repair->amount }} / {{ $repair->quotation->grand_total }}</p>
-                                            @endif
-                                        <form action="{{ route('add.amount',['repair'=>$repair]) }}" method="POST" enctype="multipart/form-data" class="w-10/12">
-                                        @csrf
-                                        @if($repair->quotation)     
-                                            <input type="number" name="amount" id="amount" step="0.0001" value="{{$repair->amount}}" min="0" max="{{ $repair->quotation->grand_total }}"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please enter a number">
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            
-                            
-                            <!-- Modal footer -->
-                            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                <button data-modal-hide="payModal" type="button" class="text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">close</button>
-                                @if($repair->quotation)   
-                                <button type="submit" class="right-5 absolute flex-2 rounded-full bg-green-600 text-white antialiased font-bold hover:bg-green-800 px-12 py-2">Add</button>
-                                @endif
-                            </form>
-                                
-                            
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                @if($repair->task()->get()[0]->team)
-                <div id="teamModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative w-full max-w-2xl max-h-full">
-                        <!-- Modal content -->
-                        <div class=" bg-white rounded-lg shadow dark:bg-gray-700">
-                             <!-- Modal header -->
-                            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                                <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-sky-400 to-cyan-500">
-                                    Team Member: {{ $repair->task()->get()[0]->team->name }}        
-                                </h1>
-                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="teamModal">
-                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                    </svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                            </div>
-                            
-                            <!-- Modal body -->
-                            <div class="p-6 space-y-6">
-                                <div class=" bg-white px-2">
-                                    <div class="flex flex-wrap">
-                                        @foreach ($repair->task()->get()[0]->team->users as $user)
-                                        <div class="w-1/3 mt-2 mb-2">
-                                            <div class="bg-amber-200 rounded-xl ml-2 p-2">
-                                                <p class="text-xl text-gray-900 dark:text-white p-2 rounded-xl bg-amber-300">{{ $user->name }}</p>
-                                            </div>
-                                        </div>
-                                        @endforeach
-                                    </div>
-
-                                </div>
-                            </div>
-                            
-                            
-                            <!-- Modal footer -->
-                            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                <button data-modal-hide="teamModal" type="button" class="text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endif
+                
 
 
                 

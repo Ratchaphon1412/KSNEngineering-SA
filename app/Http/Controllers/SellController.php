@@ -73,10 +73,13 @@ class SellController extends Controller
         }
         $repair->save();
 
+        $teams = Team::get();
+
 
 
         return redirect()->route('detail.repair.view', [
             'repair' => $repair,
+            'teams' =>$teams, 
         ]);
     }
     public function updateRepairShow(Repair $repair)
