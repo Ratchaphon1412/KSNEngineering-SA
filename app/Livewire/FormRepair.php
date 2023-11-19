@@ -54,6 +54,7 @@ class FormRepair extends Component
         $this->image->store('repairs');
 
 
+
         $repair = Repair::create([
             'name' => $this->title,
             'description' => $this->details,
@@ -65,7 +66,6 @@ class FormRepair extends Component
 
         $task = Task::create([
             'repair_id' => $repair->id,
-            'user_id' => auth()->user()->id,
 
         ]);
 
