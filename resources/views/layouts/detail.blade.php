@@ -208,7 +208,7 @@
                                 </li>
                                 <li>
                                     @role('technician')
-                                    @if( ($repair->quotation->grand_total != 0 ) && ($repair->amount == $repair->quotation->grand_total) )  
+                                    @if( $repair->quotation->grand_total != 0  )  
                                     
                                     <div class="flex items-center justify-center mt-5 font-semibold">
                                         <div class="w-9/12">

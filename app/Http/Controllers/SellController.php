@@ -216,7 +216,7 @@ class SellController extends Controller
         $repair->save();
 
         // calculate balance
-        $balance = $repair->quotation->grand_total - $repair->amount;
+        $balance = round($repair->quotation->grand_total - $repair->amount, 2);
 
 
         if ($repair->quotation->grand_total != 0) {

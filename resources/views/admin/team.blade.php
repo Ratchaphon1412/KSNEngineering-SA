@@ -18,6 +18,16 @@
     </script>
 @endif
 
+<div class="flex items-center justify-center mt-5 font-semibold">
+                                            <div class="w-9/12">
+                                                <a href="{{ route('show.repair.view') }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                                    <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                    <span class="relative text-black group-hover:text-white">
+                                                        Back
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
 
     <div class="flex justify-center items-center">
         <div class="min-h-screen bg-gray-200 my-20 w-3/4 rounded-3xl">

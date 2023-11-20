@@ -129,6 +129,18 @@
                                                 </a>
                                             </div>
                                         </div>
+                                        
+                                        <div class="flex items-center justify-center mt-5 font-semibold">
+                                            <div class="w-9/12">
+                                                <a href="{{ route('show.repair.view') }}" class="rounded-r-lg group relative px-8 py-1 overflow-hidden bg-white text-lg shadow my-6">
+                                                    <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full rounded-r-lg"></div>
+                                                    <span class="relative text-black group-hover:text-white">
+                                                        Repair
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    
                                         @endrole
                                     </li>
 
