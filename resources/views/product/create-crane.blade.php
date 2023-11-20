@@ -3,8 +3,8 @@
     
  <div class="flex flex-row  mx-auto p-4 ">
 
-    @livewire('search-company')
-    @livewire('form-crane')
+    {{-- @livewire('search-company') --}}
+    @livewire('form-crane',['repair'=> $repair])
     
  </div>
 

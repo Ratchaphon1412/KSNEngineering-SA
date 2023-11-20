@@ -18,8 +18,9 @@ class FormCrane extends Component
     public $name;
     public $description;
     public $image;
-    public $company_id;
-    public $waranty;
+    public $repair;
+    // public $company_id;
+    // public $waranty;
 
     public $images;
 
@@ -28,16 +29,17 @@ class FormCrane extends Component
     public function render()
     {
 
-        $selectedCompany = null;
-        if ($this->company_id) {
-            $selectedCompany = Company::find($this->company_id);
-        }
+        // $selectedCompany = null;
+        // if ($this->company_id) {
+        //     $selectedCompany = Company::find($this->company_id);
+        // }
 
-        return view('livewire.form-crane', compact('selectedCompany'));
+        return view('livewire.form-crane');
     }
 
     public function save()
     {
+
 
         $this->validate([
 
@@ -50,12 +52,13 @@ class FormCrane extends Component
         $this->image->store('cranes');
 
         $crane = Crane::create([
-            'company_id' => $this->company_id,
+            'company_id' => $this->repair->company_id,
             'name' => $this->name,
             'description' => $this->description,
             'image' => $this->image->hashName(),
-            'waranty' => $this->waranty,
+            'waranty' =>  date('Y-m-d', strtotime('+2 years')),
         ]);
+
         if ($this->images) {
             foreach ($this->images as $image) {
                 $image->store('cranes');
@@ -66,12 +69,16 @@ class FormCrane extends Component
             }
         }
 
+        $task = $this->repair->task;
+        $task->stage = 'Done';
+        $task->save();
 
-        return redirect()->route('dashboard');
+
+        return redirect()->route('show.repair.view');
     }
 
-    public function companySelected($company)
-    {
-        $this->company_id = $company;
-    }
+    // public function companySelected($company)
+    // {
+    //     $this->company_id = $company;
+    // }
 }

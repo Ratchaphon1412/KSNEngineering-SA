@@ -8,7 +8,8 @@ use App\Models\Repair;
 
 class ProductController extends Controller
 {
-    public function view(){
+    public function view()
+    {
         $products = Product::get();
 
         return view('product.index', [
@@ -16,17 +17,18 @@ class ProductController extends Controller
         ]);
     }
 
-    public function detail(Product $product){
+    public function detail(Product $product)
+    {
         $images = Product::find($product->id)->image()->get();
-        return view('kanban',[
+        return view('kanban', [
             'product' => $product,
             'images' => $images
         ]);
     }
-    
-    public function createCrane()
+
+    public function createCrane(Repair $repair)
     {
-        return view('product.create-crane');
+        return view('product.create-crane', compact('repair'));
     }
     public function createProduct()
     {

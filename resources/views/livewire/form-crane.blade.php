@@ -19,46 +19,8 @@
             @enderror
         </div>
 
-        <div class="mb-5">
-            <label for="price" class="mb-3 block text-base font-medium text-[#07074D]">
-                Warranty
-            </label>
-            
-            <div class="relative max-w-sm">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                </svg>
-                </div>
-                <input datepicker id="datepickerId" wire:model="waranty"  type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
-                
-            </div>
-            @error('waranty')
-                    <p class="text-red-500 text-xs italic">{{$message}}</p>
-                @enderror
 
-        </div>
-        <div class="mb-6 pt-4">
-            @if($selectedCompany)
-          
-              
-                <livewire:card-company :company="$selectedCompany"  wire:key="{{$selectedCompany}}"/>
-                <input type="text" class="hidden" wire:model="company_id"  wire:key="{{$selectedCompany->id}}"  >
-            @else
-                <div class="card card-side  shadow-xl">
-                    
-                    <div class="card-body">
-                    <p class="text-black text-md ">Please select company</p>
-                    </div>
-                    @error('company_id')
-                        <p class="text-red-500 text-xs italic">{{$message}}</p>
-                    @enderror
-                    
-                </div>
-            @endif
-    
-    
-        </div>
+
 
 
         <div class="mb-6 pt-4">
