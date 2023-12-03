@@ -32,7 +32,7 @@ async function create() {
     }
     });
     if (amount.toString().split('.').length > 1) {
-        amount = amount.toString().split('.').join('');
+        amount = parseFloat(amount).toFixed(2).replace(".", "");
         let repairID = repairInput.value;
         Swal.fire({
             title: `copy link`,

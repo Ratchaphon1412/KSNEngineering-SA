@@ -65,10 +65,13 @@ class FormRepair extends Component
             'image' => $this->image->hashName(),
         ]);
 
-        if(Crane::find($this->crane_id)->waranty >= now()){
-            $repair = Repair::find($repair->id);
-            $repair->waranty = true;
-            $repair->save();
+        if(Crane::find($this->crane_id)) {
+            if(Crane::find($this->crane_id)->waranty >= now()){
+                $repair = Repair::find($repair->id);
+                $repair->waranty = true;
+                $repair->save();
+            }
+
         }
 
         $task = Task::create([

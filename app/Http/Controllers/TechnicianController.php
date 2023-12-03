@@ -33,13 +33,11 @@ class TechnicianController extends Controller
 
             $crane = Crane::find($repair->crane_id);
             $warrantyExpiration = date('Y-m-d', strtotime('+2 years'));
-            $crane->warranty = $warrantyExpiration;
+            $crane->waranty = $warrantyExpiration;
             $crane->save();
         }
         else{
-            return view('product.crane.create', [
-                'repair' => $repair,
-            ]);
+            return redirect()->route('product.crane.create', ['repair' => $repair, ]);
         }
 
         return redirect()->route('show.repair.view');
