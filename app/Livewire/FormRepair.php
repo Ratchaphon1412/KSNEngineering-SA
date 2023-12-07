@@ -30,11 +30,11 @@ class FormRepair extends Component
         if ($this->company_id) {
             $selectedCompany = Company::find($this->company_id);
         }
-        if($this->crane_id){
+        if ($this->crane_id) {
             $selectedCrane = $this->crane_id;
         }
 
-        return view('livewire.form-repair', compact('selectedCompany','selectedCrane'));
+        return view('livewire.form-repair', compact('selectedCompany', 'selectedCrane'));
     }
 
     public function save()
@@ -52,7 +52,7 @@ class FormRepair extends Component
 
         // $imageName = time() . '.' . $this->image->extension();
 
-        $this->image->store('repairs');
+        $this->image->store('public/repairs');
 
 
 
@@ -65,13 +65,12 @@ class FormRepair extends Component
             'image' => $this->image->hashName(),
         ]);
 
-        if(Crane::find($this->crane_id)) {
-            if(Crane::find($this->crane_id)->waranty >= now()){
+        if (Crane::find($this->crane_id)) {
+            if (Crane::find($this->crane_id)->waranty >= now()) {
                 $repair = Repair::find($repair->id);
                 $repair->waranty = true;
                 $repair->save();
             }
-
         }
 
         $task = Task::create([
